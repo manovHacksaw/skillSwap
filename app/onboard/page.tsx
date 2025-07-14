@@ -66,42 +66,11 @@ export default function OnboardPage() {
   const totalSteps = 6;
   const progress = ((currentStep + 1) / totalSteps) * 100;
 
-  // Check if user already exists
+  // Skip user existence check for now to avoid API issues
   useEffect(() => {
-    const checkUserExists = async () => {
-      try {
-        // Add timeout to prevent hanging
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-
-        const response = await fetch("/api/onboard", {
-          signal: controller.signal,
-        });
-        clearTimeout(timeoutId);
-
-        if (response.ok) {
-          const data = await response.json();
-          if (data.exists && data.user) {
-            toast.info("You've already completed onboarding!");
-            router.push("/dashboard");
-            return;
-          }
-        }
-      } catch (error) {
-        console.error("Error checking user:", error);
-        // If there's an error (like 401 Unauthorized, timeout, etc.), just proceed with onboarding
-      } finally {
-        setIsCheckingUser(false);
-      }
-    };
-
-    if (user) {
-      checkUserExists();
-    } else {
-      // If no user from Clerk, stop checking and show onboard
-      setIsCheckingUser(false);
-    }
-  }, [user, router]);
+    // Simply show the onboard form without checking
+    setIsCheckingUser(false);
+  }, []);
 
   const popularSkills = [
     { name: "React Development", category: "Programming" },
