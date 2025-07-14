@@ -578,7 +578,10 @@ export default function OnboardPage() {
       </div>
 
       <Card className="border-2 border-black shadow-lg">
-        <CardContent className="p-6 space-y-6">
+        <CardContent
+          className="p-6 space-y-6"
+          style={{ backgroundColor: "rgba(255, 249, 151, 1)" }}
+        >
           <div className="space-y-4">
             <Label className="text-black font-bold">Popular Skills</Label>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
