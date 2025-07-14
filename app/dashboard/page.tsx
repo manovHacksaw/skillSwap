@@ -9,8 +9,12 @@ import { Progress } from "@/components/ui/progress"
 import { Award, BookOpen, Calendar, Plus, TrendingUp, Users, Star, Wallet } from "lucide-react"
 import Link from "next/link"
 import SessionCard from "@/components/session-card"
+import { useUser } from "@clerk/nextjs"
 
 export default function DashboardPage() {
+  const { user, isLoaded } = useUser()
+
+
   const userStats = {
     skillScore: 850,
     skillsOffered: 5,
@@ -78,6 +82,59 @@ export default function DashboardPage() {
     },
   ]
 
+  // Get user's initials for fallback avatar
+  const getUserInitials = () => {
+    if (!user) return "U"
+    const firstName = user.firstName || ""
+    const lastName = user.lastName || ""
+    return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase()
+  }
+
+  // Get user's full name
+  const getUserName = () => {
+    if (!user) return "User"
+    return user.fullName || `${user.firstName || ""} ${user.lastName || ""}`.trim() || "User"
+  }
+
+  // Get user's email
+  const getUserEmail = () => {
+    return user?.primaryEmailAddress?.emailAddress || ""
+  }
+
+  // Generate a bio based on available user info
+  const getUserBio = () => {
+    // You can customize this based on user metadata or other info
+    const email = getUserEmail()
+    const domain = email.split('@')[1]
+    
+    if (domain && domain.includes('gmail')) {
+      return "Lifelong learner and skill enthusiast"
+    } else if (domain && (domain.includes('company') || domain.includes('corp'))) {
+      return "Professional developer and educator"
+    }
+    
+    return "Full-Stack Developer & Blockchain Enthusiast"
+  }
+
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen py-8 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="animate-pulse">
+            <div className="h-8 bg-gray-200 rounded w-48 mb-4"></div>
+            <div className="h-4 bg-gray-200 rounded w-64 mb-8"></div>
+            <div className="h-32 bg-gray-200 rounded mb-8"></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="h-24 bg-gray-200 rounded"></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen py-8 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto space-y-8">
@@ -86,7 +143,9 @@ export default function DashboardPage() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
             <div>
               <h1 className="text-4xl font-black text-black mb-2">Dashboard</h1>
-              <p className="text-gray-600 font-medium">Welcome back! Here's your learning overview.</p>
+              <p className="text-gray-600 font-medium">
+                Welcome back, {user?.firstName || "there"}! Here's your learning overview.
+              </p>
             </div>
             <Link href="/create-skill">
               <Button className="btn-primary mt-4 md:mt-0">
@@ -107,15 +166,22 @@ export default function DashboardPage() {
             <CardContent className="p-6">
               <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6">
                 <Avatar className="w-20 h-20">
-                  <AvatarImage src="/placeholder.svg?height=80&width=80" />
-                  <AvatarFallback>JD</AvatarFallback>
+                  <AvatarImage src={user?.imageUrl} />
+                  <AvatarFallback className="bg-yellow-400 text-black font-black text-xl">
+                    {getUserInitials()}
+                  </AvatarFallback>
                 </Avatar>
 
                 <div className="flex-1">
-                  <h2 className="text-2xl font-black text-black mb-2">John Doe</h2>
-                  <p className="text-gray-600 mb-3 font-medium">Full-Stack Developer & Blockchain Enthusiast</p>
+                  <h2 className="text-2xl font-black text-black mb-2">{getUserName()}</h2>
+                  <p className="text-gray-600 mb-3 font-medium">{getUserBio()}</p>
 
                   <div className="flex flex-wrap items-center gap-4">
+                    {getUserEmail() && (
+                      <div className="flex items-center space-x-2">
+                        <span className="text-gray-600 text-sm font-medium">{getUserEmail()}</span>
+                      </div>
+                    )}
                     <div className="flex items-center space-x-2">
                       <Wallet className="w-4 h-4 text-green-600" />
                       <span className="text-green-600 font-mono text-sm font-medium">{userStats.walletAddress}</span>
