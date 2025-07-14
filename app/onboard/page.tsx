@@ -486,6 +486,13 @@ export default function OnboardPage() {
                   size="sm"
                   onClick={() => addSkill(skill.name, skill.category, "teach")}
                   className="justify-start text-left h-auto p-3 border-2 border-gray-300 hover:border-green-400 hover:bg-green-50 font-medium"
+                  style={{
+                    backgroundColor: getSkillBackgroundColor(skill.name),
+                    color:
+                      skill.name === "Project Management"
+                        ? "rgb(253, 253, 253)"
+                        : undefined,
+                  }}
                   disabled={formData.skillsToTeach.some(
                     (s) => s.name === skill.name,
                   )}
