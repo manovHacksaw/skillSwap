@@ -70,17 +70,26 @@ export default function OnboardPage() {
   useEffect(() => {
     const checkUserExists = async () => {
       try {
-        const response = await fetch("/api/onboard");
-        const data = await response.json();
+        // Add timeout to prevent hanging
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
 
-        if (data.exists && data.user) {
-          toast.info("You've already completed onboarding!");
-          router.push("/dashboard");
-          return;
+        const response = await fetch("/api/onboard", {
+          signal: controller.signal,
+        });
+        clearTimeout(timeoutId);
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.exists && data.user) {
+            toast.info("You've already completed onboarding!");
+            router.push("/dashboard");
+            return;
+          }
         }
       } catch (error) {
         console.error("Error checking user:", error);
-        // If there's an error (like 401 Unauthorized), just proceed with onboarding
+        // If there's an error (like 401 Unauthorized, timeout, etc.), just proceed with onboarding
       } finally {
         setIsCheckingUser(false);
       }
