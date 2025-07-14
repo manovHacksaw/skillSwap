@@ -357,8 +357,8 @@ export default function OnboardPage() {
         </p>
       </div>
 
-      <Card className="border-2 border-black shadow-lg">
-        <CardContent className="p-6 space-y-6">
+      <Card className="border-2 border-black shadow-lg bg-yellow-400">
+        <CardContent className="p-6 space-y-6 bg-yellow-100">
           <div className="space-y-2">
             <Label htmlFor="displayName" className="text-black font-bold">
               Display Name *
@@ -374,7 +374,7 @@ export default function OnboardPage() {
                   displayName: e.target.value,
                 }))
               }
-              className="border-2 border-black rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              className="border-2 border-black rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white"
               required
             />
           </div>
@@ -390,7 +390,7 @@ export default function OnboardPage() {
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, bio: e.target.value }))
               }
-              className="min-h-[120px] border-2 border-black rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              className="min-h-[120px] border-2 border-black rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white"
             />
             <p className="text-sm text-gray-500 font-medium">
               This will be visible on your profile
@@ -853,7 +853,10 @@ export default function OnboardPage() {
               {Math.round(progress)}% Complete
             </span>
           </div>
-          <Progress value={progress} className="h-3 border border-black" />
+          <Progress
+            value={progress}
+            className="h-3 border border-black bg-yellow-400"
+          />
         </motion.div>
 
         {/* Step Content */}
