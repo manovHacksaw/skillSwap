@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { Moon, Sun, Menu, X, Zap } from "lucide-react"
-import ClerkAuthButton from "./clerk-auth-button"
+
 import WalletConnectButton from "./wallet-connect-button"
 import { motion, AnimatePresence } from "framer-motion"
 import { SignInButton, SignUpButton } from "@clerk/nextjs"
@@ -106,7 +106,7 @@ export default function Navbar() {
                   {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                 </Button>
                 <WalletConnectButton />
-                <ClerkAuthButton />
+          
               </div>
             </div>
           </motion.div>

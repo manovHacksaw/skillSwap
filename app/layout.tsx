@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { AuthProvider } from "@/components/auth-provider"
+
 import { WagmiProvider } from "@/components/wagmi-provider"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
@@ -32,7 +32,7 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body className={`${inter.variable} font-inter`}>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
-            <AuthProvider>
+  
               <WagmiProvider>
               <div className="min-h-screen bg-gray-50">
                 <Navbar />
@@ -41,7 +41,7 @@ export default function RootLayout({
               </div>
               <Toaster />
             </WagmiProvider>
-          </AuthProvider>
+     
         </ThemeProvider>
       </body>
     </html>
