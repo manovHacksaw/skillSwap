@@ -90,6 +90,27 @@ export default function OnboardPage() {
     { name: "Project Management", category: "Business" },
   ];
 
+  const getSkillBackgroundColor = (skillName: string) => {
+    const colorMap: { [key: string]: string } = {
+      "React Development": "rgb(236, 255, 207)",
+      "Smart Contracts": "rgb(236, 241, 231)",
+      "UI/UX Design": "rgb(229, 255, 216)",
+      Python: "rgb(232, 239, 239)",
+      "Digital Marketing": "rgb(255, 239, 251)",
+      "Data Science": "rgb(255, 250, 248)",
+      Solidity: "rgb(255, 226, 243)",
+      Figma: "rgb(234, 234, 234)",
+      "Node.js": "rgb(224, 238, 255)",
+      "Content Writing": "rgb(201, 255, 188)",
+      "Machine Learning": "rgb(255, 251, 218)",
+      Photoshop: "rgb(240, 248, 231)",
+      SEO: "rgb(244, 255, 253)",
+      JavaScript: "rgb(249, 253, 240)",
+      "Project Management": "rgb(244, 244, 244)",
+    };
+    return colorMap[skillName] || "rgb(255, 255, 255)";
+  };
+
   const learningGoalOptions = [
     "Career advancement",
     "Personal interest",
