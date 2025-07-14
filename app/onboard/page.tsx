@@ -413,11 +413,17 @@ export default function OnboardPage() {
                   }
                   className={`capitalize ${
                     formData.experienceLevel === level
-                      ? "bg-yellow-400 text-black border-2 border-black"
+                      ? level === "intermediate"
+                        ? "bg-orange-400 text-black border-2 border-black font-semibold"
+                        : "bg-yellow-400 text-black border-2 border-black"
                       : "border-2 border-gray-300 hover:border-yellow-400"
                   }`}
                 >
-                  {level}
+                  {level === "intermediate" ? (
+                    <span className="font-normal">{level}</span>
+                  ) : (
+                    level
+                  )}
                 </Button>
               ))}
             </div>
