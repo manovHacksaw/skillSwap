@@ -1,393 +1,216 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-import { Award, BookOpen, Calendar, Plus, TrendingUp, Users, Star, Wallet } from "lucide-react"
-import Link from "next/link"
-import SessionCard from "@/components/session-card"
-import { useUser } from "@clerk/nextjs"
+import { Sparkles, Users, BookOpen, Award, TrendingUp } from "lucide-react"
+import { motion } from "framer-motion"
 
 export default function DashboardPage() {
-  const { user, isLoaded } = useUser()
-
-
-  const userStats = {
-    skillScore: 850,
-    skillsOffered: 5,
-    skillsLearned: 12,
-    totalSessions: 47,
-    rating: 4.8,
-    walletAddress: "0x1234...5678",
-  }
-
-  const mySkills = [
-    {
-      id: "1",
-      title: "React Development",
-      category: "Programming",
-      students: 15,
-      rating: 4.9,
-      earnings: 450,
-    },
-    {
-      id: "2",
-      title: "UI/UX Design",
-      category: "Design",
-      students: 8,
-      rating: 4.7,
-      earnings: 320,
-    },
-    {
-      id: "3",
-      title: "Smart Contracts",
-      category: "Blockchain",
-      students: 6,
-      rating: 5.0,
-      earnings: 600,
-    },
-  ]
-
-  const upcomingSessions = [
-    {
-      id: "1",
-      title: "React Hooks Deep Dive",
-      instructor: {
-        name: "Alice Johnson",
-        avatar: "/placeholder.svg?height=40&width=40",
-      },
-      date: "Dec 15, 2024",
-      time: "2:00 PM",
-      duration: "1.5 hours",
-      type: "online" as const,
-      status: "upcoming" as const,
-      price: 75,
-    },
-    {
-      id: "2",
-      title: "Solidity Fundamentals",
-      instructor: {
-        name: "Bob Smith",
-        avatar: "/placeholder.svg?height=40&width=40",
-      },
-      date: "Dec 16, 2024",
-      time: "10:00 AM",
-      duration: "2 hours",
-      type: "online" as const,
-      status: "upcoming" as const,
-      price: 100,
-    },
-  ]
-
-  // Get user's initials for fallback avatar
-  const getUserInitials = () => {
-    if (!user) return "U"
-    const firstName = user.firstName || ""
-    const lastName = user.lastName || ""
-    return `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase()
-  }
-
-  // Get user's full name
-  const getUserName = () => {
-    if (!user) return "User"
-    return user.fullName || `${user.firstName || ""} ${user.lastName || ""}`.trim() || "User"
-  }
-
-  // Get user's email
-  const getUserEmail = () => {
-    return user?.primaryEmailAddress?.emailAddress || ""
-  }
-
-  // Generate a bio based on available user info
-  const getUserBio = () => {
-    // You can customize this based on user metadata or other info
-    const email = getUserEmail()
-    const domain = email.split('@')[1]
-    
-    if (domain && domain.includes('gmail')) {
-      return "Lifelong learner and skill enthusiast"
-    } else if (domain && (domain.includes('company') || domain.includes('corp'))) {
-      return "Professional developer and educator"
-    }
-    
-    return "Full-Stack Developer & Blockchain Enthusiast"
-  }
-
-  if (!isLoaded) {
-    return (
-      <div className="min-h-screen py-8 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-200 rounded w-48 mb-4"></div>
-            <div className="h-4 bg-gray-200 rounded w-64 mb-8"></div>
-            <div className="h-32 bg-gray-200 rounded mb-8"></div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[...Array(4)].map((_, i) => (
-                <div key={i} className="h-24 bg-gray-200 rounded"></div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   return (
-    <div className="min-h-screen py-8 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <div className="min-h-screen bg-gray-50 py-8 px-4">
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-8"
+        >
+          <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-4xl font-black text-black mb-2">Dashboard</h1>
-              <p className="text-gray-600 font-medium">
-                Welcome back, {user?.firstName || "there"}! Here's your learning overview.
-              </p>
+              <h1 className="text-3xl font-black text-black">Welcome to SkillSwap!</h1>
+              <p className="text-gray-600 font-medium">Ready to start your learning journey?</p>
             </div>
-            <Link href="/create-skill">
-              <Button className="btn-primary mt-4 md:mt-0">
-                <Plus className="w-4 h-4 mr-2" />
-                New Skill
+            <div className="flex items-center gap-4">
+              <Badge className="bg-yellow-400 text-black font-bold">
+                <Sparkles className="w-4 h-4 mr-1" />
+                SkillScore: 100
+              </Badge>
+              <Button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold">
+                Start Learning
               </Button>
-            </Link>
+            </div>
           </div>
         </motion.div>
 
-        {/* User Header Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <Card className="card-clean">
-            <CardContent className="p-6">
-              <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6">
-                <Avatar className="w-20 h-20">
-                  <AvatarImage src={user?.imageUrl} />
-                  <AvatarFallback className="bg-yellow-400 text-black font-black text-xl">
-                    {getUserInitials()}
-                  </AvatarFallback>
-                </Avatar>
-
-                <div className="flex-1">
-                  <h2 className="text-2xl font-black text-black mb-2">{getUserName()}</h2>
-                  <p className="text-gray-600 mb-3 font-medium">{getUserBio()}</p>
-
-                  <div className="flex flex-wrap items-center gap-4">
-                    {getUserEmail() && (
-                      <div className="flex items-center space-x-2">
-                        <span className="text-gray-600 text-sm font-medium">{getUserEmail()}</span>
-                      </div>
-                    )}
-                    <div className="flex items-center space-x-2">
-                      <Wallet className="w-4 h-4 text-green-600" />
-                      <span className="text-green-600 font-mono text-sm font-medium">{userStats.walletAddress}</span>
-                    </div>
-                    <Badge className="bg-black text-white font-semibold">
-                      <Award className="w-3 h-3 mr-1" />
-                      SkillScore: {userStats.skillScore}
-                    </Badge>
-                    <div className="flex items-center space-x-1">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="text-black font-medium">{userStats.rating}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        {/* Stats Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          <Card className="card-clean">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-4">
-                <div className="p-3 bg-yellow-100 rounded-lg">
-                  <BookOpen className="w-6 h-6 text-black" />
-                </div>
-                <div>
-                  <p className="text-gray-600 text-sm font-medium">Skills Offered</p>
-                  <p className="text-2xl font-black text-black">{userStats.skillsOffered}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="card-clean">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-4">
-                <div className="p-3 bg-blue-100 rounded-lg">
-                  <TrendingUp className="w-6 h-6 text-black" />
-                </div>
-                <div>
-                  <p className="text-gray-600 text-sm font-medium">Skills Learned</p>
-                  <p className="text-2xl font-black text-black">{userStats.skillsLearned}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="card-clean">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-4">
-                <div className="p-3 bg-green-100 rounded-lg">
-                  <Users className="w-6 h-6 text-black" />
-                </div>
-                <div>
-                  <p className="text-gray-600 text-sm font-medium">Total Sessions</p>
-                  <p className="text-2xl font-black text-black">{userStats.totalSessions}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="card-clean">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-4">
-                <div className="p-3 bg-yellow-100 rounded-lg">
-                  <Award className="w-6 h-6 text-black" />
-                </div>
-                <div>
-                  <p className="text-gray-600 text-sm font-medium">SkillScore</p>
-                  <p className="text-2xl font-black text-black">{userStats.skillScore}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* My Skills */}
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
           >
-            <Card className="card-clean">
-              <CardHeader>
-                <CardTitle className="text-black font-black flex items-center justify-between">
-                  My Skill Listings
-                  <Link href="/create-skill">
-                    <Button size="sm" className="btn-secondary">
-                      <Plus className="w-4 h-4 mr-1" />
-                      Add
-                    </Button>
-                  </Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {mySkills.map((skill) => (
-                  <div key={skill.id} className="p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-black">{skill.title}</h3>
-                      <Badge variant="secondary" className="bg-gray-200 text-gray-700 font-semibold">
-                        {skill.category}
-                      </Badge>
-                    </div>
-                    <div className="flex items-center justify-between text-sm text-gray-600">
-                      <div className="flex items-center space-x-4">
-                        <span className="font-medium">{skill.students} students</span>
-                        <div className="flex items-center space-x-1">
-                          <Star className="w-3 h-3 text-yellow-400 fill-current" />
-                          <span className="font-medium">{skill.rating}</span>
-                        </div>
-                      </div>
-                      <span className="text-green-600 font-bold">${skill.earnings}</span>
-                    </div>
+            <Card className="border-2 border-black shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Skills Teaching</p>
+                    <p className="text-2xl font-bold text-black">0</p>
                   </div>
-                ))}
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center border border-black">
+                    <Users className="w-6 h-6 text-green-600" />
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </motion.div>
 
-          {/* Upcoming Sessions */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
           >
-            <Card className="card-clean">
-              <CardHeader>
-                <CardTitle className="text-black font-black flex items-center justify-between">
-                  Upcoming Sessions
-                  <Link href="/sessions">
-                    <Button size="sm" className="btn-secondary">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      View All
-                    </Button>
-                  </Link>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {upcomingSessions.map((session) => (
-                  <SessionCard key={session.id} session={session} />
-                ))}
+            <Card className="border-2 border-black shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Skills Learning</p>
+                    <p className="text-2xl font-bold text-black">0</p>
+                  </div>
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center border border-black">
+                    <BookOpen className="w-6 h-6 text-blue-600" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <Card className="border-2 border-black shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Sessions</p>
+                    <p className="text-2xl font-bold text-black">0</p>
+                  </div>
+                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center border border-black">
+                    <TrendingUp className="w-6 h-6 text-purple-600" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <Card className="border-2 border-black shadow-lg">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">Badges</p>
+                    <p className="text-2xl font-bold text-black">0</p>
+                  </div>
+                  <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center border border-black">
+                    <Award className="w-6 h-6 text-yellow-600" />
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </motion.div>
         </div>
 
-        {/* Reputation Progress */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <Card className="card-clean">
-            <CardHeader>
-              <CardTitle className="text-black font-black">Reputation & SkillScore</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-gray-700 font-medium">Teaching Score</span>
-                    <span className="text-black font-bold">85%</span>
+        {/* Main Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2">
+            <Card className="border-2 border-black shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-black font-bold">Get Started</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="text-center py-12">
+                  <div className="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-black">
+                    <Sparkles className="w-10 h-10 text-black" />
                   </div>
-                  <Progress value={85} className="h-2" />
+                  <h3 className="text-xl font-bold text-black mb-2">Your SkillSwap Journey Begins!</h3>
+                  <p className="text-gray-600 font-medium mb-6">
+                    You've successfully completed onboarding. Start exploring skills and connecting with the community.
+                  </p>
+                  <Button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold">
+                    Explore Skills
+                  </Button>
                 </div>
-                <div>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-gray-700 font-medium">Learning Score</span>
-                    <span className="text-black font-bold">92%</span>
-                  </div>
-                  <Progress value={92} className="h-2" />
-                </div>
-                <div>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-gray-700 font-medium">Community Score</span>
-                    <span className="text-black font-bold">78%</span>
-                  </div>
-                  <Progress value={78} className="h-2" />
-                </div>
-              </div>
+              </CardContent>
+            </Card>
+          </div>
 
-              <div className="flex flex-wrap gap-2">
-                <Badge className="bg-yellow-400 text-black font-semibold">
-                  <Award className="w-3 h-3 mr-1" />
-                  Top Teacher
-                </Badge>
-                <Badge className="bg-blue-100 text-blue-700 font-semibold">
-                  <BookOpen className="w-3 h-3 mr-1" />
-                  Quick Learner
-                </Badge>
-                <Badge className="bg-green-100 text-green-700 font-semibold">
-                  <Users className="w-3 h-3 mr-1" />
-                  Community Helper
-                </Badge>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+          <div className="space-y-6">
+            <Card className="border-2 border-black shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-black font-bold">Your Progress</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span className="text-gray-600 font-medium">Profile Setup</span>
+                      <span className="text-black font-bold">100%</span>
+                    </div>
+                    <Progress value={100} className="h-2" />
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span className="text-gray-600 font-medium">First Session</span>
+                      <span className="text-black font-bold">0%</span>
+                    </div>
+                    <Progress value={0} className="h-2" />
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span className="text-gray-600 font-medium">Community</span>
+                      <span className="text-black font-bold">0%</span>
+                    </div>
+                    <Progress value={0} className="h-2" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-black shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-black font-bold">Next Steps</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center text-xs font-bold text-black">
+                      1
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-black">Browse Skills</p>
+                      <p className="text-xs text-gray-600">Find skills you want to learn</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center text-xs font-bold text-black">
+                      2
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-black">Book a Session</p>
+                      <p className="text-xs text-gray-600">Connect with a teacher</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center text-xs font-bold text-black">
+                      3
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-black">Start Teaching</p>
+                      <p className="text-xs text-gray-600">Share your knowledge</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </div>
     </div>
   )
