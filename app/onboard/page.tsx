@@ -51,7 +51,7 @@ export default function OnboardPage() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isCheckingUser, setIsCheckingUser] = useState(true);
+  const [isCheckingUser, setIsCheckingUser] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     displayName: user?.fullName || "",
     bio: "",
