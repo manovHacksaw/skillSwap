@@ -655,7 +655,10 @@ export default function OnboardPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="border-2 border-black shadow-lg">
-          <CardContent className="p-6 space-y-4">
+          <CardContent
+            className="p-6 space-y-4"
+            style={{ backgroundColor: "rgba(253, 253, 253, 1)" }}
+          >
             <div className="flex items-center gap-2 mb-4">
               <Target className="w-5 h-5 text-blue-600" />
               <Label className="text-black font-bold">Learning Goals</Label>
@@ -692,7 +695,10 @@ export default function OnboardPage() {
         </Card>
 
         <Card className="border-2 border-black shadow-lg">
-          <CardContent className="p-6 space-y-4">
+          <CardContent
+            className="p-6 space-y-4"
+            style={{ backgroundColor: "rgba(255, 255, 203, 1)" }}
+          >
             <div className="flex items-center gap-2 mb-4">
               <Lightbulb className="w-5 h-5 text-green-600" />
               <Label className="text-black font-bold">
@@ -735,7 +741,10 @@ export default function OnboardPage() {
       </div>
 
       <Card className="border-2 border-black shadow-lg">
-        <CardContent className="p-6 space-y-4">
+        <CardContent
+          className="p-6 space-y-4"
+          style={{ backgroundColor: "rgba(255, 242, 144, 0.68)" }}
+        >
           <div className="flex items-center gap-2 mb-4">
             <Clock className="w-5 h-5 text-purple-600" />
             <Label className="text-black font-bold">Availability Hours</Label>
