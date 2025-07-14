@@ -11,10 +11,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
-import { motion, AnimatePresence } from "framer-motion"
-import { SignInButton, SignUpButton } from "@clerk/nextjs"
-import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react"
-
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -27,10 +23,7 @@ export default function Navbar() {
     { href: "/skills", label: "Skills" },
     { href: "/feed", label: "Feed" },
     { href: "/profile/demo", label: "Profile" },
-
   ];
-    { href: "/onboard", label: "Onboard" },
-  ]
 
 
   return (
