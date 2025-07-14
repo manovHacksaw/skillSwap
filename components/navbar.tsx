@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react"
 import Link from "next/link"
@@ -6,7 +6,6 @@ import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { Moon, Sun, Menu, X, Zap } from "lucide-react"
 
-import WalletConnectButton from "./wallet-connect-button"
 import { motion, AnimatePresence } from "framer-motion"
 import { SignInButton, SignUpButton } from "@clerk/nextjs"
 import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react"
@@ -21,6 +20,7 @@ export default function Navbar() {
     { href: "/skills", label: "Skills" },
     { href: "/feed", label: "Feed" },
     { href: "/profile/demo", label: "Profile" },
+    { href: "/onboard", label: "Onboard" },
   ]
 
   return (
@@ -58,10 +58,9 @@ export default function Navbar() {
             >
               {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </Button>
-            <WalletConnectButton />
 
             {/* Clerk Authentication Buttons */}
-           <SignedOut>
+            <SignedOut>
               <SignInButton />
               <SignUpButton>
                 <button className="bg-[#6c47ff] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
@@ -105,8 +104,6 @@ export default function Navbar() {
                 <Button variant="ghost" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
                   {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                 </Button>
-                <WalletConnectButton />
-          
               </div>
             </div>
           </motion.div>
