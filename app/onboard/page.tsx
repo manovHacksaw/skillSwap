@@ -844,6 +844,11 @@ export default function OnboardPage() {
 
   return (
     <div className="min-h-screen py-8 px-4 bg-gray-50">
+      <style jsx global>{`
+        [data-radix-progress-indicator] {
+          background-color: #ffc700 !important;
+        }
+      `}</style>
       <div className="max-w-4xl mx-auto">
         {/* Progress Bar */}
         <motion.div
