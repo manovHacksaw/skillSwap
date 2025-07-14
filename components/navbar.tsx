@@ -96,19 +96,6 @@ export default function Navbar() {
                   {item.label}
                 </Link>
               ))}
-              <div className="flex items-center space-x-4 pt-4 border-t border-gray-200">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                >
-                  {theme === "dark" ? (
-                    <Sun className="w-5 h-5" />
-                  ) : (
-                    <Moon className="w-5 h-5" />
-                  )}
-                </Button>
-              </div>
             </div>
           </motion.div>
         )}
