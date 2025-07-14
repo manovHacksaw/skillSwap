@@ -6,9 +6,15 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Menu, X, Zap } from "lucide-react";
 
+
 import { motion, AnimatePresence } from "framer-motion";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
+
+import { motion, AnimatePresence } from "framer-motion"
+import { SignInButton, SignUpButton } from "@clerk/nextjs"
+import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react"
+
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -21,7 +27,11 @@ export default function Navbar() {
     { href: "/skills", label: "Skills" },
     { href: "/feed", label: "Feed" },
     { href: "/profile/demo", label: "Profile" },
+
   ];
+    { href: "/onboard", label: "Onboard" },
+  ]
+
 
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
@@ -50,6 +60,18 @@ export default function Navbar() {
 
           {/* Right side buttons */}
           <div className="hidden md:flex items-center space-x-4">
+
+
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="hover:bg-gray-100"
+            >
+              {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </Button>
+
+
             {/* Clerk Authentication Buttons */}
             <SignedOut>
               <SignInButton />
@@ -96,6 +118,14 @@ export default function Navbar() {
                   {item.label}
                 </Link>
               ))}
+
+
+              <div className="flex items-center space-x-4 pt-4 border-t border-gray-200">
+                <Button variant="ghost" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+                  {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                </Button>
+              </div>
+
             </div>
           </motion.div>
         )}
