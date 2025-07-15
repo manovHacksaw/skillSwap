@@ -39,51 +39,44 @@ export default function AnimatedHeroSection() {
           </motion.div>
         </div>
       </section>
-      {/* Feature Cards Section */}
-      <section className="py-12 px-4 bg-white mt-20">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-center"
-            >
-              <div className="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-black">
-                <BookOpen className="w-8 h-8 text-black" />
-              </div>
-              <h3 className="text-xl font-bold text-black mb-2">Learn Skills</h3>
-              <p className="text-gray-600 font-medium">Discover new skills from expert instructors</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-center"
-            >
-              <div className="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-black">
-                <Users className="w-8 h-8 text-black" />
-              </div>
-              <h3 className="text-xl font-bold text-black mb-2">Teach Others</h3>
-              <p className="text-gray-600 font-medium">Share your expertise and earn rewards</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-center"
-            >
-              <div className="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-black">
-                <Award className="w-8 h-8 text-black" />
-              </div>
-              <h3 className="text-xl font-bold text-black mb-2">Build Reputation</h3>
-              <p className="text-gray-600 font-medium">Earn on-chain credentials and recognition</p>
-            </motion.div>
+      {/* Problem Cards Section */}
+      <div className="flex flex-col items-center justify-center py-16 bg-background">
+        <span className="mb-2 px-3 py-1 rounded bg-yellow-100 text-yellow-800 font-semibold text-xs tracking-widest">
+          PROBLEM
+        </span>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-4">
+          LEARNING NEW SKILLS SHOULDN’T BE CENTRALIZED
+        </h2>
+        <p className="text-center max-w-xl text-muted-foreground mb-10">
+          Today’s learning platforms gatekeep knowledge, hide credentials behind paywalls, and don’t respect your data. SkillSwap empowers peer-to-peer learning with on-chain reputation you own.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
+          {/* Card 1 */}
+          <div className="bg-white border-2 border-black rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
+            <span className="text-3xl mb-2">📚</span>
+            <h3 className="font-bold text-lg mb-2">CENTRALIZED CONTROL</h3>
+            <p className="text-muted-foreground">
+              Skills and reputation are locked in closed platforms.
+            </p>
+          </div>
+          {/* Card 2 */}
+          <div className="bg-white border-2 border-black rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
+            <span className="text-3xl mb-2">🔒</span>
+            <h3 className="font-bold text-lg mb-2">NO VERIFIABLE CREDENTIALS</h3>
+            <p className="text-muted-foreground">
+              There's no way to prove you taught or learned transparently.
+            </p>
+          </div>
+          {/* Card 3 */}
+          <div className="bg-white border-2 border-black rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
+            <span className="text-3xl mb-2">💰</span>
+            <h3 className="font-bold text-lg mb-2">NO FAIR INCENTIVES</h3>
+            <p className="text-muted-foreground">
+              Mentors and learners don’t earn or own their impact.
+            </p>
           </div>
         </div>
-      </section>
+      </div>
     </>
   )
 }

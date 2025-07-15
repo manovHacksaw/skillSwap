@@ -8,6 +8,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { BookOpen, Users, Award, Shield, Globe, Zap, ArrowRight, Star, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
+import BenefitsSection from "@/components/benefits-section";
+import IntegrationsSection from "@/components/integrations-section";
+import HowItWorksSection from "@/components/how-it-works-section";
+import FAQSection from "@/components/faq-section";
 
 export default function HomePage() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
@@ -95,46 +99,18 @@ export default function HomePage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <AnimatedHeroSection />
+      
+      {/* Benefits Section */}
+      <BenefitsSection />
+
+      {/* Integrations Section */}
+      <IntegrationsSection />
 
       {/* How It Works Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-black text-black mb-6">How It Works</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto font-medium">
-              Three simple steps to start your decentralized learning journey
-            </p>
-          </motion.div>
+      <HowItWorksSection />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {steps.map((step, index) => (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                whileHover={{ y: -10 }}
-              >
-                <Card className="card-clean text-center p-8 relative overflow-hidden group h-full">
-                  <div className="absolute top-4 right-4 text-6xl font-black text-gray-100 group-hover:text-gray-200 transition-colors">
-                    {step.number}
-                  </div>
-                  <CardContent className="space-y-6">
-                    <div className="flex justify-center">{step.icon}</div>
-                    <h3 className="text-2xl font-black text-black">{step.title}</h3>
-                    <p className="text-gray-600 font-medium">{step.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* FAQ Section */}
+      <FAQSection />
 
       {/* Features Section */}
       <section className="py-20 px-4 bg-gray-50">
