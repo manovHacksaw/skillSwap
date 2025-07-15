@@ -48,7 +48,7 @@ export default function AnimatedHeroSection() {
           LEARNING NEW SKILLS SHOULDN’T BE CENTRALIZED
         </h2>
         <p className="text-center max-w-xl text-muted-foreground mb-10">
-          Today’s learning platforms gatekeep knowledge, hide credentials behind paywalls, and don’t respect your data. SkillSwap empowers peer-to-peer learning with on-chain reputation you own.
+          Today’s learning platforms gatekeeping knowledge, hide credentials behind paywalls, and don’t respect your data. SkillSwap empowers peer-to-peer learning with on-chain reputation you own.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
           {/* Card 1 */}
