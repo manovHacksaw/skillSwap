@@ -37,18 +37,20 @@ export default function FAQSection() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="w-full bg-[#F9FAFB] py-20">
+    <section className="w-full py-20">
       <div className="max-w-3xl mx-auto px-4">
         {/* Section Label */}
-        <span className="uppercase font-semibold text-xs tracking-widest bg-[#FBBF24] text-black px-3 py-1 rounded mb-4 inline-block">
-          FAQ
-        </span>
+        <div className="flex justify-center w-full">
+          <span className="uppercase font-semibold text-xs tracking-widest bg-[#FFF9A3] text-black px-3 py-1 rounded mb-4 shadow-[2px_2px_0_0_#000] border-2 border-black text-center">
+            FAQ
+          </span>
+        </div>
         {/* Heading */}
-        <h2 className="text-3xl md:text-4xl font-extrabold uppercase text-black font-inter mb-2">
-          Common Questions Answered Clearly
+        <h2 className="text-3xl sm:text-5xl font-extrabold uppercase mb-4 tracking-tight text-center" style={{ letterSpacing: '-0.02em' }}>
+          Common Questions <br className="hidden sm:block" /> Answered Clearly
         </h2>
         {/* Subtitle */}
-        <p className="text-gray-500 font-inter mb-10">
+        <p className="text-gray-500 font-inter mb-10 text-center">
           Here are clear answers to the most common questions about SkillSwap.
         </p>
         {/* FAQ List */}

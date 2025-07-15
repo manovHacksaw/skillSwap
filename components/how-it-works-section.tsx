@@ -72,9 +72,9 @@ const Arrow = ({ direction = "right", className = "" }) => (
 
 export default function HowItWorksSection() {
   return (
-    <section className="w-full bg-[#FDF6ED] py-20">
+    <section className="w-full py-20">
       <div className="max-w-4xl mx-auto px-4 flex flex-col items-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold uppercase text-center mb-12 font-inter text-black">
+        <h2 className="text-3xl sm:text-5xl font-extrabold uppercase mb-4 tracking-tight" style={{ letterSpacing: '-0.02em' }}>
           How It Works
         </h2>
         <div className="relative w-full flex flex-col items-center">
