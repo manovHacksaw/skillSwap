@@ -1,27 +1,30 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { useTheme } from "next-themes"
-import { Button } from "@/components/ui/button"
-import { Moon, Sun, Menu, X, Zap } from "lucide-react"
+import { useState } from "react";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
+import { Moon, Sun, Menu, X, Zap } from "lucide-react";
 
-import WalletConnectButton from "./wallet-connect-button"
-import { motion, AnimatePresence } from "framer-motion"
-import { SignInButton, SignUpButton } from "@clerk/nextjs"
-import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react"
+
+import { motion, AnimatePresence } from "framer-motion";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
+
 
 export default function Navbar() {
-  const { theme, setTheme } = useTheme()
-  const [isOpen, setIsOpen] = useState(false)
+  const { theme, setTheme } = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
     { href: "/", label: "Home" },
+    { href: "/onboard", label: "Onboard" },
     { href: "/dashboard", label: "Dashboard" },
     { href: "/skills", label: "Skills" },
     { href: "/feed", label: "Feed" },
     { href: "/profile/demo", label: "Profile" },
-  ]
+  ];
+
 
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
@@ -50,6 +53,8 @@ export default function Navbar() {
 
           {/* Right side buttons */}
           <div className="hidden md:flex items-center space-x-4">
+
+
             <Button
               variant="ghost"
               size="icon"
@@ -58,13 +63,13 @@ export default function Navbar() {
             >
               {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </Button>
-            <WalletConnectButton />
+
 
             {/* Clerk Authentication Buttons */}
-           <SignedOut>
+            <SignedOut>
               <SignInButton />
               <SignUpButton>
-                <button className="bg-[#6c47ff] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
+                <button className="bg-[#f3e415] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
                   Sign Up
                 </button>
               </SignUpButton>
@@ -75,7 +80,12 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setIsOpen(!isOpen)}
+          >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </Button>
         </div>
@@ -101,17 +111,18 @@ export default function Navbar() {
                   {item.label}
                 </Link>
               ))}
+
+
               <div className="flex items-center space-x-4 pt-4 border-t border-gray-200">
                 <Button variant="ghost" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
                   {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                 </Button>
-                <WalletConnectButton />
-          
               </div>
+
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </nav>
-  )
+  );
 }
