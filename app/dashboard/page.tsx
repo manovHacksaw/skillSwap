@@ -6,8 +6,37 @@ import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { Sparkles, Users, BookOpen, Award, TrendingUp } from "lucide-react"
 import { motion } from "framer-motion"
+import { prisma } from "@/lib/prisma"
+import { useEffect } from "react"
+import { useUser } from "@clerk/nextjs"
+import { auth } from "@clerk/nextjs/server"
+import { useRouter } from "next/navigation"
 
 export default function DashboardPage() {
+
+  const router = useRouter();
+   const { isSignedIn, user, isLoaded } = useUser()
+   
+
+
+
+  useEffect(()=>{
+    const clerkId = user?.id;
+    async function checkUserStatus(){
+      const userFromDb = (prisma.user.findUnique({where: {clerkId}}))
+     
+      if(!userFromDb.hasOnboarded || !userFromDb){
+        router.push("/onboard");
+      }
+      
+    }
+
+    checkUserStatus();
+    
+     
+  }, [])
+ 
+ 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
       <div className="max-w-7xl mx-auto">

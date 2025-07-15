@@ -66,8 +66,8 @@ export default function Navbar() {
 
             {/* Clerk Authentication Buttons */}
             <SignedOut>
-              <SignInButton />
-              <SignUpButton>
+              <SignInButton  />
+              <SignUpButton >
                 <button className="bg-[#f3e415] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
                   Sign Up
                 </button>
