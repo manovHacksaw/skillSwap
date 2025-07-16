@@ -15,9 +15,33 @@ model User {
   id              String   @id @default(cuid())
   clerkId         String   @unique
   email           String   @unique
-  displayName     String?
+  displayName     String
+  username        String?  @unique
   bio             String?
   avatarUrl       String?
+  hasOnboarded    Boolean @default(false)
+  
+  // New onboarding fields
+  occupation      String?
+  ageGroup        String?
+  interests       String[] // Array of interests
+  hobbies         String[] // Non-tech interests
+  
+  // Social links
+  linkedinUrl     String?
+  githubUrl       String?
+  twitterUrl      String?
+  
+  // Availability and preferences
+  availableTimings String[] // e.g. ["evenings", "weekends"]
+  motivations     String[] // Why they're here
+  
+  // Web3 fields
+  walletAddress   String?  @unique
+  walletSignature String?
+  signatureHash   String?
+  onboardingStatus String @default("incomplete") // incomplete, wallet_pending, complete
+  
   skillProfiles   SkillProfile[]
   SessionsTaught  Session[] @relation("Taught Sessions")
   SessionsLearned Session[] @relation("Learned Sessions")
@@ -33,6 +57,7 @@ model SkillProfile {
   skillName  String
   category   String    // e.g. "Programming", "Design", "Marketing"
   skillType  SkillType // TEACH or LEARN
+  proficiency String?  // "Beginner", "Intermediate", "Expert"
   xp         Int       @default(0)
 
   createdAt   DateTime @default(now())
