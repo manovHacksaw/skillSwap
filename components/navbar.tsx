@@ -5,12 +5,9 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Menu, X, Zap } from "lucide-react";
-
-
 import { motion, AnimatePresence } from "framer-motion";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
-
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -24,36 +21,33 @@ export default function Navbar() {
     { href: "/profile/demo", label: "Profile" },
   ];
 
-
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center border-2 border-black">
-              <Zap className="w-5 h-5 text-black" />
-            </div>
-            <span className="text-xl font-black text-black">SkillSwap</span>
-          </Link>
+    <nav className="sticky top-0 z-50 border-b-0">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo/Brand (left side) */}
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center space-x-2">
+              <Zap className="w-6 h-6" />
+              <span className="font-bold text-xl">Brand</span>
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
+            {/* Navigation Links */}
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 hover:text-black transition-colors duration-200 font-medium hover:underline"
+                className="text-black font-bold text-base tracking-tight transition-colors duration-200 px-1 py-0.5 hover:text-gray-600"
+                style={{ textDecoration: 'none', boxShadow: 'none' }}
               >
                 {item.label}
               </Link>
             ))}
-          </div>
 
-          {/* Right side buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-
-
+            {/* Theme Toggle */}
             <Button
               variant="ghost"
               size="icon"
@@ -63,19 +57,24 @@ export default function Navbar() {
               {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </Button>
 
-
-            {/* Clerk Authentication Buttons */}
-            <SignedOut>
-              <SignInButton  />
-              <SignUpButton >
-                <button className="bg-[#f3e415] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-                  Sign Up
-                </button>
-              </SignUpButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
+            {/* Auth Buttons */}
+            <div className="flex items-center space-x-4">
+              <SignedOut>
+                <SignInButton>
+                  <button className="bg-[#FFE37B] text-black border-[3px] border-black shadow-[3px_3px_0_0_#000] font-bold text-base px-6 py-2 rounded-none transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-black active:scale-95">
+                    Sign In
+                  </button>
+                </SignInButton>
+                <SignUpButton>
+                  <button className="bg-[#FFE37B] text-black border-[3px] border-black shadow-[3px_3px_0_0_#000] font-bold text-base px-6 py-2 rounded-none transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-black active:scale-95">
+                    Sign Up
+                  </button>
+                </SignUpButton>
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -111,13 +110,32 @@ export default function Navbar() {
                 </Link>
               ))}
 
-
               <div className="flex items-center space-x-4 pt-4 border-t border-gray-200">
-                <Button variant="ghost" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                >
                   {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                 </Button>
-              </div>
 
+                {/* Mobile Auth Buttons */}
+                <SignedOut>
+                  <SignInButton>
+                    <button className="bg-[#FFE37B] text-black border-[3px] border-black shadow-[3px_3px_0_0_#000] font-bold text-sm px-4 py-2 rounded-none transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-black active:scale-95">
+                      Sign In
+                    </button>
+                  </SignInButton>
+                  <SignUpButton>
+                    <button className="bg-[#FFE37B] text-black border-[3px] border-black shadow-[3px_3px_0_0_#000] font-bold text-sm px-4 py-2 rounded-none transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-black active:scale-95">
+                      Sign Up
+                    </button>
+                  </SignUpButton>
+                </SignedOut>
+                <SignedIn>
+                  <UserButton />
+                </SignedIn>
+              </div>
             </div>
           </motion.div>
         )}

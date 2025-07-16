@@ -77,48 +77,50 @@ const iconRow = [...icons, ...icons];
 
 export default function IntegrationsSection() {
   return (
-    <section className="w-full bg-[#F9FAFB] py-20">
-      <div className="max-w-7xl mx-auto px-4 flex flex-col items-center">
-        {/* Section Label */}
-        <span className="uppercase font-semibold text-xs tracking-widest bg-[#FBBF24] text-black px-3 py-1 rounded mb-4">
-          INTEGRATIONS
-        </span>
-        {/* Heading */}
-        <h2 className="text-3xl md:text-4xl font-extrabold uppercase text-center mb-4 font-inter text-black">
-          SEAMLESS WEB3 INTEGRATIONS
-        </h2>
-        {/* Supporting Paragraph */}
-        <p className="text-center text-gray-600 max-w-2xl mb-12 font-inter font-medium">
-          SkillSwap connects with your favorite Web3 tools for effortless sign-in, reputation, and rewards. Unlock frictionless learning and teaching with the decentralized apps you trust.
-        </p>
-        {/* Scrolling Icon Rows */}
-        <div className="relative w-full max-w-4xl mx-auto">
-          {/* Fade mask */}
-          <div className="pointer-events-none absolute inset-0 z-10 flex">
-            <div className="w-16 bg-gradient-to-r from-[#F9FAFB] to-transparent" />
-            <div className="flex-1" />
-            <div className="w-16 bg-gradient-to-l from-[#F9FAFB] to-transparent" />
-          </div>
-          {/* Top Row - scroll left */}
-          <div className="overflow-hidden">
-            <div className="flex gap-10 animate-scroll-left">
-              {iconRow.map((icon, i) => (
-                <div key={`top-${i}`} className="flex-shrink-0 grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300">
-                  {icon.svg}
-                </div>
-              ))}
+    <section className="w-full py-20">
+      <div className="max-w-5xl mx-auto">
+        <div className="bg-white border-[3px] border-black shadow-[8px_8px_0_0_#000] p-8 sm:p-12 md:p-16 flex flex-col items-center" style={{ margin: '0 0 0 0' }}>
+          {/* Scrolling Icon Rows */}
+          <div className="relative w-full max-w-4xl mx-auto mb-8">
+            {/* Fade mask */}
+            <div className="pointer-events-none absolute inset-0 z-10 flex">
+              <div className="w-16 bg-gradient-to-r from-white to-transparent" />
+              <div className="flex-1" />
+              <div className="w-16 bg-gradient-to-l from-white to-transparent" />
+            </div>
+            {/* Top Row - scroll left */}
+            <div className="overflow-hidden">
+              <div className="flex gap-10 animate-scroll-left">
+                {iconRow.map((icon, i) => (
+                  <div key={`top-${i}`} className="flex-shrink-0 grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300">
+                    {icon.svg}
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Bottom Row - scroll right */}
+            <div className="overflow-hidden mt-6">
+              <div className="flex gap-10 animate-scroll-right">
+                {iconRow.map((icon, i) => (
+                  <div key={`bottom-${i}`} className="flex-shrink-0 grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300">
+                    {icon.svg}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-          {/* Bottom Row - scroll right */}
-          <div className="overflow-hidden mt-6">
-            <div className="flex gap-10 animate-scroll-right">
-              {iconRow.map((icon, i) => (
-                <div key={`bottom-${i}`} className="flex-shrink-0 grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300">
-                  {icon.svg}
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* Section Label */}
+          <span className="uppercase font-semibold text-xs tracking-widest bg-[#FFE5C2] text-black px-4 py-2 rounded-none mb-4 border-2 border-black shadow-[2px_2px_0_0_#000]" style={{ letterSpacing: '0.08em' }}>
+            INTEGRATIONS
+          </span>
+          {/* Heading */}
+          <h2 className="text-3xl sm:text-5xl font-extrabold uppercase text-center mb-4 tracking-tight" style={{ letterSpacing: '-0.02em' }}>
+            SEAMLESS WEB3 <br className="hidden sm:block" /> INTEGRATIONS
+          </h2>
+          {/* Supporting Paragraph */}
+          <p className="text-center text-gray-600 max-w-2xl mb-2 font-inter font-medium">
+            SkillSwap integrates with your favorite web3 tools for effortless Sign In, Reputation, and rewards. Unlock frictionless learning and teaching with the decentralized apps you trust.
+          </p>
         </div>
       </div>
       {/* Styles for animation */}

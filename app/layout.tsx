@@ -41,7 +41,13 @@ export default function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
   
               <WagmiProvider>
-              <div className="min-h-screen bg-gray-50">
+              <div
+                className="min-h-screen w-full"
+                style={{
+                  backgroundColor: '#F9F6F3',
+                  backgroundImage: `repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 16px), repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 16px)`
+                }}
+              >
                 <Navbar />
                 <main className="relative">{children}</main>
                 <Footer />

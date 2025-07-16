@@ -17,92 +17,138 @@ import FAQSection from "@/components/faq-section";
 function FeatureCard({ icon, title, description, bg }: { icon: string; title: string; description: string; bg: string }) {
   return (
     <div
-      className="border-2 border-black rounded-lg p-8 flex flex-col items-center shadow-none"
+      className="border-2 border-black rounded-lg p-6 sm:p-8 flex flex-col items-center shadow-none min-h-[260px]"
       style={{ background: bg }}
     >
-      <span className="text-5xl mb-4">{icon}</span>
-      <h3 className="font-black text-xl mb-2 uppercase tracking-tight">{title}</h3>
-      <p className="text-gray-700 text-center">{description}</p>
+      <span className="text-4xl sm:text-5xl mb-4">{icon}</span>
+      <h3 className="font-black text-lg sm:text-xl mb-2 uppercase tracking-tight text-center">{title}</h3>
+      <p className="text-gray-700 text-center text-base sm:text-lg">{description}</p>
     </div>
   );
 }
 
 export default function Home() {
   return (
-    <main className="bg-[#F8F6F3] min-h-screen font-sans">
+    <main
+      className="min-h-screen font-sans w-full"
+      style={{
+        backgroundColor: '#F9F6F3',
+        backgroundImage: `repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 16px), repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 16px)`
+      }}
+    >
       {/* Hero Section */}
-      <section className="py-20 border-b-2 border-black bg-[#FFF8F0]">
-        <AnimatedHeroSection />
-      </section>
-
-      {/* Features Grid */}
-      <section className="py-20 max-w-6xl mx-auto px-4" style={{ backgroundColor: "#FFF9DB" }}>
-        <h2 className="text-4xl sm:text-5xl font-black uppercase mb-14 text-center tracking-tight">
-          Platform Features
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          <FeatureCard
-            icon="⚡"
-            title="Instant Skill Matching"
-            description="Find the perfect skill swap partner in seconds with our smart matching algorithm."
-            bg="#FFF4A3"
-          />
-          <FeatureCard
-            icon="🔒"
-            title="Secure & Private"
-            description="Your data is protected with industry-leading security and privacy standards."
-            bg="#E0F7FA"
-          />
-          <FeatureCard
-            icon="🎯"
-            title="Goal Tracking"
-            description="Set learning goals and track your progress visually on your dashboard."
-            bg="#E8E4FF"
-          />
+      <motion.section
+        className="py-16 sm:py-24 flex flex-col items-center justify-center text-center"
+        style={{ background: 'none' }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+      >
+        <div className="mb-8 w-full px-4 sm:px-0">
+          <AnimatedHeroSection />
         </div>
-      </section>
+      </motion.section>
+
+      {/* Problem Section */}
+      <motion.section
+        className="py-16 sm:py-24 flex flex-col items-center justify-center text-center"
+        style={{ background: 'none' }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
+      >
+        <span className="inline-block bg-[#FFD700] border-2 border-black rounded px-4 py-1 text-black font-bold uppercase tracking-wider text-sm mb-6 shadow-[4px_4px_0_0_#000]">Problem</span>
+        <h2 className="text-3xl sm:text-5xl font-extrabold uppercase mb-4 tracking-tight" style={{ letterSpacing: '-0.02em' }}>
+          LEARNING NEW SKILLS<br className="hidden sm:block" /> SHOULDN'T BE CENTRALIZED
+        </h2>
+        <p className="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto mb-12 font-medium">
+        Today’s learning platforms gatekeeping knowledge, hide credentials behind paywalls, and don’t respect your data. SkillSwap empowers peer-to-peer learning with on-chain reputation you own.
+        </p>
+        <div className="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-2 sm:px-0">
+          {[
+            {
+              title: 'Centralized Control',
+              desc: 'Skills and reputation are locked in closed platforms.',
+            },
+            {
+              title: 'NO VERIFIABLE CREDENTIALS',
+              desc: 'Theres no way to prove you taught or learned transparently.',
+            },
+            {
+              title: 'NO FAIR INCENTIVES',
+              desc: 'Mentors and learners don’t earn or own their impact.',
+            },
+          ].map((item, i) => (
+            <div
+              key={item.title}
+              className="relative bg-white border-2 border-black rounded-lg p-8 flex flex-col items-center shadow-[6px_6px_0_0_#000] min-h-[220px]"
+            >
+              <span className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 flex items-center justify-center rounded-full border-2 border-black bg-[#FFD700] text-2xl font-bold shadow-[2px_2px_0_0_#000]">
+                <span className="text-red-600">✗</span>
+              </span>
+              <h3 className="font-black text-xl sm:text-2xl mb-2 uppercase tracking-tight text-center mt-8">
+                {item.title}
+              </h3>
+              <p className="text-gray-700 text-center text-base sm:text-lg font-medium">
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </motion.section>
 
       {/* Benefits Section */}
-      <section className="py-20 border-t-2 border-black bg-[#E8E4FF]">
-        <BenefitsSection />
-      </section>
+      <motion.section
+        className="py-16 sm:py-24"
+        style={{ background: 'none' }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <BenefitsSection />
+        </div>
+      </motion.section>
 
       {/* How It Works Section */}
-      <section className="py-20 max-w-5xl mx-auto px-4">
+      <motion.section
+        className="py-16 sm:py-24 max-w-5xl mx-auto px-4 sm:px-6"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
+      >
         <HowItWorksSection />
-      </section>
+      </motion.section>
 
       {/* Integrations / Social Proof */}
-      <section className="py-20 border-t-2 border-black bg-[#E0F7FA]">
-        <IntegrationsSection />
-      </section>
+      <motion.section
+        className="py-16 sm:py-24"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.4 }}
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <IntegrationsSection />
+        </div>
+      </motion.section>
 
       {/* FAQ Section */}
-      <section className="py-20 max-w-3xl mx-auto px-4">
+      <motion.section
+        className="py-16 sm:py-24 max-w-3xl mx-auto px-4 sm:px-6"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.5 }}
+      >
         <FAQSection />
-      </section>
+      </motion.section>
 
-      {/* Footer */}
-      <footer className="py-12 border-t-2 border-black bg-white text-center">
-        <div className="max-w-2xl mx-auto">
-          <h4 className="font-black text-2xl mb-4 uppercase">Ready to swap skills?</h4>
-          <form className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-            <input
-              type="email"
-              placeholder="Your email"
-              className="border-2 border-black rounded px-4 py-2 flex-1 min-w-0"
-              required
-            />
-            <button
-              type="submit"
-              className="bg-[#FFD700] text-black font-bold px-6 py-2 rounded border-2 border-black hover:scale-105 transition"
-            >
-              Join Now
-            </button>
-          </form>
-          <p className="text-gray-500 text-sm">© {new Date().getFullYear()} SkillSwap. All rights reserved.</p>
-        </div>
-      </footer>
+      {/* Footer is now handled by the new newsletter/footer component */}
     </main>
   );
 }
