@@ -1,18 +1,18 @@
-import { type NextRequest, NextResponse } from "next/server"
-import { auth, currentUser } from "@clerk/nextjs/server"
-import { prisma } from "@/lib/prisma"
-import { Prisma } from "@prisma/client"
+import { type NextRequest, NextResponse } from "next/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
+import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 
 export async function POST(request: NextRequest) {
   try {
-    const { userId } = await auth()
-    const user = await currentUser()
+    const { userId } = await auth();
+    const user = await currentUser();
 
     if (!userId || !user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const body = await request.json()
+    const body = await request.json();
     const {
       displayName,
       username,
@@ -30,22 +30,34 @@ export async function POST(request: NextRequest) {
       availableTimings,
       walletAddress,
       walletSignature,
-    } = body
+    } = body;
 
     if (!displayName) {
-      return NextResponse.json({ error: "Display name is required" }, { status: 400 })
+      return NextResponse.json(
+        { error: "Display name is required" },
+        { status: 400 },
+      );
     }
 
     if (!walletAddress || !walletSignature) {
-      return NextResponse.json({ error: "Wallet connection is required" }, { status: 400 })
+      return NextResponse.json(
+        { error: "Wallet connection is required" },
+        { status: 400 },
+      );
     }
 
     if (!skillsToTeach || skillsToTeach.length === 0) {
-      return NextResponse.json({ error: "At least one teaching skill is required" }, { status: 400 })
+      return NextResponse.json(
+        { error: "At least one teaching skill is required" },
+        { status: 400 },
+      );
     }
 
     if (!skillsToLearn || skillsToLearn.length === 0) {
-      return NextResponse.json({ error: "At least one learning skill is required" }, { status: 400 })
+      return NextResponse.json(
+        { error: "At least one learning skill is required" },
+        { status: 400 },
+      );
     }
 
     // Check if user already exists
@@ -54,7 +66,7 @@ export async function POST(request: NextRequest) {
       include: {
         skillProfiles: true,
       },
-    })
+    });
 
     if (existingUser && existingUser.hasOnboarded) {
       return NextResponse.json(
@@ -63,7 +75,7 @@ export async function POST(request: NextRequest) {
           user: existingUser,
         },
         { status: 409 },
-      )
+      );
     }
 
     // Create user and skill profiles in a transaction
@@ -89,7 +101,8 @@ export async function POST(request: NextRequest) {
         walletSignature,
         signatureHash: walletSignature, // Store signature as hash for now
         onboardingStatus: "complete",
-      }
+        hasOnboarded: true,
+      };
 
       const newUser = existingUser
         ? await tx.user.update({
@@ -98,17 +111,17 @@ export async function POST(request: NextRequest) {
           })
         : await tx.user.create({
             data: userData,
-          })
+          });
 
       // Clear existing skill profiles if updating
       if (existingUser) {
         await tx.skillProfile.deleteMany({
           where: { userId: existingUser.id },
-        })
+        });
       }
 
       // Prepare skill profiles to create
-      const skillsToCreate = []
+      const skillsToCreate = [];
 
       if (skillsToTeach && Array.isArray(skillsToTeach)) {
         for (const skill of skillsToTeach) {
@@ -118,8 +131,13 @@ export async function POST(request: NextRequest) {
             skillType: "TEACH" as const,
             category: skill.category,
             proficiency: skill.proficiency || "Intermediate",
-            xp: skill.proficiency === "Expert" ? 100 : skill.proficiency === "Intermediate" ? 50 : 25,
-          })
+            xp:
+              skill.proficiency === "Expert"
+                ? 100
+                : skill.proficiency === "Intermediate"
+                  ? 50
+                  : 25,
+          });
         }
       }
 
@@ -132,7 +150,7 @@ export async function POST(request: NextRequest) {
             category: skill.category,
             proficiency: "Beginner",
             xp: 0, // Learning skills start with 0 XP
-          })
+          });
         }
       }
 
@@ -140,7 +158,7 @@ export async function POST(request: NextRequest) {
       if (skillsToCreate.length > 0) {
         await tx.skillProfile.createMany({
           data: skillsToCreate,
-        })
+        });
       }
 
       // Fetch the complete user with skill profiles
@@ -149,28 +167,37 @@ export async function POST(request: NextRequest) {
         include: {
           skillProfiles: true,
         },
-      })
+      });
 
-      return completeUser
-    })
+      return completeUser;
+    });
 
     return NextResponse.json({
       message: "Onboarding completed successfully! Welcome to SkillSwap!",
       user: result,
-    })
+    });
   } catch (error) {
-    console.error("ONBOARDING_API_ERROR:", error)
+    console.error("ONBOARDING_API_ERROR:", error);
 
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === "P2002") {
-        const target = error.meta?.target as string[]
+        const target = error.meta?.target as string[];
         if (target?.includes("username")) {
-          return NextResponse.json({ error: "Username is already taken. Please choose another." }, { status: 409 })
+          return NextResponse.json(
+            { error: "Username is already taken. Please choose another." },
+            { status: 409 },
+          );
         }
         if (target?.includes("walletAddress")) {
-          return NextResponse.json({ error: "This wallet is already connected to another account." }, { status: 409 })
+          return NextResponse.json(
+            { error: "This wallet is already connected to another account." },
+            { status: 409 },
+          );
         }
-        return NextResponse.json({ error: "A user with this information already exists." }, { status: 409 })
+        return NextResponse.json(
+          { error: "A user with this information already exists." },
+          { status: 409 },
+        );
       }
       return NextResponse.json(
         {
@@ -178,20 +205,23 @@ export async function POST(request: NextRequest) {
           details: error.message,
         },
         { status: 500 },
-      )
+      );
     }
 
-    return NextResponse.json({ error: "An unexpected error occurred. Please try again." }, { status: 500 })
+    return NextResponse.json(
+      { error: "An unexpected error occurred. Please try again." },
+      { status: 500 },
+    );
   }
 }
 
 // Check if user exists endpoint
 export async function GET(request: NextRequest) {
   try {
-    const { userId } = await auth()
+    const { userId } = await auth();
 
     if (!userId) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const existingUser = await prisma.user.findUnique({
@@ -209,14 +239,17 @@ export async function GET(request: NextRequest) {
           orderBy: { createdAt: "desc" },
         },
       },
-    })
+    });
 
     return NextResponse.json({
       exists: !!existingUser,
       user: existingUser,
-    })
+    });
   } catch (error) {
-    console.error("USER_CHECK_ERROR:", error)
-    return NextResponse.json({ error: "Failed to check user status" }, { status: 500 })
+    console.error("USER_CHECK_ERROR:", error);
+    return NextResponse.json(
+      { error: "Failed to check user status" },
+      { status: 500 },
+    );
   }
 }
