@@ -144,7 +144,7 @@ export default function SkillsPage() {
   })
 
   return (
-    <div className="min-h-screen py-8 px-4 bg-gray-50">
+    <div className="min-h-screen py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -174,13 +174,13 @@ export default function SkillsPage() {
                 placeholder="Search skills, technologies, or topics..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-white border-gray-300 text-black placeholder:text-gray-500"
+                className="pl-10 border-gray-300 text-black placeholder:text-gray-500 bg-transparent"
               />
             </div>
 
             {/* Category Filter */}
             <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-              <SelectTrigger className="w-full lg:w-48 bg-white border-gray-300 text-black">
+              <SelectTrigger className="w-full lg:w-48 border-gray-300 text-black bg-transparent">
                 <SelectValue placeholder="Category" />
               </SelectTrigger>
               <SelectContent>
@@ -198,7 +198,7 @@ export default function SkillsPage() {
 
             {/* Location Filter */}
             <Select value={selectedLocation} onValueChange={setSelectedLocation}>
-              <SelectTrigger className="w-full lg:w-48 bg-white border-gray-300 text-black">
+              <SelectTrigger className="w-full lg:w-48 border-gray-300 text-black bg-transparent">
                 <SelectValue placeholder="Location" />
               </SelectTrigger>
               <SelectContent>
