@@ -123,7 +123,7 @@ export default function FeedPage() {
   ]
 
   return (
-    <div className="min-h-screen py-8 px-4 bg-gray-50">
+    <div className="min-h-screen py-8 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -179,7 +179,7 @@ export default function FeedPage() {
                         placeholder="Search activities, users, or skills..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="pl-10 bg-white border-gray-300 text-black placeholder:text-gray-500"
+                        className="pl-10 border-gray-300 text-black placeholder:text-gray-500 bg-transparent"
                       />
                     </div>
                     <Button variant="outline" className="btn-secondary bg-transparent">

@@ -148,6 +148,25 @@ export default function Home() {
         <FAQSection />
       </motion.section>
 
+      {/* Newsletter Section - restored */}
+      <section className="w-full flex justify-center items-center py-16 px-4">
+        <div className="bg-[#FFF9A3] border-2 border-black shadow-[8px_8px_0_0_#000] max-w-4xl w-full mx-auto flex flex-col items-center p-10 relative">
+          <span className="absolute -top-6 left-1/2 -translate-x-1/2 bg-white border-2 border-black px-6 py-2 font-bold uppercase text-sm tracking-wider shadow-[2px_2px_0_0_#000]">Newsletter</span>
+          <h2 className="text-4xl sm:text-5xl font-black text-black text-center mb-4 mt-8 uppercase leading-tight">READY TO SWAP SKILLS ?</h2>
+          <p className="text-lg text-gray-600 text-center mb-8 max-w-2xl">The decentralized platform for skill exchange.Connect , learn and teach in a Web3 environment with on-chain reputaionand DAO validation.</p>
+          <form className="w-full max-w-md mx-auto flex flex-col sm:flex-row items-center gap-4">
+            <input
+              type="email"
+              placeholder="example@mail.com"
+              className="flex-1 rounded-full border-2 border-black px-6 py-3 text-lg shadow-[2px_2px_0_0_#000] focus:outline-none focus:ring-2 focus:ring-black"
+            />
+            <button type="submit" className="rounded-full bg-black text-white w-12 h-12 flex items-center justify-center border-2 border-black shadow-[2px_2px_0_0_#000] hover:scale-105 transition-transform">
+              <ArrowRight className="w-6 h-6" />
+            </button>
+          </form>
+        </div>
+      </section>
+
       {/* Footer is now handled by the new newsletter/footer component */}
     </main>
   );

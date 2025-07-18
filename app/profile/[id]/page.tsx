@@ -90,7 +90,7 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
   ]
 
   return (
-    <div className="min-h-screen py-8 px-4 bg-gray-50">
+    <div className="min-h-screen py-8 px-4">
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Profile Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -144,22 +144,22 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
 
                   {/* Stats */}
                   <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 rounded-lg">
                       <div className="text-2xl font-black text-black mb-1">{profileData.skillScore}</div>
                       <div className="text-sm text-gray-600 font-medium">SkillScore</div>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 rounded-lg">
                       <div className="flex items-center justify-center space-x-1 mb-1">
                         <span className="text-2xl font-black text-black">{profileData.rating}</span>
                         <Star className="w-5 h-5 text-yellow-400 fill-current" />
                       </div>
                       <div className="text-sm text-gray-600 font-medium">Rating</div>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 rounded-lg">
                       <div className="text-2xl font-black text-black mb-1">{profileData.totalSessions}</div>
                       <div className="text-sm text-gray-600 font-medium">Sessions</div>
                     </div>
-                    <div className="text-center p-4 bg-gray-50 rounded-lg">
+                    <div className="text-center p-4 rounded-lg">
                       <div className="text-2xl font-black text-black mb-1">{profileData.studentsHelped}</div>
                       <div className="text-sm text-gray-600 font-medium">Students</div>
                     </div>
