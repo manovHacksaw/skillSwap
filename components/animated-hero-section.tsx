@@ -62,13 +62,13 @@ export default function AnimatedHeroSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-0">
               <Link href="/skills">
-                <Button className="bg-[#FFE37B] text-black border-[3px] border-black shadow-[3px_3px_0_0_#000] font-bold text-lg px-10 py-4 rounded-none mr-0 sm:mr-4 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-black active:scale-95 flex items-center justify-center" style={{ boxShadow: '3px 3px 0 0 #000' }}>
+                <Button className="bg-[#FFE37B] text-black border-[3px] border-black shadow-[3px_3px_0_0_#000] font-bold text-lg px-10 py-4 rounded-none mr-0 sm:mr-4 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-black active:scale-95 flex items-center justify-center hover:scale-105 hover:shadow-lg" style={{ boxShadow: '3px 3px 0 0 #000' }}>
                   Start Learning
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
               <Link href="/dashboard">
-                <Button variant="ghost" className="text-black font-bold text-lg px-4 py-4 rounded-none border-none shadow-none hover:underline inline-flex items-center justify-center">
+                <Button variant="ghost" className="text-black font-bold text-lg px-4 py-4 rounded-none border-none shadow-none hover:scale-105 hover:shadow-lg transition-all duration-150 inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-black active:scale-95">
                   Dashboard
                   <span className="ml-2">→</span>
                 </Button>
