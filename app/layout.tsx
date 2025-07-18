@@ -39,8 +39,7 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body className={`${inter.variable} font-inter`}>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
-  
-              <WagmiProvider>
+            <WagmiProvider>
               <div
                 className="min-h-screen w-full"
                 style={{
@@ -54,10 +53,9 @@ export default function RootLayout({
               </div>
               <Toaster />
             </WagmiProvider>
-     
-        </ThemeProvider>
-      </body>
-    </html>
+          </ThemeProvider>
+        </body>
+      </html>
     </ClerkProvider>
   )
 }

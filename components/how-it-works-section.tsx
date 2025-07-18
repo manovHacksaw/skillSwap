@@ -96,10 +96,7 @@ export default function HowItWorksSection() {
                   animationFillMode: "forwards",
                 }}
               >
-                {/* Placeholder for future image */}
-                <div className="w-32 h-24 md:w-40 md:h-32 bg-white border-2 border-dashed border-gray-300 rounded-lg mr-0 md:mr-6 mb-4 md:mb-0 flex items-center justify-center text-gray-400 text-xs">
-                  Image<br />Placeholder
-                </div>
+                {/* Removed image placeholder */}
                 <div
                   className={`
                     flex-1 p-6 rounded-xl ${border} ${cardShadow} ${step.color}

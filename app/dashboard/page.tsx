@@ -348,13 +348,13 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-6 px-4">
+    <div className="min-h-screen py-8 px-4">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header with User Profile Snapshot */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-xl border-2 border-black shadow-lg p-6"
+          className="bg-transparent rounded-xl border-2 border-black shadow-lg p-6"
         >
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="flex items-center gap-4">
