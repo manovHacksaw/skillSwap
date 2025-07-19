@@ -23,13 +23,18 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 border-b-0">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-0">
         <div className="flex items-center justify-between h-16">
           {/* Logo/Brand (left side) */}
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
-              <Zap className="w-6 h-6" />
-              <span className="font-bold text-xl">Brand</span>
+          <div className="flex items-center ml-0 pl-0">
+            <Link href="/" className="flex items-center space-x-2 ml-0 pl-0">
+              <span className="font-black tracking-tight text-3xl flex items-center font-inter">
+                <span className="font-extrabold" style={{fontFamily: 'Avenir, Inter, sans-serif'}}>
+                  skill
+                  <span className="text-yellow-400 text-4xl mx-0.5" style={{fontFamily: 'inherit', lineHeight: 1}}>$</span>
+                  <span style={{color: '#FFE37B'}}>wap</span>
+                </span>
+              </span>
             </Link>
           </div>
 
@@ -61,7 +66,7 @@ export default function Navbar() {
             <div className="flex items-center space-x-4">
               <SignedOut>
                 <SignInButton>
-                  <button className="bg-[#FFE37B] text-black border-[3px] border-black shadow-[3px_3px_0_0_#000] font-bold text-base px-6 py-2 rounded-none transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-black active:scale-95">
+                  <button className="bg-[#FFF9E3] text-black border-[3px] border-black shadow-[3px_3px_0_0_#000] font-bold text-base px-6 py-2 rounded-none transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-black active:scale-95">
                     Sign In
                   </button>
                 </SignInButton>
@@ -122,7 +127,7 @@ export default function Navbar() {
                 {/* Mobile Auth Buttons */}
                 <SignedOut>
                   <SignInButton>
-                    <button className="bg-[#FFE37B] text-black border-[3px] border-black shadow-[3px_3px_0_0_#000] font-bold text-sm px-4 py-2 rounded-none transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-black active:scale-95">
+                    <button className="bg-[#FFF9E3] text-black border-[3px] border-black shadow-[3px_3px_0_0_#000] font-bold text-sm px-4 py-2 rounded-none transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-black active:scale-95">
                       Sign In
                     </button>
                   </SignInButton>
