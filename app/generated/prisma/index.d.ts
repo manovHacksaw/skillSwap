@@ -19,51 +19,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
- * Model SkillProfile
- * 
- */
-export type SkillProfile = $Result.DefaultSelection<Prisma.$SkillProfilePayload>
-/**
  * Model Session
  * 
  */
 export type Session = $Result.DefaultSelection<Prisma.$SessionPayload>
-/**
- * Model Badge
- * 
- */
-export type Badge = $Result.DefaultSelection<Prisma.$BadgePayload>
-
-/**
- * Enums
- */
-export namespace $Enums {
-  export const SessionStatus: {
-  PENDING: 'PENDING',
-  CONFIRMED: 'CONFIRMED',
-  COMPLETED: 'COMPLETED',
-  CANCELLED: 'CANCELLED'
-};
-
-export type SessionStatus = (typeof SessionStatus)[keyof typeof SessionStatus]
-
-
-export const SkillType: {
-  TEACH: 'TEACH',
-  LEARN: 'LEARN'
-};
-
-export type SkillType = (typeof SkillType)[keyof typeof SkillType]
-
-}
-
-export type SessionStatus = $Enums.SessionStatus
-
-export const SessionStatus: typeof $Enums.SessionStatus
-
-export type SkillType = $Enums.SkillType
-
-export const SkillType: typeof $Enums.SkillType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -201,16 +160,6 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.skillProfile`: Exposes CRUD operations for the **SkillProfile** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more SkillProfiles
-    * const skillProfiles = await prisma.skillProfile.findMany()
-    * ```
-    */
-  get skillProfile(): Prisma.SkillProfileDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.session`: Exposes CRUD operations for the **Session** model.
     * Example usage:
     * ```ts
@@ -219,16 +168,6 @@ export class PrismaClient<
     * ```
     */
   get session(): Prisma.SessionDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.badge`: Exposes CRUD operations for the **Badge** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Badges
-    * const badges = await prisma.badge.findMany()
-    * ```
-    */
-  get badge(): Prisma.BadgeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -287,8 +226,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.11.1
-   * Query Engine version: f40f79ec31188888a2e33acda0ecc8fd10a853a9
+   * Prisma Client JS version: 6.12.0
+   * Query Engine version: 8047c96bbd92db98a2abc7c9323ce77c02c89dbc
    */
   export type PrismaVersion = {
     client: string
@@ -670,9 +609,7 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    SkillProfile: 'SkillProfile',
-    Session: 'Session',
-    Badge: 'Badge'
+    Session: 'Session'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -691,7 +628,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "skillProfile" | "session" | "badge"
+      modelProps: "user" | "session"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -769,80 +706,6 @@ export namespace Prisma {
           }
         }
       }
-      SkillProfile: {
-        payload: Prisma.$SkillProfilePayload<ExtArgs>
-        fields: Prisma.SkillProfileFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.SkillProfileFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SkillProfilePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.SkillProfileFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SkillProfilePayload>
-          }
-          findFirst: {
-            args: Prisma.SkillProfileFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SkillProfilePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.SkillProfileFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SkillProfilePayload>
-          }
-          findMany: {
-            args: Prisma.SkillProfileFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SkillProfilePayload>[]
-          }
-          create: {
-            args: Prisma.SkillProfileCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SkillProfilePayload>
-          }
-          createMany: {
-            args: Prisma.SkillProfileCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.SkillProfileCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SkillProfilePayload>[]
-          }
-          delete: {
-            args: Prisma.SkillProfileDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SkillProfilePayload>
-          }
-          update: {
-            args: Prisma.SkillProfileUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SkillProfilePayload>
-          }
-          deleteMany: {
-            args: Prisma.SkillProfileDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.SkillProfileUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.SkillProfileUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SkillProfilePayload>[]
-          }
-          upsert: {
-            args: Prisma.SkillProfileUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SkillProfilePayload>
-          }
-          aggregate: {
-            args: Prisma.SkillProfileAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSkillProfile>
-          }
-          groupBy: {
-            args: Prisma.SkillProfileGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SkillProfileGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.SkillProfileCountArgs<ExtArgs>
-            result: $Utils.Optional<SkillProfileCountAggregateOutputType> | number
-          }
-        }
-      }
       Session: {
         payload: Prisma.$SessionPayload<ExtArgs>
         fields: Prisma.SessionFieldRefs
@@ -914,80 +777,6 @@ export namespace Prisma {
           count: {
             args: Prisma.SessionCountArgs<ExtArgs>
             result: $Utils.Optional<SessionCountAggregateOutputType> | number
-          }
-        }
-      }
-      Badge: {
-        payload: Prisma.$BadgePayload<ExtArgs>
-        fields: Prisma.BadgeFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.BadgeFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BadgePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.BadgeFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BadgePayload>
-          }
-          findFirst: {
-            args: Prisma.BadgeFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BadgePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.BadgeFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BadgePayload>
-          }
-          findMany: {
-            args: Prisma.BadgeFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BadgePayload>[]
-          }
-          create: {
-            args: Prisma.BadgeCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BadgePayload>
-          }
-          createMany: {
-            args: Prisma.BadgeCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.BadgeCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BadgePayload>[]
-          }
-          delete: {
-            args: Prisma.BadgeDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BadgePayload>
-          }
-          update: {
-            args: Prisma.BadgeUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BadgePayload>
-          }
-          deleteMany: {
-            args: Prisma.BadgeDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.BadgeUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.BadgeUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BadgePayload>[]
-          }
-          upsert: {
-            args: Prisma.BadgeUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BadgePayload>
-          }
-          aggregate: {
-            args: Prisma.BadgeAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateBadge>
-          }
-          groupBy: {
-            args: Prisma.BadgeGroupByArgs<ExtArgs>
-            result: $Utils.Optional<BadgeGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.BadgeCountArgs<ExtArgs>
-            result: $Utils.Optional<BadgeCountAggregateOutputType> | number
           }
         }
       }
@@ -1076,9 +865,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
-    skillProfile?: SkillProfileOmit
     session?: SessionOmit
-    badge?: BadgeOmit
   }
 
   /* Types for Logging */
@@ -1173,13 +960,11 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    skillProfiles: number
     SessionsTaught: number
     SessionsLearned: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    skillProfiles?: boolean | UserCountOutputTypeCountSkillProfilesArgs
     SessionsTaught?: boolean | UserCountOutputTypeCountSessionsTaughtArgs
     SessionsLearned?: boolean | UserCountOutputTypeCountSessionsLearnedArgs
   }
@@ -1193,13 +978,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the UserCountOutputType
      */
     select?: UserCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountSkillProfilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SkillProfileWhereInput
   }
 
   /**
@@ -1227,8 +1005,18 @@ export namespace Prisma {
 
   export type AggregateUser = {
     _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
+  }
+
+  export type UserAvgAggregateOutputType = {
+    age: number | null
+  }
+
+  export type UserSumAggregateOutputType = {
+    age: number | null
   }
 
   export type UserMinAggregateOutputType = {
@@ -1237,9 +1025,14 @@ export namespace Prisma {
     email: string | null
     name: string | null
     username: string | null
-    password: string | null
     bio: string | null
     avatarUrl: string | null
+    occupation: string | null
+    location: string | null
+    timezone: string | null
+    age: number | null
+    walletAddress: string | null
+    hasOnboarded: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1250,9 +1043,14 @@ export namespace Prisma {
     email: string | null
     name: string | null
     username: string | null
-    password: string | null
     bio: string | null
     avatarUrl: string | null
+    occupation: string | null
+    location: string | null
+    timezone: string | null
+    age: number | null
+    walletAddress: string | null
+    hasOnboarded: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1263,14 +1061,34 @@ export namespace Prisma {
     email: number
     name: number
     username: number
-    password: number
     bio: number
     avatarUrl: number
+    interests: number
+    socialLinks: number
+    preferredLanguages: number
+    occupation: number
+    location: number
+    timezone: number
+    age: number
+    skillsOffered: number
+    learningGoals: number
+    userIntent: number
+    userAvailability: number
+    walletAddress: number
+    hasOnboarded: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
+
+  export type UserAvgAggregateInputType = {
+    age?: true
+  }
+
+  export type UserSumAggregateInputType = {
+    age?: true
+  }
 
   export type UserMinAggregateInputType = {
     id?: true
@@ -1278,9 +1096,14 @@ export namespace Prisma {
     email?: true
     name?: true
     username?: true
-    password?: true
     bio?: true
     avatarUrl?: true
+    occupation?: true
+    location?: true
+    timezone?: true
+    age?: true
+    walletAddress?: true
+    hasOnboarded?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1291,9 +1114,14 @@ export namespace Prisma {
     email?: true
     name?: true
     username?: true
-    password?: true
     bio?: true
     avatarUrl?: true
+    occupation?: true
+    location?: true
+    timezone?: true
+    age?: true
+    walletAddress?: true
+    hasOnboarded?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1304,9 +1132,21 @@ export namespace Prisma {
     email?: true
     name?: true
     username?: true
-    password?: true
     bio?: true
     avatarUrl?: true
+    interests?: true
+    socialLinks?: true
+    preferredLanguages?: true
+    occupation?: true
+    location?: true
+    timezone?: true
+    age?: true
+    skillsOffered?: true
+    learningGoals?: true
+    userIntent?: true
+    userAvailability?: true
+    walletAddress?: true
+    hasOnboarded?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1350,6 +1190,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: UserAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: UserMinAggregateInputType
@@ -1380,6 +1232,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: UserCountAggregateInputType | true
+    _avg?: UserAvgAggregateInputType
+    _sum?: UserSumAggregateInputType
     _min?: UserMinAggregateInputType
     _max?: UserMaxAggregateInputType
   }
@@ -1390,12 +1244,26 @@ export namespace Prisma {
     email: string
     name: string
     username: string
-    password: string
     bio: string | null
     avatarUrl: string | null
+    interests: string[]
+    socialLinks: JsonValue | null
+    preferredLanguages: string[]
+    occupation: string
+    location: string | null
+    timezone: string
+    age: number
+    skillsOffered: string[]
+    learningGoals: string[]
+    userIntent: string[]
+    userAvailability: string[]
+    walletAddress: string | null
+    hasOnboarded: boolean
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
   }
@@ -1420,12 +1288,23 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     username?: boolean
-    password?: boolean
     bio?: boolean
     avatarUrl?: boolean
+    interests?: boolean
+    socialLinks?: boolean
+    preferredLanguages?: boolean
+    occupation?: boolean
+    location?: boolean
+    timezone?: boolean
+    age?: boolean
+    skillsOffered?: boolean
+    learningGoals?: boolean
+    userIntent?: boolean
+    userAvailability?: boolean
+    walletAddress?: boolean
+    hasOnboarded?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    skillProfiles?: boolean | User$skillProfilesArgs<ExtArgs>
     SessionsTaught?: boolean | User$SessionsTaughtArgs<ExtArgs>
     SessionsLearned?: boolean | User$SessionsLearnedArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1437,9 +1316,21 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     username?: boolean
-    password?: boolean
     bio?: boolean
     avatarUrl?: boolean
+    interests?: boolean
+    socialLinks?: boolean
+    preferredLanguages?: boolean
+    occupation?: boolean
+    location?: boolean
+    timezone?: boolean
+    age?: boolean
+    skillsOffered?: boolean
+    learningGoals?: boolean
+    userIntent?: boolean
+    userAvailability?: boolean
+    walletAddress?: boolean
+    hasOnboarded?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1450,9 +1341,21 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     username?: boolean
-    password?: boolean
     bio?: boolean
     avatarUrl?: boolean
+    interests?: boolean
+    socialLinks?: boolean
+    preferredLanguages?: boolean
+    occupation?: boolean
+    location?: boolean
+    timezone?: boolean
+    age?: boolean
+    skillsOffered?: boolean
+    learningGoals?: boolean
+    userIntent?: boolean
+    userAvailability?: boolean
+    walletAddress?: boolean
+    hasOnboarded?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1463,16 +1366,27 @@ export namespace Prisma {
     email?: boolean
     name?: boolean
     username?: boolean
-    password?: boolean
     bio?: boolean
     avatarUrl?: boolean
+    interests?: boolean
+    socialLinks?: boolean
+    preferredLanguages?: boolean
+    occupation?: boolean
+    location?: boolean
+    timezone?: boolean
+    age?: boolean
+    skillsOffered?: boolean
+    learningGoals?: boolean
+    userIntent?: boolean
+    userAvailability?: boolean
+    walletAddress?: boolean
+    hasOnboarded?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clerkId" | "email" | "name" | "username" | "password" | "bio" | "avatarUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clerkId" | "email" | "name" | "username" | "bio" | "avatarUrl" | "interests" | "socialLinks" | "preferredLanguages" | "occupation" | "location" | "timezone" | "age" | "skillsOffered" | "learningGoals" | "userIntent" | "userAvailability" | "walletAddress" | "hasOnboarded" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    skillProfiles?: boolean | User$skillProfilesArgs<ExtArgs>
     SessionsTaught?: boolean | User$SessionsTaughtArgs<ExtArgs>
     SessionsLearned?: boolean | User$SessionsLearnedArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1483,7 +1397,6 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      skillProfiles: Prisma.$SkillProfilePayload<ExtArgs>[]
       SessionsTaught: Prisma.$SessionPayload<ExtArgs>[]
       SessionsLearned: Prisma.$SessionPayload<ExtArgs>[]
     }
@@ -1493,9 +1406,21 @@ export namespace Prisma {
       email: string
       name: string
       username: string
-      password: string
       bio: string | null
       avatarUrl: string | null
+      interests: string[]
+      socialLinks: Prisma.JsonValue | null
+      preferredLanguages: string[]
+      occupation: string
+      location: string | null
+      timezone: string
+      age: number
+      skillsOffered: string[]
+      learningGoals: string[]
+      userIntent: string[]
+      userAvailability: string[]
+      walletAddress: string | null
+      hasOnboarded: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -1892,7 +1817,6 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    skillProfiles<T extends User$skillProfilesArgs<ExtArgs> = {}>(args?: Subset<T, User$skillProfilesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SkillProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     SessionsTaught<T extends User$SessionsTaughtArgs<ExtArgs> = {}>(args?: Subset<T, User$SessionsTaughtArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     SessionsLearned<T extends User$SessionsLearnedArgs<ExtArgs> = {}>(args?: Subset<T, User$SessionsLearnedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -1929,9 +1853,21 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly username: FieldRef<"User", 'String'>
-    readonly password: FieldRef<"User", 'String'>
     readonly bio: FieldRef<"User", 'String'>
     readonly avatarUrl: FieldRef<"User", 'String'>
+    readonly interests: FieldRef<"User", 'String[]'>
+    readonly socialLinks: FieldRef<"User", 'Json'>
+    readonly preferredLanguages: FieldRef<"User", 'String[]'>
+    readonly occupation: FieldRef<"User", 'String'>
+    readonly location: FieldRef<"User", 'String'>
+    readonly timezone: FieldRef<"User", 'String'>
+    readonly age: FieldRef<"User", 'Int'>
+    readonly skillsOffered: FieldRef<"User", 'String[]'>
+    readonly learningGoals: FieldRef<"User", 'String[]'>
+    readonly userIntent: FieldRef<"User", 'String[]'>
+    readonly userAvailability: FieldRef<"User", 'String[]'>
+    readonly walletAddress: FieldRef<"User", 'String'>
+    readonly hasOnboarded: FieldRef<"User", 'Boolean'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -2322,30 +2258,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.skillProfiles
-   */
-  export type User$skillProfilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SkillProfile
-     */
-    select?: SkillProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the SkillProfile
-     */
-    omit?: SkillProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SkillProfileInclude<ExtArgs> | null
-    where?: SkillProfileWhereInput
-    orderBy?: SkillProfileOrderByWithRelationInput | SkillProfileOrderByWithRelationInput[]
-    cursor?: SkillProfileWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SkillProfileScalarFieldEnum | SkillProfileScalarFieldEnum[]
-  }
-
-  /**
    * User.SessionsTaught
    */
   export type User$SessionsTaughtArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2413,1204 +2325,105 @@ export namespace Prisma {
 
 
   /**
-   * Model SkillProfile
-   */
-
-  export type AggregateSkillProfile = {
-    _count: SkillProfileCountAggregateOutputType | null
-    _avg: SkillProfileAvgAggregateOutputType | null
-    _sum: SkillProfileSumAggregateOutputType | null
-    _min: SkillProfileMinAggregateOutputType | null
-    _max: SkillProfileMaxAggregateOutputType | null
-  }
-
-  export type SkillProfileAvgAggregateOutputType = {
-    xp: number | null
-  }
-
-  export type SkillProfileSumAggregateOutputType = {
-    xp: number | null
-  }
-
-  export type SkillProfileMinAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    skill: string | null
-    xp: number | null
-    category: string | null
-    skillType: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type SkillProfileMaxAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    skill: string | null
-    xp: number | null
-    category: string | null
-    skillType: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type SkillProfileCountAggregateOutputType = {
-    id: number
-    userId: number
-    skill: number
-    xp: number
-    category: number
-    skillType: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type SkillProfileAvgAggregateInputType = {
-    xp?: true
-  }
-
-  export type SkillProfileSumAggregateInputType = {
-    xp?: true
-  }
-
-  export type SkillProfileMinAggregateInputType = {
-    id?: true
-    userId?: true
-    skill?: true
-    xp?: true
-    category?: true
-    skillType?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type SkillProfileMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    skill?: true
-    xp?: true
-    category?: true
-    skillType?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type SkillProfileCountAggregateInputType = {
-    id?: true
-    userId?: true
-    skill?: true
-    xp?: true
-    category?: true
-    skillType?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type SkillProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which SkillProfile to aggregate.
-     */
-    where?: SkillProfileWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of SkillProfiles to fetch.
-     */
-    orderBy?: SkillProfileOrderByWithRelationInput | SkillProfileOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: SkillProfileWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` SkillProfiles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` SkillProfiles.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned SkillProfiles
-    **/
-    _count?: true | SkillProfileCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: SkillProfileAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: SkillProfileSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: SkillProfileMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: SkillProfileMaxAggregateInputType
-  }
-
-  export type GetSkillProfileAggregateType<T extends SkillProfileAggregateArgs> = {
-        [P in keyof T & keyof AggregateSkillProfile]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateSkillProfile[P]>
-      : GetScalarType<T[P], AggregateSkillProfile[P]>
-  }
-
-
-
-
-  export type SkillProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SkillProfileWhereInput
-    orderBy?: SkillProfileOrderByWithAggregationInput | SkillProfileOrderByWithAggregationInput[]
-    by: SkillProfileScalarFieldEnum[] | SkillProfileScalarFieldEnum
-    having?: SkillProfileScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: SkillProfileCountAggregateInputType | true
-    _avg?: SkillProfileAvgAggregateInputType
-    _sum?: SkillProfileSumAggregateInputType
-    _min?: SkillProfileMinAggregateInputType
-    _max?: SkillProfileMaxAggregateInputType
-  }
-
-  export type SkillProfileGroupByOutputType = {
-    id: string
-    userId: string
-    skill: string
-    xp: number
-    category: string
-    skillType: string
-    createdAt: Date
-    updatedAt: Date
-    _count: SkillProfileCountAggregateOutputType | null
-    _avg: SkillProfileAvgAggregateOutputType | null
-    _sum: SkillProfileSumAggregateOutputType | null
-    _min: SkillProfileMinAggregateOutputType | null
-    _max: SkillProfileMaxAggregateOutputType | null
-  }
-
-  type GetSkillProfileGroupByPayload<T extends SkillProfileGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<SkillProfileGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof SkillProfileGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], SkillProfileGroupByOutputType[P]>
-            : GetScalarType<T[P], SkillProfileGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type SkillProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    skill?: boolean
-    xp?: boolean
-    category?: boolean
-    skillType?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["skillProfile"]>
-
-  export type SkillProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    skill?: boolean
-    xp?: boolean
-    category?: boolean
-    skillType?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["skillProfile"]>
-
-  export type SkillProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    skill?: boolean
-    xp?: boolean
-    category?: boolean
-    skillType?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["skillProfile"]>
-
-  export type SkillProfileSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    skill?: boolean
-    xp?: boolean
-    category?: boolean
-    skillType?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type SkillProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "skill" | "xp" | "category" | "skillType" | "createdAt" | "updatedAt", ExtArgs["result"]["skillProfile"]>
-  export type SkillProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type SkillProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type SkillProfileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-  export type $SkillProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "SkillProfile"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      userId: string
-      skill: string
-      xp: number
-      category: string
-      skillType: string
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["skillProfile"]>
-    composites: {}
-  }
-
-  type SkillProfileGetPayload<S extends boolean | null | undefined | SkillProfileDefaultArgs> = $Result.GetResult<Prisma.$SkillProfilePayload, S>
-
-  type SkillProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<SkillProfileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: SkillProfileCountAggregateInputType | true
-    }
-
-  export interface SkillProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SkillProfile'], meta: { name: 'SkillProfile' } }
-    /**
-     * Find zero or one SkillProfile that matches the filter.
-     * @param {SkillProfileFindUniqueArgs} args - Arguments to find a SkillProfile
-     * @example
-     * // Get one SkillProfile
-     * const skillProfile = await prisma.skillProfile.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends SkillProfileFindUniqueArgs>(args: SelectSubset<T, SkillProfileFindUniqueArgs<ExtArgs>>): Prisma__SkillProfileClient<$Result.GetResult<Prisma.$SkillProfilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one SkillProfile that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {SkillProfileFindUniqueOrThrowArgs} args - Arguments to find a SkillProfile
-     * @example
-     * // Get one SkillProfile
-     * const skillProfile = await prisma.skillProfile.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends SkillProfileFindUniqueOrThrowArgs>(args: SelectSubset<T, SkillProfileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SkillProfileClient<$Result.GetResult<Prisma.$SkillProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first SkillProfile that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SkillProfileFindFirstArgs} args - Arguments to find a SkillProfile
-     * @example
-     * // Get one SkillProfile
-     * const skillProfile = await prisma.skillProfile.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends SkillProfileFindFirstArgs>(args?: SelectSubset<T, SkillProfileFindFirstArgs<ExtArgs>>): Prisma__SkillProfileClient<$Result.GetResult<Prisma.$SkillProfilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first SkillProfile that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SkillProfileFindFirstOrThrowArgs} args - Arguments to find a SkillProfile
-     * @example
-     * // Get one SkillProfile
-     * const skillProfile = await prisma.skillProfile.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends SkillProfileFindFirstOrThrowArgs>(args?: SelectSubset<T, SkillProfileFindFirstOrThrowArgs<ExtArgs>>): Prisma__SkillProfileClient<$Result.GetResult<Prisma.$SkillProfilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more SkillProfiles that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SkillProfileFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all SkillProfiles
-     * const skillProfiles = await prisma.skillProfile.findMany()
-     * 
-     * // Get first 10 SkillProfiles
-     * const skillProfiles = await prisma.skillProfile.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const skillProfileWithIdOnly = await prisma.skillProfile.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends SkillProfileFindManyArgs>(args?: SelectSubset<T, SkillProfileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SkillProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a SkillProfile.
-     * @param {SkillProfileCreateArgs} args - Arguments to create a SkillProfile.
-     * @example
-     * // Create one SkillProfile
-     * const SkillProfile = await prisma.skillProfile.create({
-     *   data: {
-     *     // ... data to create a SkillProfile
-     *   }
-     * })
-     * 
-     */
-    create<T extends SkillProfileCreateArgs>(args: SelectSubset<T, SkillProfileCreateArgs<ExtArgs>>): Prisma__SkillProfileClient<$Result.GetResult<Prisma.$SkillProfilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many SkillProfiles.
-     * @param {SkillProfileCreateManyArgs} args - Arguments to create many SkillProfiles.
-     * @example
-     * // Create many SkillProfiles
-     * const skillProfile = await prisma.skillProfile.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends SkillProfileCreateManyArgs>(args?: SelectSubset<T, SkillProfileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many SkillProfiles and returns the data saved in the database.
-     * @param {SkillProfileCreateManyAndReturnArgs} args - Arguments to create many SkillProfiles.
-     * @example
-     * // Create many SkillProfiles
-     * const skillProfile = await prisma.skillProfile.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many SkillProfiles and only return the `id`
-     * const skillProfileWithIdOnly = await prisma.skillProfile.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends SkillProfileCreateManyAndReturnArgs>(args?: SelectSubset<T, SkillProfileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SkillProfilePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a SkillProfile.
-     * @param {SkillProfileDeleteArgs} args - Arguments to delete one SkillProfile.
-     * @example
-     * // Delete one SkillProfile
-     * const SkillProfile = await prisma.skillProfile.delete({
-     *   where: {
-     *     // ... filter to delete one SkillProfile
-     *   }
-     * })
-     * 
-     */
-    delete<T extends SkillProfileDeleteArgs>(args: SelectSubset<T, SkillProfileDeleteArgs<ExtArgs>>): Prisma__SkillProfileClient<$Result.GetResult<Prisma.$SkillProfilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one SkillProfile.
-     * @param {SkillProfileUpdateArgs} args - Arguments to update one SkillProfile.
-     * @example
-     * // Update one SkillProfile
-     * const skillProfile = await prisma.skillProfile.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends SkillProfileUpdateArgs>(args: SelectSubset<T, SkillProfileUpdateArgs<ExtArgs>>): Prisma__SkillProfileClient<$Result.GetResult<Prisma.$SkillProfilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more SkillProfiles.
-     * @param {SkillProfileDeleteManyArgs} args - Arguments to filter SkillProfiles to delete.
-     * @example
-     * // Delete a few SkillProfiles
-     * const { count } = await prisma.skillProfile.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends SkillProfileDeleteManyArgs>(args?: SelectSubset<T, SkillProfileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more SkillProfiles.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SkillProfileUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many SkillProfiles
-     * const skillProfile = await prisma.skillProfile.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends SkillProfileUpdateManyArgs>(args: SelectSubset<T, SkillProfileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more SkillProfiles and returns the data updated in the database.
-     * @param {SkillProfileUpdateManyAndReturnArgs} args - Arguments to update many SkillProfiles.
-     * @example
-     * // Update many SkillProfiles
-     * const skillProfile = await prisma.skillProfile.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more SkillProfiles and only return the `id`
-     * const skillProfileWithIdOnly = await prisma.skillProfile.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends SkillProfileUpdateManyAndReturnArgs>(args: SelectSubset<T, SkillProfileUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SkillProfilePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one SkillProfile.
-     * @param {SkillProfileUpsertArgs} args - Arguments to update or create a SkillProfile.
-     * @example
-     * // Update or create a SkillProfile
-     * const skillProfile = await prisma.skillProfile.upsert({
-     *   create: {
-     *     // ... data to create a SkillProfile
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the SkillProfile we want to update
-     *   }
-     * })
-     */
-    upsert<T extends SkillProfileUpsertArgs>(args: SelectSubset<T, SkillProfileUpsertArgs<ExtArgs>>): Prisma__SkillProfileClient<$Result.GetResult<Prisma.$SkillProfilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of SkillProfiles.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SkillProfileCountArgs} args - Arguments to filter SkillProfiles to count.
-     * @example
-     * // Count the number of SkillProfiles
-     * const count = await prisma.skillProfile.count({
-     *   where: {
-     *     // ... the filter for the SkillProfiles we want to count
-     *   }
-     * })
-    **/
-    count<T extends SkillProfileCountArgs>(
-      args?: Subset<T, SkillProfileCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], SkillProfileCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a SkillProfile.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SkillProfileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends SkillProfileAggregateArgs>(args: Subset<T, SkillProfileAggregateArgs>): Prisma.PrismaPromise<GetSkillProfileAggregateType<T>>
-
-    /**
-     * Group by SkillProfile.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SkillProfileGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends SkillProfileGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SkillProfileGroupByArgs['orderBy'] }
-        : { orderBy?: SkillProfileGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, SkillProfileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSkillProfileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the SkillProfile model
-   */
-  readonly fields: SkillProfileFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for SkillProfile.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__SkillProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the SkillProfile model
-   */
-  interface SkillProfileFieldRefs {
-    readonly id: FieldRef<"SkillProfile", 'String'>
-    readonly userId: FieldRef<"SkillProfile", 'String'>
-    readonly skill: FieldRef<"SkillProfile", 'String'>
-    readonly xp: FieldRef<"SkillProfile", 'Int'>
-    readonly category: FieldRef<"SkillProfile", 'String'>
-    readonly skillType: FieldRef<"SkillProfile", 'String'>
-    readonly createdAt: FieldRef<"SkillProfile", 'DateTime'>
-    readonly updatedAt: FieldRef<"SkillProfile", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * SkillProfile findUnique
-   */
-  export type SkillProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SkillProfile
-     */
-    select?: SkillProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the SkillProfile
-     */
-    omit?: SkillProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SkillProfileInclude<ExtArgs> | null
-    /**
-     * Filter, which SkillProfile to fetch.
-     */
-    where: SkillProfileWhereUniqueInput
-  }
-
-  /**
-   * SkillProfile findUniqueOrThrow
-   */
-  export type SkillProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SkillProfile
-     */
-    select?: SkillProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the SkillProfile
-     */
-    omit?: SkillProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SkillProfileInclude<ExtArgs> | null
-    /**
-     * Filter, which SkillProfile to fetch.
-     */
-    where: SkillProfileWhereUniqueInput
-  }
-
-  /**
-   * SkillProfile findFirst
-   */
-  export type SkillProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SkillProfile
-     */
-    select?: SkillProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the SkillProfile
-     */
-    omit?: SkillProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SkillProfileInclude<ExtArgs> | null
-    /**
-     * Filter, which SkillProfile to fetch.
-     */
-    where?: SkillProfileWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of SkillProfiles to fetch.
-     */
-    orderBy?: SkillProfileOrderByWithRelationInput | SkillProfileOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for SkillProfiles.
-     */
-    cursor?: SkillProfileWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` SkillProfiles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` SkillProfiles.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of SkillProfiles.
-     */
-    distinct?: SkillProfileScalarFieldEnum | SkillProfileScalarFieldEnum[]
-  }
-
-  /**
-   * SkillProfile findFirstOrThrow
-   */
-  export type SkillProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SkillProfile
-     */
-    select?: SkillProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the SkillProfile
-     */
-    omit?: SkillProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SkillProfileInclude<ExtArgs> | null
-    /**
-     * Filter, which SkillProfile to fetch.
-     */
-    where?: SkillProfileWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of SkillProfiles to fetch.
-     */
-    orderBy?: SkillProfileOrderByWithRelationInput | SkillProfileOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for SkillProfiles.
-     */
-    cursor?: SkillProfileWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` SkillProfiles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` SkillProfiles.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of SkillProfiles.
-     */
-    distinct?: SkillProfileScalarFieldEnum | SkillProfileScalarFieldEnum[]
-  }
-
-  /**
-   * SkillProfile findMany
-   */
-  export type SkillProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SkillProfile
-     */
-    select?: SkillProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the SkillProfile
-     */
-    omit?: SkillProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SkillProfileInclude<ExtArgs> | null
-    /**
-     * Filter, which SkillProfiles to fetch.
-     */
-    where?: SkillProfileWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of SkillProfiles to fetch.
-     */
-    orderBy?: SkillProfileOrderByWithRelationInput | SkillProfileOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing SkillProfiles.
-     */
-    cursor?: SkillProfileWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` SkillProfiles from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` SkillProfiles.
-     */
-    skip?: number
-    distinct?: SkillProfileScalarFieldEnum | SkillProfileScalarFieldEnum[]
-  }
-
-  /**
-   * SkillProfile create
-   */
-  export type SkillProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SkillProfile
-     */
-    select?: SkillProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the SkillProfile
-     */
-    omit?: SkillProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SkillProfileInclude<ExtArgs> | null
-    /**
-     * The data needed to create a SkillProfile.
-     */
-    data: XOR<SkillProfileCreateInput, SkillProfileUncheckedCreateInput>
-  }
-
-  /**
-   * SkillProfile createMany
-   */
-  export type SkillProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many SkillProfiles.
-     */
-    data: SkillProfileCreateManyInput | SkillProfileCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * SkillProfile createManyAndReturn
-   */
-  export type SkillProfileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SkillProfile
-     */
-    select?: SkillProfileSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the SkillProfile
-     */
-    omit?: SkillProfileOmit<ExtArgs> | null
-    /**
-     * The data used to create many SkillProfiles.
-     */
-    data: SkillProfileCreateManyInput | SkillProfileCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SkillProfileIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * SkillProfile update
-   */
-  export type SkillProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SkillProfile
-     */
-    select?: SkillProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the SkillProfile
-     */
-    omit?: SkillProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SkillProfileInclude<ExtArgs> | null
-    /**
-     * The data needed to update a SkillProfile.
-     */
-    data: XOR<SkillProfileUpdateInput, SkillProfileUncheckedUpdateInput>
-    /**
-     * Choose, which SkillProfile to update.
-     */
-    where: SkillProfileWhereUniqueInput
-  }
-
-  /**
-   * SkillProfile updateMany
-   */
-  export type SkillProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update SkillProfiles.
-     */
-    data: XOR<SkillProfileUpdateManyMutationInput, SkillProfileUncheckedUpdateManyInput>
-    /**
-     * Filter which SkillProfiles to update
-     */
-    where?: SkillProfileWhereInput
-    /**
-     * Limit how many SkillProfiles to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * SkillProfile updateManyAndReturn
-   */
-  export type SkillProfileUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SkillProfile
-     */
-    select?: SkillProfileSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the SkillProfile
-     */
-    omit?: SkillProfileOmit<ExtArgs> | null
-    /**
-     * The data used to update SkillProfiles.
-     */
-    data: XOR<SkillProfileUpdateManyMutationInput, SkillProfileUncheckedUpdateManyInput>
-    /**
-     * Filter which SkillProfiles to update
-     */
-    where?: SkillProfileWhereInput
-    /**
-     * Limit how many SkillProfiles to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SkillProfileIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * SkillProfile upsert
-   */
-  export type SkillProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SkillProfile
-     */
-    select?: SkillProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the SkillProfile
-     */
-    omit?: SkillProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SkillProfileInclude<ExtArgs> | null
-    /**
-     * The filter to search for the SkillProfile to update in case it exists.
-     */
-    where: SkillProfileWhereUniqueInput
-    /**
-     * In case the SkillProfile found by the `where` argument doesn't exist, create a new SkillProfile with this data.
-     */
-    create: XOR<SkillProfileCreateInput, SkillProfileUncheckedCreateInput>
-    /**
-     * In case the SkillProfile was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<SkillProfileUpdateInput, SkillProfileUncheckedUpdateInput>
-  }
-
-  /**
-   * SkillProfile delete
-   */
-  export type SkillProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SkillProfile
-     */
-    select?: SkillProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the SkillProfile
-     */
-    omit?: SkillProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SkillProfileInclude<ExtArgs> | null
-    /**
-     * Filter which SkillProfile to delete.
-     */
-    where: SkillProfileWhereUniqueInput
-  }
-
-  /**
-   * SkillProfile deleteMany
-   */
-  export type SkillProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which SkillProfiles to delete
-     */
-    where?: SkillProfileWhereInput
-    /**
-     * Limit how many SkillProfiles to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * SkillProfile without action
-   */
-  export type SkillProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SkillProfile
-     */
-    select?: SkillProfileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the SkillProfile
-     */
-    omit?: SkillProfileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SkillProfileInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model Session
    */
 
   export type AggregateSession = {
     _count: SessionCountAggregateOutputType | null
+    _avg: SessionAvgAggregateOutputType | null
+    _sum: SessionSumAggregateOutputType | null
     _min: SessionMinAggregateOutputType | null
     _max: SessionMaxAggregateOutputType | null
   }
 
+  export type SessionAvgAggregateOutputType = {
+    duration: number | null
+  }
+
+  export type SessionSumAggregateOutputType = {
+    duration: number | null
+  }
+
   export type SessionMinAggregateOutputType = {
     id: string | null
-    skill: string | null
+    title: string | null
+    description: string | null
+    scheduledAt: Date | null
+    duration: number | null
     teacherId: string | null
     learnerId: string | null
-    confirmedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type SessionMaxAggregateOutputType = {
     id: string | null
-    skill: string | null
+    title: string | null
+    description: string | null
+    scheduledAt: Date | null
+    duration: number | null
     teacherId: string | null
     learnerId: string | null
-    confirmedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
   export type SessionCountAggregateOutputType = {
     id: number
-    skill: number
+    title: number
+    description: number
+    tags: number
+    scheduledAt: number
+    duration: number
     teacherId: number
     learnerId: number
-    confirmedAt: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
 
+  export type SessionAvgAggregateInputType = {
+    duration?: true
+  }
+
+  export type SessionSumAggregateInputType = {
+    duration?: true
+  }
+
   export type SessionMinAggregateInputType = {
     id?: true
-    skill?: true
+    title?: true
+    description?: true
+    scheduledAt?: true
+    duration?: true
     teacherId?: true
     learnerId?: true
-    confirmedAt?: true
     createdAt?: true
     updatedAt?: true
   }
 
   export type SessionMaxAggregateInputType = {
     id?: true
-    skill?: true
+    title?: true
+    description?: true
+    scheduledAt?: true
+    duration?: true
     teacherId?: true
     learnerId?: true
-    confirmedAt?: true
     createdAt?: true
     updatedAt?: true
   }
 
   export type SessionCountAggregateInputType = {
     id?: true
-    skill?: true
+    title?: true
+    description?: true
+    tags?: true
+    scheduledAt?: true
+    duration?: true
     teacherId?: true
     learnerId?: true
-    confirmedAt?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3654,6 +2467,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: SessionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SessionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: SessionMinAggregateInputType
@@ -3684,19 +2509,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: SessionCountAggregateInputType | true
+    _avg?: SessionAvgAggregateInputType
+    _sum?: SessionSumAggregateInputType
     _min?: SessionMinAggregateInputType
     _max?: SessionMaxAggregateInputType
   }
 
   export type SessionGroupByOutputType = {
     id: string
-    skill: string
+    title: string
+    description: string | null
+    tags: string[]
+    scheduledAt: Date
+    duration: number
     teacherId: string
     learnerId: string
-    confirmedAt: Date | null
     createdAt: Date
     updatedAt: Date
     _count: SessionCountAggregateOutputType | null
+    _avg: SessionAvgAggregateOutputType | null
+    _sum: SessionSumAggregateOutputType | null
     _min: SessionMinAggregateOutputType | null
     _max: SessionMaxAggregateOutputType | null
   }
@@ -3717,10 +2549,13 @@ export namespace Prisma {
 
   export type SessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    skill?: boolean
+    title?: boolean
+    description?: boolean
+    tags?: boolean
+    scheduledAt?: boolean
+    duration?: boolean
     teacherId?: boolean
     learnerId?: boolean
-    confirmedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     teacher?: boolean | UserDefaultArgs<ExtArgs>
@@ -3729,10 +2564,13 @@ export namespace Prisma {
 
   export type SessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    skill?: boolean
+    title?: boolean
+    description?: boolean
+    tags?: boolean
+    scheduledAt?: boolean
+    duration?: boolean
     teacherId?: boolean
     learnerId?: boolean
-    confirmedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     teacher?: boolean | UserDefaultArgs<ExtArgs>
@@ -3741,10 +2579,13 @@ export namespace Prisma {
 
   export type SessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    skill?: boolean
+    title?: boolean
+    description?: boolean
+    tags?: boolean
+    scheduledAt?: boolean
+    duration?: boolean
     teacherId?: boolean
     learnerId?: boolean
-    confirmedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     teacher?: boolean | UserDefaultArgs<ExtArgs>
@@ -3753,15 +2594,18 @@ export namespace Prisma {
 
   export type SessionSelectScalar = {
     id?: boolean
-    skill?: boolean
+    title?: boolean
+    description?: boolean
+    tags?: boolean
+    scheduledAt?: boolean
+    duration?: boolean
     teacherId?: boolean
     learnerId?: boolean
-    confirmedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "skill" | "teacherId" | "learnerId" | "confirmedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["session"]>
+  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "tags" | "scheduledAt" | "duration" | "teacherId" | "learnerId" | "createdAt" | "updatedAt", ExtArgs["result"]["session"]>
   export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     teacher?: boolean | UserDefaultArgs<ExtArgs>
     learner?: boolean | UserDefaultArgs<ExtArgs>
@@ -3783,10 +2627,13 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      skill: string
+      title: string
+      description: string | null
+      tags: string[]
+      scheduledAt: Date
+      duration: number
       teacherId: string
       learnerId: string
-      confirmedAt: Date | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["session"]>
@@ -4215,10 +3062,13 @@ export namespace Prisma {
    */
   interface SessionFieldRefs {
     readonly id: FieldRef<"Session", 'String'>
-    readonly skill: FieldRef<"Session", 'String'>
+    readonly title: FieldRef<"Session", 'String'>
+    readonly description: FieldRef<"Session", 'String'>
+    readonly tags: FieldRef<"Session", 'String[]'>
+    readonly scheduledAt: FieldRef<"Session", 'DateTime'>
+    readonly duration: FieldRef<"Session", 'Int'>
     readonly teacherId: FieldRef<"Session", 'String'>
     readonly learnerId: FieldRef<"Session", 'String'>
-    readonly confirmedAt: FieldRef<"Session", 'DateTime'>
     readonly createdAt: FieldRef<"Session", 'DateTime'>
     readonly updatedAt: FieldRef<"Session", 'DateTime'>
   }
@@ -4636,975 +3486,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Badge
-   */
-
-  export type AggregateBadge = {
-    _count: BadgeCountAggregateOutputType | null
-    _min: BadgeMinAggregateOutputType | null
-    _max: BadgeMaxAggregateOutputType | null
-  }
-
-  export type BadgeMinAggregateOutputType = {
-    id: string | null
-    name: string | null
-    criteria: string | null
-  }
-
-  export type BadgeMaxAggregateOutputType = {
-    id: string | null
-    name: string | null
-    criteria: string | null
-  }
-
-  export type BadgeCountAggregateOutputType = {
-    id: number
-    name: number
-    criteria: number
-    _all: number
-  }
-
-
-  export type BadgeMinAggregateInputType = {
-    id?: true
-    name?: true
-    criteria?: true
-  }
-
-  export type BadgeMaxAggregateInputType = {
-    id?: true
-    name?: true
-    criteria?: true
-  }
-
-  export type BadgeCountAggregateInputType = {
-    id?: true
-    name?: true
-    criteria?: true
-    _all?: true
-  }
-
-  export type BadgeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Badge to aggregate.
-     */
-    where?: BadgeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Badges to fetch.
-     */
-    orderBy?: BadgeOrderByWithRelationInput | BadgeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: BadgeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Badges from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Badges.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Badges
-    **/
-    _count?: true | BadgeCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: BadgeMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: BadgeMaxAggregateInputType
-  }
-
-  export type GetBadgeAggregateType<T extends BadgeAggregateArgs> = {
-        [P in keyof T & keyof AggregateBadge]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateBadge[P]>
-      : GetScalarType<T[P], AggregateBadge[P]>
-  }
-
-
-
-
-  export type BadgeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BadgeWhereInput
-    orderBy?: BadgeOrderByWithAggregationInput | BadgeOrderByWithAggregationInput[]
-    by: BadgeScalarFieldEnum[] | BadgeScalarFieldEnum
-    having?: BadgeScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: BadgeCountAggregateInputType | true
-    _min?: BadgeMinAggregateInputType
-    _max?: BadgeMaxAggregateInputType
-  }
-
-  export type BadgeGroupByOutputType = {
-    id: string
-    name: string
-    criteria: string
-    _count: BadgeCountAggregateOutputType | null
-    _min: BadgeMinAggregateOutputType | null
-    _max: BadgeMaxAggregateOutputType | null
-  }
-
-  type GetBadgeGroupByPayload<T extends BadgeGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<BadgeGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof BadgeGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], BadgeGroupByOutputType[P]>
-            : GetScalarType<T[P], BadgeGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type BadgeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    criteria?: boolean
-  }, ExtArgs["result"]["badge"]>
-
-  export type BadgeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    criteria?: boolean
-  }, ExtArgs["result"]["badge"]>
-
-  export type BadgeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    criteria?: boolean
-  }, ExtArgs["result"]["badge"]>
-
-  export type BadgeSelectScalar = {
-    id?: boolean
-    name?: boolean
-    criteria?: boolean
-  }
-
-  export type BadgeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "criteria", ExtArgs["result"]["badge"]>
-
-  export type $BadgePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Badge"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      name: string
-      criteria: string
-    }, ExtArgs["result"]["badge"]>
-    composites: {}
-  }
-
-  type BadgeGetPayload<S extends boolean | null | undefined | BadgeDefaultArgs> = $Result.GetResult<Prisma.$BadgePayload, S>
-
-  type BadgeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<BadgeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: BadgeCountAggregateInputType | true
-    }
-
-  export interface BadgeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Badge'], meta: { name: 'Badge' } }
-    /**
-     * Find zero or one Badge that matches the filter.
-     * @param {BadgeFindUniqueArgs} args - Arguments to find a Badge
-     * @example
-     * // Get one Badge
-     * const badge = await prisma.badge.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends BadgeFindUniqueArgs>(args: SelectSubset<T, BadgeFindUniqueArgs<ExtArgs>>): Prisma__BadgeClient<$Result.GetResult<Prisma.$BadgePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Badge that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {BadgeFindUniqueOrThrowArgs} args - Arguments to find a Badge
-     * @example
-     * // Get one Badge
-     * const badge = await prisma.badge.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends BadgeFindUniqueOrThrowArgs>(args: SelectSubset<T, BadgeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BadgeClient<$Result.GetResult<Prisma.$BadgePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Badge that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BadgeFindFirstArgs} args - Arguments to find a Badge
-     * @example
-     * // Get one Badge
-     * const badge = await prisma.badge.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends BadgeFindFirstArgs>(args?: SelectSubset<T, BadgeFindFirstArgs<ExtArgs>>): Prisma__BadgeClient<$Result.GetResult<Prisma.$BadgePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Badge that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BadgeFindFirstOrThrowArgs} args - Arguments to find a Badge
-     * @example
-     * // Get one Badge
-     * const badge = await prisma.badge.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends BadgeFindFirstOrThrowArgs>(args?: SelectSubset<T, BadgeFindFirstOrThrowArgs<ExtArgs>>): Prisma__BadgeClient<$Result.GetResult<Prisma.$BadgePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Badges that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BadgeFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Badges
-     * const badges = await prisma.badge.findMany()
-     * 
-     * // Get first 10 Badges
-     * const badges = await prisma.badge.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const badgeWithIdOnly = await prisma.badge.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends BadgeFindManyArgs>(args?: SelectSubset<T, BadgeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BadgePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Badge.
-     * @param {BadgeCreateArgs} args - Arguments to create a Badge.
-     * @example
-     * // Create one Badge
-     * const Badge = await prisma.badge.create({
-     *   data: {
-     *     // ... data to create a Badge
-     *   }
-     * })
-     * 
-     */
-    create<T extends BadgeCreateArgs>(args: SelectSubset<T, BadgeCreateArgs<ExtArgs>>): Prisma__BadgeClient<$Result.GetResult<Prisma.$BadgePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Badges.
-     * @param {BadgeCreateManyArgs} args - Arguments to create many Badges.
-     * @example
-     * // Create many Badges
-     * const badge = await prisma.badge.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends BadgeCreateManyArgs>(args?: SelectSubset<T, BadgeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Badges and returns the data saved in the database.
-     * @param {BadgeCreateManyAndReturnArgs} args - Arguments to create many Badges.
-     * @example
-     * // Create many Badges
-     * const badge = await prisma.badge.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Badges and only return the `id`
-     * const badgeWithIdOnly = await prisma.badge.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends BadgeCreateManyAndReturnArgs>(args?: SelectSubset<T, BadgeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BadgePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Badge.
-     * @param {BadgeDeleteArgs} args - Arguments to delete one Badge.
-     * @example
-     * // Delete one Badge
-     * const Badge = await prisma.badge.delete({
-     *   where: {
-     *     // ... filter to delete one Badge
-     *   }
-     * })
-     * 
-     */
-    delete<T extends BadgeDeleteArgs>(args: SelectSubset<T, BadgeDeleteArgs<ExtArgs>>): Prisma__BadgeClient<$Result.GetResult<Prisma.$BadgePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Badge.
-     * @param {BadgeUpdateArgs} args - Arguments to update one Badge.
-     * @example
-     * // Update one Badge
-     * const badge = await prisma.badge.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends BadgeUpdateArgs>(args: SelectSubset<T, BadgeUpdateArgs<ExtArgs>>): Prisma__BadgeClient<$Result.GetResult<Prisma.$BadgePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Badges.
-     * @param {BadgeDeleteManyArgs} args - Arguments to filter Badges to delete.
-     * @example
-     * // Delete a few Badges
-     * const { count } = await prisma.badge.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends BadgeDeleteManyArgs>(args?: SelectSubset<T, BadgeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Badges.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BadgeUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Badges
-     * const badge = await prisma.badge.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends BadgeUpdateManyArgs>(args: SelectSubset<T, BadgeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Badges and returns the data updated in the database.
-     * @param {BadgeUpdateManyAndReturnArgs} args - Arguments to update many Badges.
-     * @example
-     * // Update many Badges
-     * const badge = await prisma.badge.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Badges and only return the `id`
-     * const badgeWithIdOnly = await prisma.badge.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends BadgeUpdateManyAndReturnArgs>(args: SelectSubset<T, BadgeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BadgePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Badge.
-     * @param {BadgeUpsertArgs} args - Arguments to update or create a Badge.
-     * @example
-     * // Update or create a Badge
-     * const badge = await prisma.badge.upsert({
-     *   create: {
-     *     // ... data to create a Badge
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Badge we want to update
-     *   }
-     * })
-     */
-    upsert<T extends BadgeUpsertArgs>(args: SelectSubset<T, BadgeUpsertArgs<ExtArgs>>): Prisma__BadgeClient<$Result.GetResult<Prisma.$BadgePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Badges.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BadgeCountArgs} args - Arguments to filter Badges to count.
-     * @example
-     * // Count the number of Badges
-     * const count = await prisma.badge.count({
-     *   where: {
-     *     // ... the filter for the Badges we want to count
-     *   }
-     * })
-    **/
-    count<T extends BadgeCountArgs>(
-      args?: Subset<T, BadgeCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], BadgeCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Badge.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BadgeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends BadgeAggregateArgs>(args: Subset<T, BadgeAggregateArgs>): Prisma.PrismaPromise<GetBadgeAggregateType<T>>
-
-    /**
-     * Group by Badge.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BadgeGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends BadgeGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: BadgeGroupByArgs['orderBy'] }
-        : { orderBy?: BadgeGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, BadgeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBadgeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Badge model
-   */
-  readonly fields: BadgeFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Badge.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__BadgeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Badge model
-   */
-  interface BadgeFieldRefs {
-    readonly id: FieldRef<"Badge", 'String'>
-    readonly name: FieldRef<"Badge", 'String'>
-    readonly criteria: FieldRef<"Badge", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Badge findUnique
-   */
-  export type BadgeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Badge
-     */
-    select?: BadgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Badge
-     */
-    omit?: BadgeOmit<ExtArgs> | null
-    /**
-     * Filter, which Badge to fetch.
-     */
-    where: BadgeWhereUniqueInput
-  }
-
-  /**
-   * Badge findUniqueOrThrow
-   */
-  export type BadgeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Badge
-     */
-    select?: BadgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Badge
-     */
-    omit?: BadgeOmit<ExtArgs> | null
-    /**
-     * Filter, which Badge to fetch.
-     */
-    where: BadgeWhereUniqueInput
-  }
-
-  /**
-   * Badge findFirst
-   */
-  export type BadgeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Badge
-     */
-    select?: BadgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Badge
-     */
-    omit?: BadgeOmit<ExtArgs> | null
-    /**
-     * Filter, which Badge to fetch.
-     */
-    where?: BadgeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Badges to fetch.
-     */
-    orderBy?: BadgeOrderByWithRelationInput | BadgeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Badges.
-     */
-    cursor?: BadgeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Badges from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Badges.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Badges.
-     */
-    distinct?: BadgeScalarFieldEnum | BadgeScalarFieldEnum[]
-  }
-
-  /**
-   * Badge findFirstOrThrow
-   */
-  export type BadgeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Badge
-     */
-    select?: BadgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Badge
-     */
-    omit?: BadgeOmit<ExtArgs> | null
-    /**
-     * Filter, which Badge to fetch.
-     */
-    where?: BadgeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Badges to fetch.
-     */
-    orderBy?: BadgeOrderByWithRelationInput | BadgeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Badges.
-     */
-    cursor?: BadgeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Badges from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Badges.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Badges.
-     */
-    distinct?: BadgeScalarFieldEnum | BadgeScalarFieldEnum[]
-  }
-
-  /**
-   * Badge findMany
-   */
-  export type BadgeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Badge
-     */
-    select?: BadgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Badge
-     */
-    omit?: BadgeOmit<ExtArgs> | null
-    /**
-     * Filter, which Badges to fetch.
-     */
-    where?: BadgeWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Badges to fetch.
-     */
-    orderBy?: BadgeOrderByWithRelationInput | BadgeOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Badges.
-     */
-    cursor?: BadgeWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Badges from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Badges.
-     */
-    skip?: number
-    distinct?: BadgeScalarFieldEnum | BadgeScalarFieldEnum[]
-  }
-
-  /**
-   * Badge create
-   */
-  export type BadgeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Badge
-     */
-    select?: BadgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Badge
-     */
-    omit?: BadgeOmit<ExtArgs> | null
-    /**
-     * The data needed to create a Badge.
-     */
-    data: XOR<BadgeCreateInput, BadgeUncheckedCreateInput>
-  }
-
-  /**
-   * Badge createMany
-   */
-  export type BadgeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Badges.
-     */
-    data: BadgeCreateManyInput | BadgeCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Badge createManyAndReturn
-   */
-  export type BadgeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Badge
-     */
-    select?: BadgeSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Badge
-     */
-    omit?: BadgeOmit<ExtArgs> | null
-    /**
-     * The data used to create many Badges.
-     */
-    data: BadgeCreateManyInput | BadgeCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Badge update
-   */
-  export type BadgeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Badge
-     */
-    select?: BadgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Badge
-     */
-    omit?: BadgeOmit<ExtArgs> | null
-    /**
-     * The data needed to update a Badge.
-     */
-    data: XOR<BadgeUpdateInput, BadgeUncheckedUpdateInput>
-    /**
-     * Choose, which Badge to update.
-     */
-    where: BadgeWhereUniqueInput
-  }
-
-  /**
-   * Badge updateMany
-   */
-  export type BadgeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Badges.
-     */
-    data: XOR<BadgeUpdateManyMutationInput, BadgeUncheckedUpdateManyInput>
-    /**
-     * Filter which Badges to update
-     */
-    where?: BadgeWhereInput
-    /**
-     * Limit how many Badges to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Badge updateManyAndReturn
-   */
-  export type BadgeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Badge
-     */
-    select?: BadgeSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Badge
-     */
-    omit?: BadgeOmit<ExtArgs> | null
-    /**
-     * The data used to update Badges.
-     */
-    data: XOR<BadgeUpdateManyMutationInput, BadgeUncheckedUpdateManyInput>
-    /**
-     * Filter which Badges to update
-     */
-    where?: BadgeWhereInput
-    /**
-     * Limit how many Badges to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Badge upsert
-   */
-  export type BadgeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Badge
-     */
-    select?: BadgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Badge
-     */
-    omit?: BadgeOmit<ExtArgs> | null
-    /**
-     * The filter to search for the Badge to update in case it exists.
-     */
-    where: BadgeWhereUniqueInput
-    /**
-     * In case the Badge found by the `where` argument doesn't exist, create a new Badge with this data.
-     */
-    create: XOR<BadgeCreateInput, BadgeUncheckedCreateInput>
-    /**
-     * In case the Badge was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<BadgeUpdateInput, BadgeUncheckedUpdateInput>
-  }
-
-  /**
-   * Badge delete
-   */
-  export type BadgeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Badge
-     */
-    select?: BadgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Badge
-     */
-    omit?: BadgeOmit<ExtArgs> | null
-    /**
-     * Filter which Badge to delete.
-     */
-    where: BadgeWhereUniqueInput
-  }
-
-  /**
-   * Badge deleteMany
-   */
-  export type BadgeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Badges to delete
-     */
-    where?: BadgeWhereInput
-    /**
-     * Limit how many Badges to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Badge without action
-   */
-  export type BadgeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Badge
-     */
-    select?: BadgeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Badge
-     */
-    omit?: BadgeOmit<ExtArgs> | null
-  }
-
-
-  /**
    * Enums
    */
 
@@ -5624,9 +3505,21 @@ export namespace Prisma {
     email: 'email',
     name: 'name',
     username: 'username',
-    password: 'password',
     bio: 'bio',
     avatarUrl: 'avatarUrl',
+    interests: 'interests',
+    socialLinks: 'socialLinks',
+    preferredLanguages: 'preferredLanguages',
+    occupation: 'occupation',
+    location: 'location',
+    timezone: 'timezone',
+    age: 'age',
+    skillsOffered: 'skillsOffered',
+    learningGoals: 'learningGoals',
+    userIntent: 'userIntent',
+    userAvailability: 'userAvailability',
+    walletAddress: 'walletAddress',
+    hasOnboarded: 'hasOnboarded',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -5634,40 +3527,20 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-  export const SkillProfileScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    skill: 'skill',
-    xp: 'xp',
-    category: 'category',
-    skillType: 'skillType',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type SkillProfileScalarFieldEnum = (typeof SkillProfileScalarFieldEnum)[keyof typeof SkillProfileScalarFieldEnum]
-
-
   export const SessionScalarFieldEnum: {
     id: 'id',
-    skill: 'skill',
+    title: 'title',
+    description: 'description',
+    tags: 'tags',
+    scheduledAt: 'scheduledAt',
+    duration: 'duration',
     teacherId: 'teacherId',
     learnerId: 'learnerId',
-    confirmedAt: 'confirmedAt',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
-
-
-  export const BadgeScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    criteria: 'criteria'
-  };
-
-  export type BadgeScalarFieldEnum = (typeof BadgeScalarFieldEnum)[keyof typeof BadgeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5678,12 +3551,29 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   export const NullsOrder: {
@@ -5714,16 +3604,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'DateTime'
+   * Reference to a field of type 'Json'
    */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
 
 
   /**
-   * Reference to a field of type 'DateTime[]'
+   * Reference to a field of type 'QueryMode'
    */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -5738,6 +3628,27 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -5767,12 +3678,23 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
     username?: StringFilter<"User"> | string
-    password?: StringFilter<"User"> | string
     bio?: StringNullableFilter<"User"> | string | null
     avatarUrl?: StringNullableFilter<"User"> | string | null
+    interests?: StringNullableListFilter<"User">
+    socialLinks?: JsonNullableFilter<"User">
+    preferredLanguages?: StringNullableListFilter<"User">
+    occupation?: StringFilter<"User"> | string
+    location?: StringNullableFilter<"User"> | string | null
+    timezone?: StringFilter<"User"> | string
+    age?: IntFilter<"User"> | number
+    skillsOffered?: StringNullableListFilter<"User">
+    learningGoals?: StringNullableListFilter<"User">
+    userIntent?: StringNullableListFilter<"User">
+    userAvailability?: StringNullableListFilter<"User">
+    walletAddress?: StringNullableFilter<"User"> | string | null
+    hasOnboarded?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    skillProfiles?: SkillProfileListRelationFilter
     SessionsTaught?: SessionListRelationFilter
     SessionsLearned?: SessionListRelationFilter
   }
@@ -5783,12 +3705,23 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     username?: SortOrder
-    password?: SortOrder
     bio?: SortOrderInput | SortOrder
     avatarUrl?: SortOrderInput | SortOrder
+    interests?: SortOrder
+    socialLinks?: SortOrderInput | SortOrder
+    preferredLanguages?: SortOrder
+    occupation?: SortOrder
+    location?: SortOrderInput | SortOrder
+    timezone?: SortOrder
+    age?: SortOrder
+    skillsOffered?: SortOrder
+    learningGoals?: SortOrder
+    userIntent?: SortOrder
+    userAvailability?: SortOrder
+    walletAddress?: SortOrderInput | SortOrder
+    hasOnboarded?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    skillProfiles?: SkillProfileOrderByRelationAggregateInput
     SessionsTaught?: SessionOrderByRelationAggregateInput
     SessionsLearned?: SessionOrderByRelationAggregateInput
   }
@@ -5798,19 +3731,30 @@ export namespace Prisma {
     clerkId?: string
     email?: string
     username?: string
+    walletAddress?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
-    password?: StringFilter<"User"> | string
     bio?: StringNullableFilter<"User"> | string | null
     avatarUrl?: StringNullableFilter<"User"> | string | null
+    interests?: StringNullableListFilter<"User">
+    socialLinks?: JsonNullableFilter<"User">
+    preferredLanguages?: StringNullableListFilter<"User">
+    occupation?: StringFilter<"User"> | string
+    location?: StringNullableFilter<"User"> | string | null
+    timezone?: StringFilter<"User"> | string
+    age?: IntFilter<"User"> | number
+    skillsOffered?: StringNullableListFilter<"User">
+    learningGoals?: StringNullableListFilter<"User">
+    userIntent?: StringNullableListFilter<"User">
+    userAvailability?: StringNullableListFilter<"User">
+    hasOnboarded?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    skillProfiles?: SkillProfileListRelationFilter
     SessionsTaught?: SessionListRelationFilter
     SessionsLearned?: SessionListRelationFilter
-  }, "id" | "clerkId" | "email" | "username">
+  }, "id" | "clerkId" | "email" | "username" | "walletAddress">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -5818,14 +3762,28 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     username?: SortOrder
-    password?: SortOrder
     bio?: SortOrderInput | SortOrder
     avatarUrl?: SortOrderInput | SortOrder
+    interests?: SortOrder
+    socialLinks?: SortOrderInput | SortOrder
+    preferredLanguages?: SortOrder
+    occupation?: SortOrder
+    location?: SortOrderInput | SortOrder
+    timezone?: SortOrder
+    age?: SortOrder
+    skillsOffered?: SortOrder
+    learningGoals?: SortOrder
+    userIntent?: SortOrder
+    userAvailability?: SortOrder
+    walletAddress?: SortOrderInput | SortOrder
+    hasOnboarded?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
+    _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
+    _sum?: UserSumOrderByAggregateInput
   }
 
   export type UserScalarWhereWithAggregatesInput = {
@@ -5837,84 +3795,23 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     name?: StringWithAggregatesFilter<"User"> | string
     username?: StringWithAggregatesFilter<"User"> | string
-    password?: StringWithAggregatesFilter<"User"> | string
     bio?: StringNullableWithAggregatesFilter<"User"> | string | null
     avatarUrl?: StringNullableWithAggregatesFilter<"User"> | string | null
+    interests?: StringNullableListFilter<"User">
+    socialLinks?: JsonNullableWithAggregatesFilter<"User">
+    preferredLanguages?: StringNullableListFilter<"User">
+    occupation?: StringWithAggregatesFilter<"User"> | string
+    location?: StringNullableWithAggregatesFilter<"User"> | string | null
+    timezone?: StringWithAggregatesFilter<"User"> | string
+    age?: IntWithAggregatesFilter<"User"> | number
+    skillsOffered?: StringNullableListFilter<"User">
+    learningGoals?: StringNullableListFilter<"User">
+    userIntent?: StringNullableListFilter<"User">
+    userAvailability?: StringNullableListFilter<"User">
+    walletAddress?: StringNullableWithAggregatesFilter<"User"> | string | null
+    hasOnboarded?: BoolWithAggregatesFilter<"User"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
-  }
-
-  export type SkillProfileWhereInput = {
-    AND?: SkillProfileWhereInput | SkillProfileWhereInput[]
-    OR?: SkillProfileWhereInput[]
-    NOT?: SkillProfileWhereInput | SkillProfileWhereInput[]
-    id?: StringFilter<"SkillProfile"> | string
-    userId?: StringFilter<"SkillProfile"> | string
-    skill?: StringFilter<"SkillProfile"> | string
-    xp?: IntFilter<"SkillProfile"> | number
-    category?: StringFilter<"SkillProfile"> | string
-    skillType?: StringFilter<"SkillProfile"> | string
-    createdAt?: DateTimeFilter<"SkillProfile"> | Date | string
-    updatedAt?: DateTimeFilter<"SkillProfile"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }
-
-  export type SkillProfileOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    skill?: SortOrder
-    xp?: SortOrder
-    category?: SortOrder
-    skillType?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type SkillProfileWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    userId_skill?: SkillProfileUserIdSkillCompoundUniqueInput
-    AND?: SkillProfileWhereInput | SkillProfileWhereInput[]
-    OR?: SkillProfileWhereInput[]
-    NOT?: SkillProfileWhereInput | SkillProfileWhereInput[]
-    userId?: StringFilter<"SkillProfile"> | string
-    skill?: StringFilter<"SkillProfile"> | string
-    xp?: IntFilter<"SkillProfile"> | number
-    category?: StringFilter<"SkillProfile"> | string
-    skillType?: StringFilter<"SkillProfile"> | string
-    createdAt?: DateTimeFilter<"SkillProfile"> | Date | string
-    updatedAt?: DateTimeFilter<"SkillProfile"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "userId_skill">
-
-  export type SkillProfileOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    skill?: SortOrder
-    xp?: SortOrder
-    category?: SortOrder
-    skillType?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: SkillProfileCountOrderByAggregateInput
-    _avg?: SkillProfileAvgOrderByAggregateInput
-    _max?: SkillProfileMaxOrderByAggregateInput
-    _min?: SkillProfileMinOrderByAggregateInput
-    _sum?: SkillProfileSumOrderByAggregateInput
-  }
-
-  export type SkillProfileScalarWhereWithAggregatesInput = {
-    AND?: SkillProfileScalarWhereWithAggregatesInput | SkillProfileScalarWhereWithAggregatesInput[]
-    OR?: SkillProfileScalarWhereWithAggregatesInput[]
-    NOT?: SkillProfileScalarWhereWithAggregatesInput | SkillProfileScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"SkillProfile"> | string
-    userId?: StringWithAggregatesFilter<"SkillProfile"> | string
-    skill?: StringWithAggregatesFilter<"SkillProfile"> | string
-    xp?: IntWithAggregatesFilter<"SkillProfile"> | number
-    category?: StringWithAggregatesFilter<"SkillProfile"> | string
-    skillType?: StringWithAggregatesFilter<"SkillProfile"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"SkillProfile"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"SkillProfile"> | Date | string
   }
 
   export type SessionWhereInput = {
@@ -5922,10 +3819,13 @@ export namespace Prisma {
     OR?: SessionWhereInput[]
     NOT?: SessionWhereInput | SessionWhereInput[]
     id?: StringFilter<"Session"> | string
-    skill?: StringFilter<"Session"> | string
+    title?: StringFilter<"Session"> | string
+    description?: StringNullableFilter<"Session"> | string | null
+    tags?: StringNullableListFilter<"Session">
+    scheduledAt?: DateTimeFilter<"Session"> | Date | string
+    duration?: IntFilter<"Session"> | number
     teacherId?: StringFilter<"Session"> | string
     learnerId?: StringFilter<"Session"> | string
-    confirmedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
     createdAt?: DateTimeFilter<"Session"> | Date | string
     updatedAt?: DateTimeFilter<"Session"> | Date | string
     teacher?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -5934,10 +3834,13 @@ export namespace Prisma {
 
   export type SessionOrderByWithRelationInput = {
     id?: SortOrder
-    skill?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    scheduledAt?: SortOrder
+    duration?: SortOrder
     teacherId?: SortOrder
     learnerId?: SortOrder
-    confirmedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     teacher?: UserOrderByWithRelationInput
@@ -5949,10 +3852,13 @@ export namespace Prisma {
     AND?: SessionWhereInput | SessionWhereInput[]
     OR?: SessionWhereInput[]
     NOT?: SessionWhereInput | SessionWhereInput[]
-    skill?: StringFilter<"Session"> | string
+    title?: StringFilter<"Session"> | string
+    description?: StringNullableFilter<"Session"> | string | null
+    tags?: StringNullableListFilter<"Session">
+    scheduledAt?: DateTimeFilter<"Session"> | Date | string
+    duration?: IntFilter<"Session"> | number
     teacherId?: StringFilter<"Session"> | string
     learnerId?: StringFilter<"Session"> | string
-    confirmedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
     createdAt?: DateTimeFilter<"Session"> | Date | string
     updatedAt?: DateTimeFilter<"Session"> | Date | string
     teacher?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -5961,15 +3867,20 @@ export namespace Prisma {
 
   export type SessionOrderByWithAggregationInput = {
     id?: SortOrder
-    skill?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    scheduledAt?: SortOrder
+    duration?: SortOrder
     teacherId?: SortOrder
     learnerId?: SortOrder
-    confirmedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: SessionCountOrderByAggregateInput
+    _avg?: SessionAvgOrderByAggregateInput
     _max?: SessionMaxOrderByAggregateInput
     _min?: SessionMinOrderByAggregateInput
+    _sum?: SessionSumOrderByAggregateInput
   }
 
   export type SessionScalarWhereWithAggregatesInput = {
@@ -5977,54 +3888,15 @@ export namespace Prisma {
     OR?: SessionScalarWhereWithAggregatesInput[]
     NOT?: SessionScalarWhereWithAggregatesInput | SessionScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Session"> | string
-    skill?: StringWithAggregatesFilter<"Session"> | string
+    title?: StringWithAggregatesFilter<"Session"> | string
+    description?: StringNullableWithAggregatesFilter<"Session"> | string | null
+    tags?: StringNullableListFilter<"Session">
+    scheduledAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    duration?: IntWithAggregatesFilter<"Session"> | number
     teacherId?: StringWithAggregatesFilter<"Session"> | string
     learnerId?: StringWithAggregatesFilter<"Session"> | string
-    confirmedAt?: DateTimeNullableWithAggregatesFilter<"Session"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
-  }
-
-  export type BadgeWhereInput = {
-    AND?: BadgeWhereInput | BadgeWhereInput[]
-    OR?: BadgeWhereInput[]
-    NOT?: BadgeWhereInput | BadgeWhereInput[]
-    id?: StringFilter<"Badge"> | string
-    name?: StringFilter<"Badge"> | string
-    criteria?: StringFilter<"Badge"> | string
-  }
-
-  export type BadgeOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    criteria?: SortOrder
-  }
-
-  export type BadgeWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: BadgeWhereInput | BadgeWhereInput[]
-    OR?: BadgeWhereInput[]
-    NOT?: BadgeWhereInput | BadgeWhereInput[]
-    name?: StringFilter<"Badge"> | string
-    criteria?: StringFilter<"Badge"> | string
-  }, "id">
-
-  export type BadgeOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    criteria?: SortOrder
-    _count?: BadgeCountOrderByAggregateInput
-    _max?: BadgeMaxOrderByAggregateInput
-    _min?: BadgeMinOrderByAggregateInput
-  }
-
-  export type BadgeScalarWhereWithAggregatesInput = {
-    AND?: BadgeScalarWhereWithAggregatesInput | BadgeScalarWhereWithAggregatesInput[]
-    OR?: BadgeScalarWhereWithAggregatesInput[]
-    NOT?: BadgeScalarWhereWithAggregatesInput | BadgeScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Badge"> | string
-    name?: StringWithAggregatesFilter<"Badge"> | string
-    criteria?: StringWithAggregatesFilter<"Badge"> | string
   }
 
   export type UserCreateInput = {
@@ -6033,12 +3905,23 @@ export namespace Prisma {
     email: string
     name: string
     username: string
-    password: string
     bio?: string | null
     avatarUrl?: string | null
+    interests?: UserCreateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserCreatepreferredLanguagesInput | string[]
+    occupation: string
+    location?: string | null
+    timezone: string
+    age: number
+    skillsOffered?: UserCreateskillsOfferedInput | string[]
+    learningGoals?: UserCreatelearningGoalsInput | string[]
+    userIntent?: UserCreateuserIntentInput | string[]
+    userAvailability?: UserCreateuserAvailabilityInput | string[]
+    walletAddress?: string | null
+    hasOnboarded?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    skillProfiles?: SkillProfileCreateNestedManyWithoutUserInput
     SessionsTaught?: SessionCreateNestedManyWithoutTeacherInput
     SessionsLearned?: SessionCreateNestedManyWithoutLearnerInput
   }
@@ -6049,12 +3932,23 @@ export namespace Prisma {
     email: string
     name: string
     username: string
-    password: string
     bio?: string | null
     avatarUrl?: string | null
+    interests?: UserCreateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserCreatepreferredLanguagesInput | string[]
+    occupation: string
+    location?: string | null
+    timezone: string
+    age: number
+    skillsOffered?: UserCreateskillsOfferedInput | string[]
+    learningGoals?: UserCreatelearningGoalsInput | string[]
+    userIntent?: UserCreateuserIntentInput | string[]
+    userAvailability?: UserCreateuserAvailabilityInput | string[]
+    walletAddress?: string | null
+    hasOnboarded?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    skillProfiles?: SkillProfileUncheckedCreateNestedManyWithoutUserInput
     SessionsTaught?: SessionUncheckedCreateNestedManyWithoutTeacherInput
     SessionsLearned?: SessionUncheckedCreateNestedManyWithoutLearnerInput
   }
@@ -6065,12 +3959,23 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    interests?: UserUpdateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserUpdatepreferredLanguagesInput | string[]
+    occupation?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    timezone?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    skillsOffered?: UserUpdateskillsOfferedInput | string[]
+    learningGoals?: UserUpdatelearningGoalsInput | string[]
+    userIntent?: UserUpdateuserIntentInput | string[]
+    userAvailability?: UserUpdateuserAvailabilityInput | string[]
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    hasOnboarded?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    skillProfiles?: SkillProfileUpdateManyWithoutUserNestedInput
     SessionsTaught?: SessionUpdateManyWithoutTeacherNestedInput
     SessionsLearned?: SessionUpdateManyWithoutLearnerNestedInput
   }
@@ -6081,12 +3986,23 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    interests?: UserUpdateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserUpdatepreferredLanguagesInput | string[]
+    occupation?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    timezone?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    skillsOffered?: UserUpdateskillsOfferedInput | string[]
+    learningGoals?: UserUpdatelearningGoalsInput | string[]
+    userIntent?: UserUpdateuserIntentInput | string[]
+    userAvailability?: UserUpdateuserAvailabilityInput | string[]
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    hasOnboarded?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    skillProfiles?: SkillProfileUncheckedUpdateManyWithoutUserNestedInput
     SessionsTaught?: SessionUncheckedUpdateManyWithoutTeacherNestedInput
     SessionsLearned?: SessionUncheckedUpdateManyWithoutLearnerNestedInput
   }
@@ -6097,9 +4013,21 @@ export namespace Prisma {
     email: string
     name: string
     username: string
-    password: string
     bio?: string | null
     avatarUrl?: string | null
+    interests?: UserCreateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserCreatepreferredLanguagesInput | string[]
+    occupation: string
+    location?: string | null
+    timezone: string
+    age: number
+    skillsOffered?: UserCreateskillsOfferedInput | string[]
+    learningGoals?: UserCreatelearningGoalsInput | string[]
+    userIntent?: UserCreateuserIntentInput | string[]
+    userAvailability?: UserCreateuserAvailabilityInput | string[]
+    walletAddress?: string | null
+    hasOnboarded?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6110,9 +4038,21 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    interests?: UserUpdateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserUpdatepreferredLanguagesInput | string[]
+    occupation?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    timezone?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    skillsOffered?: UserUpdateskillsOfferedInput | string[]
+    learningGoals?: UserUpdatelearningGoalsInput | string[]
+    userIntent?: UserUpdateuserIntentInput | string[]
+    userAvailability?: UserUpdateuserAvailabilityInput | string[]
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    hasOnboarded?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6123,93 +4063,32 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SkillProfileCreateInput = {
-    id?: string
-    skill: string
-    xp?: number
-    category: string
-    skillType: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutSkillProfilesInput
-  }
-
-  export type SkillProfileUncheckedCreateInput = {
-    id?: string
-    userId: string
-    skill: string
-    xp?: number
-    category: string
-    skillType: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SkillProfileUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
-    xp?: IntFieldUpdateOperationsInput | number
-    category?: StringFieldUpdateOperationsInput | string
-    skillType?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSkillProfilesNestedInput
-  }
-
-  export type SkillProfileUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
-    xp?: IntFieldUpdateOperationsInput | number
-    category?: StringFieldUpdateOperationsInput | string
-    skillType?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SkillProfileCreateManyInput = {
-    id?: string
-    userId: string
-    skill: string
-    xp?: number
-    category: string
-    skillType: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SkillProfileUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
-    xp?: IntFieldUpdateOperationsInput | number
-    category?: StringFieldUpdateOperationsInput | string
-    skillType?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SkillProfileUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
-    xp?: IntFieldUpdateOperationsInput | number
-    category?: StringFieldUpdateOperationsInput | string
-    skillType?: StringFieldUpdateOperationsInput | string
+    interests?: UserUpdateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserUpdatepreferredLanguagesInput | string[]
+    occupation?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    timezone?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    skillsOffered?: UserUpdateskillsOfferedInput | string[]
+    learningGoals?: UserUpdatelearningGoalsInput | string[]
+    userIntent?: UserUpdateuserIntentInput | string[]
+    userAvailability?: UserUpdateuserAvailabilityInput | string[]
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    hasOnboarded?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionCreateInput = {
     id?: string
-    skill: string
-    confirmedAt?: Date | string | null
+    title: string
+    description?: string | null
+    tags?: SessionCreatetagsInput | string[]
+    scheduledAt: Date | string
+    duration: number
     createdAt?: Date | string
     updatedAt?: Date | string
     teacher: UserCreateNestedOneWithoutSessionsTaughtInput
@@ -6218,18 +4097,24 @@ export namespace Prisma {
 
   export type SessionUncheckedCreateInput = {
     id?: string
-    skill: string
+    title: string
+    description?: string | null
+    tags?: SessionCreatetagsInput | string[]
+    scheduledAt: Date | string
+    duration: number
     teacherId: string
     learnerId: string
-    confirmedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type SessionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
-    confirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: SessionUpdatetagsInput | string[]
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teacher?: UserUpdateOneRequiredWithoutSessionsTaughtNestedInput
@@ -6238,82 +4123,52 @@ export namespace Prisma {
 
   export type SessionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: SessionUpdatetagsInput | string[]
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: IntFieldUpdateOperationsInput | number
     teacherId?: StringFieldUpdateOperationsInput | string
     learnerId?: StringFieldUpdateOperationsInput | string
-    confirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionCreateManyInput = {
     id?: string
-    skill: string
+    title: string
+    description?: string | null
+    tags?: SessionCreatetagsInput | string[]
+    scheduledAt: Date | string
+    duration: number
     teacherId: string
     learnerId: string
-    confirmedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type SessionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
-    confirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: SessionUpdatetagsInput | string[]
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: SessionUpdatetagsInput | string[]
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: IntFieldUpdateOperationsInput | number
     teacherId?: StringFieldUpdateOperationsInput | string
     learnerId?: StringFieldUpdateOperationsInput | string
-    confirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type BadgeCreateInput = {
-    id?: string
-    name: string
-    criteria: string
-  }
-
-  export type BadgeUncheckedCreateInput = {
-    id?: string
-    name: string
-    criteria: string
-  }
-
-  export type BadgeUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    criteria?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type BadgeUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    criteria?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type BadgeCreateManyInput = {
-    id?: string
-    name: string
-    criteria: string
-  }
-
-  export type BadgeUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    criteria?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type BadgeUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    criteria?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -6346,6 +4201,53 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -6355,12 +4257,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type SkillProfileListRelationFilter = {
-    every?: SkillProfileWhereInput
-    some?: SkillProfileWhereInput
-    none?: SkillProfileWhereInput
   }
 
   export type SessionListRelationFilter = {
@@ -6374,10 +4270,6 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type SkillProfileOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type SessionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -6388,11 +4280,27 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     username?: SortOrder
-    password?: SortOrder
     bio?: SortOrder
     avatarUrl?: SortOrder
+    interests?: SortOrder
+    socialLinks?: SortOrder
+    preferredLanguages?: SortOrder
+    occupation?: SortOrder
+    location?: SortOrder
+    timezone?: SortOrder
+    age?: SortOrder
+    skillsOffered?: SortOrder
+    learningGoals?: SortOrder
+    userIntent?: SortOrder
+    userAvailability?: SortOrder
+    walletAddress?: SortOrder
+    hasOnboarded?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type UserAvgOrderByAggregateInput = {
+    age?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -6401,9 +4309,14 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     username?: SortOrder
-    password?: SortOrder
     bio?: SortOrder
     avatarUrl?: SortOrder
+    occupation?: SortOrder
+    location?: SortOrder
+    timezone?: SortOrder
+    age?: SortOrder
+    walletAddress?: SortOrder
+    hasOnboarded?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6414,11 +4327,20 @@ export namespace Prisma {
     email?: SortOrder
     name?: SortOrder
     username?: SortOrder
-    password?: SortOrder
     bio?: SortOrder
     avatarUrl?: SortOrder
+    occupation?: SortOrder
+    location?: SortOrder
+    timezone?: SortOrder
+    age?: SortOrder
+    walletAddress?: SortOrder
+    hasOnboarded?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type UserSumOrderByAggregateInput = {
+    age?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -6456,81 +4378,31 @@ export namespace Prisma {
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
 
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
-  }
-
-  export type SkillProfileUserIdSkillCompoundUniqueInput = {
-    userId: string
-    skill: string
-  }
-
-  export type SkillProfileCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    skill?: SortOrder
-    xp?: SortOrder
-    category?: SortOrder
-    skillType?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type SkillProfileAvgOrderByAggregateInput = {
-    xp?: SortOrder
-  }
-
-  export type SkillProfileMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    skill?: SortOrder
-    xp?: SortOrder
-    category?: SortOrder
-    skillType?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type SkillProfileMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    skill?: SortOrder
-    xp?: SortOrder
-    category?: SortOrder
-    skillType?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type SkillProfileSumOrderByAggregateInput = {
-    xp?: SortOrder
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -6549,84 +4421,100 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
   }
 
   export type SessionCountOrderByAggregateInput = {
     id?: SortOrder
-    skill?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    tags?: SortOrder
+    scheduledAt?: SortOrder
+    duration?: SortOrder
     teacherId?: SortOrder
     learnerId?: SortOrder
-    confirmedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
+  export type SessionAvgOrderByAggregateInput = {
+    duration?: SortOrder
+  }
+
   export type SessionMaxOrderByAggregateInput = {
     id?: SortOrder
-    skill?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    scheduledAt?: SortOrder
+    duration?: SortOrder
     teacherId?: SortOrder
     learnerId?: SortOrder
-    confirmedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type SessionMinOrderByAggregateInput = {
     id?: SortOrder
-    skill?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    scheduledAt?: SortOrder
+    duration?: SortOrder
     teacherId?: SortOrder
     learnerId?: SortOrder
-    confirmedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  export type SessionSumOrderByAggregateInput = {
+    duration?: SortOrder
   }
 
-  export type BadgeCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    criteria?: SortOrder
+  export type UserCreateinterestsInput = {
+    set: string[]
   }
 
-  export type BadgeMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    criteria?: SortOrder
+  export type UserCreatepreferredLanguagesInput = {
+    set: string[]
   }
 
-  export type BadgeMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    criteria?: SortOrder
+  export type UserCreateskillsOfferedInput = {
+    set: string[]
   }
 
-  export type SkillProfileCreateNestedManyWithoutUserInput = {
-    create?: XOR<SkillProfileCreateWithoutUserInput, SkillProfileUncheckedCreateWithoutUserInput> | SkillProfileCreateWithoutUserInput[] | SkillProfileUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SkillProfileCreateOrConnectWithoutUserInput | SkillProfileCreateOrConnectWithoutUserInput[]
-    createMany?: SkillProfileCreateManyUserInputEnvelope
-    connect?: SkillProfileWhereUniqueInput | SkillProfileWhereUniqueInput[]
+  export type UserCreatelearningGoalsInput = {
+    set: string[]
+  }
+
+  export type UserCreateuserIntentInput = {
+    set: string[]
+  }
+
+  export type UserCreateuserAvailabilityInput = {
+    set: string[]
   }
 
   export type SessionCreateNestedManyWithoutTeacherInput = {
@@ -6641,13 +4529,6 @@ export namespace Prisma {
     connectOrCreate?: SessionCreateOrConnectWithoutLearnerInput | SessionCreateOrConnectWithoutLearnerInput[]
     createMany?: SessionCreateManyLearnerInputEnvelope
     connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
-  }
-
-  export type SkillProfileUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<SkillProfileCreateWithoutUserInput, SkillProfileUncheckedCreateWithoutUserInput> | SkillProfileCreateWithoutUserInput[] | SkillProfileUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SkillProfileCreateOrConnectWithoutUserInput | SkillProfileCreateOrConnectWithoutUserInput[]
-    createMany?: SkillProfileCreateManyUserInputEnvelope
-    connect?: SkillProfileWhereUniqueInput | SkillProfileWhereUniqueInput[]
   }
 
   export type SessionUncheckedCreateNestedManyWithoutTeacherInput = {
@@ -6672,22 +4553,50 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+  export type UserUpdateinterestsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
-  export type SkillProfileUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SkillProfileCreateWithoutUserInput, SkillProfileUncheckedCreateWithoutUserInput> | SkillProfileCreateWithoutUserInput[] | SkillProfileUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SkillProfileCreateOrConnectWithoutUserInput | SkillProfileCreateOrConnectWithoutUserInput[]
-    upsert?: SkillProfileUpsertWithWhereUniqueWithoutUserInput | SkillProfileUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SkillProfileCreateManyUserInputEnvelope
-    set?: SkillProfileWhereUniqueInput | SkillProfileWhereUniqueInput[]
-    disconnect?: SkillProfileWhereUniqueInput | SkillProfileWhereUniqueInput[]
-    delete?: SkillProfileWhereUniqueInput | SkillProfileWhereUniqueInput[]
-    connect?: SkillProfileWhereUniqueInput | SkillProfileWhereUniqueInput[]
-    update?: SkillProfileUpdateWithWhereUniqueWithoutUserInput | SkillProfileUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SkillProfileUpdateManyWithWhereWithoutUserInput | SkillProfileUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SkillProfileScalarWhereInput | SkillProfileScalarWhereInput[]
+  export type UserUpdatepreferredLanguagesInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserUpdateskillsOfferedInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type UserUpdatelearningGoalsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type UserUpdateuserIntentInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type UserUpdateuserAvailabilityInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type SessionUpdateManyWithoutTeacherNestedInput = {
@@ -6718,20 +4627,6 @@ export namespace Prisma {
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
-  export type SkillProfileUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SkillProfileCreateWithoutUserInput, SkillProfileUncheckedCreateWithoutUserInput> | SkillProfileCreateWithoutUserInput[] | SkillProfileUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SkillProfileCreateOrConnectWithoutUserInput | SkillProfileCreateOrConnectWithoutUserInput[]
-    upsert?: SkillProfileUpsertWithWhereUniqueWithoutUserInput | SkillProfileUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SkillProfileCreateManyUserInputEnvelope
-    set?: SkillProfileWhereUniqueInput | SkillProfileWhereUniqueInput[]
-    disconnect?: SkillProfileWhereUniqueInput | SkillProfileWhereUniqueInput[]
-    delete?: SkillProfileWhereUniqueInput | SkillProfileWhereUniqueInput[]
-    connect?: SkillProfileWhereUniqueInput | SkillProfileWhereUniqueInput[]
-    update?: SkillProfileUpdateWithWhereUniqueWithoutUserInput | SkillProfileUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SkillProfileUpdateManyWithWhereWithoutUserInput | SkillProfileUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SkillProfileScalarWhereInput | SkillProfileScalarWhereInput[]
-  }
-
   export type SessionUncheckedUpdateManyWithoutTeacherNestedInput = {
     create?: XOR<SessionCreateWithoutTeacherInput, SessionUncheckedCreateWithoutTeacherInput> | SessionCreateWithoutTeacherInput[] | SessionUncheckedCreateWithoutTeacherInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutTeacherInput | SessionCreateOrConnectWithoutTeacherInput[]
@@ -6760,26 +4655,8 @@ export namespace Prisma {
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutSkillProfilesInput = {
-    create?: XOR<UserCreateWithoutSkillProfilesInput, UserUncheckedCreateWithoutSkillProfilesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSkillProfilesInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type UserUpdateOneRequiredWithoutSkillProfilesNestedInput = {
-    create?: XOR<UserCreateWithoutSkillProfilesInput, UserUncheckedCreateWithoutSkillProfilesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSkillProfilesInput
-    upsert?: UserUpsertWithoutSkillProfilesInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSkillProfilesInput, UserUpdateWithoutSkillProfilesInput>, UserUncheckedUpdateWithoutSkillProfilesInput>
+  export type SessionCreatetagsInput = {
+    set: string[]
   }
 
   export type UserCreateNestedOneWithoutSessionsTaughtInput = {
@@ -6794,8 +4671,9 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
+  export type SessionUpdatetagsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type UserUpdateOneRequiredWithoutSessionsTaughtNestedInput = {
@@ -6842,6 +4720,22 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -6868,17 +4762,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6908,19 +4791,28 @@ export namespace Prisma {
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
 
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -6950,65 +4842,35 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type SkillProfileCreateWithoutUserInput = {
-    id?: string
-    skill: string
-    xp?: number
-    category: string
-    skillType: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SkillProfileUncheckedCreateWithoutUserInput = {
-    id?: string
-    skill: string
-    xp?: number
-    category: string
-    skillType: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SkillProfileCreateOrConnectWithoutUserInput = {
-    where: SkillProfileWhereUniqueInput
-    create: XOR<SkillProfileCreateWithoutUserInput, SkillProfileUncheckedCreateWithoutUserInput>
-  }
-
-  export type SkillProfileCreateManyUserInputEnvelope = {
-    data: SkillProfileCreateManyUserInput | SkillProfileCreateManyUserInput[]
-    skipDuplicates?: boolean
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type SessionCreateWithoutTeacherInput = {
     id?: string
-    skill: string
-    confirmedAt?: Date | string | null
+    title: string
+    description?: string | null
+    tags?: SessionCreatetagsInput | string[]
+    scheduledAt: Date | string
+    duration: number
     createdAt?: Date | string
     updatedAt?: Date | string
     learner: UserCreateNestedOneWithoutSessionsLearnedInput
@@ -7016,9 +4878,12 @@ export namespace Prisma {
 
   export type SessionUncheckedCreateWithoutTeacherInput = {
     id?: string
-    skill: string
+    title: string
+    description?: string | null
+    tags?: SessionCreatetagsInput | string[]
+    scheduledAt: Date | string
+    duration: number
     learnerId: string
-    confirmedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7035,8 +4900,11 @@ export namespace Prisma {
 
   export type SessionCreateWithoutLearnerInput = {
     id?: string
-    skill: string
-    confirmedAt?: Date | string | null
+    title: string
+    description?: string | null
+    tags?: SessionCreatetagsInput | string[]
+    scheduledAt: Date | string
+    duration: number
     createdAt?: Date | string
     updatedAt?: Date | string
     teacher: UserCreateNestedOneWithoutSessionsTaughtInput
@@ -7044,9 +4912,12 @@ export namespace Prisma {
 
   export type SessionUncheckedCreateWithoutLearnerInput = {
     id?: string
-    skill: string
+    title: string
+    description?: string | null
+    tags?: SessionCreatetagsInput | string[]
+    scheduledAt: Date | string
+    duration: number
     teacherId: string
-    confirmedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7059,36 +4930,6 @@ export namespace Prisma {
   export type SessionCreateManyLearnerInputEnvelope = {
     data: SessionCreateManyLearnerInput | SessionCreateManyLearnerInput[]
     skipDuplicates?: boolean
-  }
-
-  export type SkillProfileUpsertWithWhereUniqueWithoutUserInput = {
-    where: SkillProfileWhereUniqueInput
-    update: XOR<SkillProfileUpdateWithoutUserInput, SkillProfileUncheckedUpdateWithoutUserInput>
-    create: XOR<SkillProfileCreateWithoutUserInput, SkillProfileUncheckedCreateWithoutUserInput>
-  }
-
-  export type SkillProfileUpdateWithWhereUniqueWithoutUserInput = {
-    where: SkillProfileWhereUniqueInput
-    data: XOR<SkillProfileUpdateWithoutUserInput, SkillProfileUncheckedUpdateWithoutUserInput>
-  }
-
-  export type SkillProfileUpdateManyWithWhereWithoutUserInput = {
-    where: SkillProfileScalarWhereInput
-    data: XOR<SkillProfileUpdateManyMutationInput, SkillProfileUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type SkillProfileScalarWhereInput = {
-    AND?: SkillProfileScalarWhereInput | SkillProfileScalarWhereInput[]
-    OR?: SkillProfileScalarWhereInput[]
-    NOT?: SkillProfileScalarWhereInput | SkillProfileScalarWhereInput[]
-    id?: StringFilter<"SkillProfile"> | string
-    userId?: StringFilter<"SkillProfile"> | string
-    skill?: StringFilter<"SkillProfile"> | string
-    xp?: IntFilter<"SkillProfile"> | number
-    category?: StringFilter<"SkillProfile"> | string
-    skillType?: StringFilter<"SkillProfile"> | string
-    createdAt?: DateTimeFilter<"SkillProfile"> | Date | string
-    updatedAt?: DateTimeFilter<"SkillProfile"> | Date | string
   }
 
   export type SessionUpsertWithWhereUniqueWithoutTeacherInput = {
@@ -7112,10 +4953,13 @@ export namespace Prisma {
     OR?: SessionScalarWhereInput[]
     NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
     id?: StringFilter<"Session"> | string
-    skill?: StringFilter<"Session"> | string
+    title?: StringFilter<"Session"> | string
+    description?: StringNullableFilter<"Session"> | string | null
+    tags?: StringNullableListFilter<"Session">
+    scheduledAt?: DateTimeFilter<"Session"> | Date | string
+    duration?: IntFilter<"Session"> | number
     teacherId?: StringFilter<"Session"> | string
     learnerId?: StringFilter<"Session"> | string
-    confirmedAt?: DateTimeNullableFilter<"Session"> | Date | string | null
     createdAt?: DateTimeFilter<"Session"> | Date | string
     updatedAt?: DateTimeFilter<"Session"> | Date | string
   }
@@ -7136,94 +4980,29 @@ export namespace Prisma {
     data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutLearnerInput>
   }
 
-  export type UserCreateWithoutSkillProfilesInput = {
-    id?: string
-    clerkId: string
-    email: string
-    name: string
-    username: string
-    password: string
-    bio?: string | null
-    avatarUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    SessionsTaught?: SessionCreateNestedManyWithoutTeacherInput
-    SessionsLearned?: SessionCreateNestedManyWithoutLearnerInput
-  }
-
-  export type UserUncheckedCreateWithoutSkillProfilesInput = {
-    id?: string
-    clerkId: string
-    email: string
-    name: string
-    username: string
-    password: string
-    bio?: string | null
-    avatarUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    SessionsTaught?: SessionUncheckedCreateNestedManyWithoutTeacherInput
-    SessionsLearned?: SessionUncheckedCreateNestedManyWithoutLearnerInput
-  }
-
-  export type UserCreateOrConnectWithoutSkillProfilesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSkillProfilesInput, UserUncheckedCreateWithoutSkillProfilesInput>
-  }
-
-  export type UserUpsertWithoutSkillProfilesInput = {
-    update: XOR<UserUpdateWithoutSkillProfilesInput, UserUncheckedUpdateWithoutSkillProfilesInput>
-    create: XOR<UserCreateWithoutSkillProfilesInput, UserUncheckedCreateWithoutSkillProfilesInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutSkillProfilesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSkillProfilesInput, UserUncheckedUpdateWithoutSkillProfilesInput>
-  }
-
-  export type UserUpdateWithoutSkillProfilesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    SessionsTaught?: SessionUpdateManyWithoutTeacherNestedInput
-    SessionsLearned?: SessionUpdateManyWithoutLearnerNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutSkillProfilesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    SessionsTaught?: SessionUncheckedUpdateManyWithoutTeacherNestedInput
-    SessionsLearned?: SessionUncheckedUpdateManyWithoutLearnerNestedInput
-  }
-
   export type UserCreateWithoutSessionsTaughtInput = {
     id?: string
     clerkId: string
     email: string
     name: string
     username: string
-    password: string
     bio?: string | null
     avatarUrl?: string | null
+    interests?: UserCreateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserCreatepreferredLanguagesInput | string[]
+    occupation: string
+    location?: string | null
+    timezone: string
+    age: number
+    skillsOffered?: UserCreateskillsOfferedInput | string[]
+    learningGoals?: UserCreatelearningGoalsInput | string[]
+    userIntent?: UserCreateuserIntentInput | string[]
+    userAvailability?: UserCreateuserAvailabilityInput | string[]
+    walletAddress?: string | null
+    hasOnboarded?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    skillProfiles?: SkillProfileCreateNestedManyWithoutUserInput
     SessionsLearned?: SessionCreateNestedManyWithoutLearnerInput
   }
 
@@ -7233,12 +5012,23 @@ export namespace Prisma {
     email: string
     name: string
     username: string
-    password: string
     bio?: string | null
     avatarUrl?: string | null
+    interests?: UserCreateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserCreatepreferredLanguagesInput | string[]
+    occupation: string
+    location?: string | null
+    timezone: string
+    age: number
+    skillsOffered?: UserCreateskillsOfferedInput | string[]
+    learningGoals?: UserCreatelearningGoalsInput | string[]
+    userIntent?: UserCreateuserIntentInput | string[]
+    userAvailability?: UserCreateuserAvailabilityInput | string[]
+    walletAddress?: string | null
+    hasOnboarded?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    skillProfiles?: SkillProfileUncheckedCreateNestedManyWithoutUserInput
     SessionsLearned?: SessionUncheckedCreateNestedManyWithoutLearnerInput
   }
 
@@ -7253,12 +5043,23 @@ export namespace Prisma {
     email: string
     name: string
     username: string
-    password: string
     bio?: string | null
     avatarUrl?: string | null
+    interests?: UserCreateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserCreatepreferredLanguagesInput | string[]
+    occupation: string
+    location?: string | null
+    timezone: string
+    age: number
+    skillsOffered?: UserCreateskillsOfferedInput | string[]
+    learningGoals?: UserCreatelearningGoalsInput | string[]
+    userIntent?: UserCreateuserIntentInput | string[]
+    userAvailability?: UserCreateuserAvailabilityInput | string[]
+    walletAddress?: string | null
+    hasOnboarded?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    skillProfiles?: SkillProfileCreateNestedManyWithoutUserInput
     SessionsTaught?: SessionCreateNestedManyWithoutTeacherInput
   }
 
@@ -7268,12 +5069,23 @@ export namespace Prisma {
     email: string
     name: string
     username: string
-    password: string
     bio?: string | null
     avatarUrl?: string | null
+    interests?: UserCreateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserCreatepreferredLanguagesInput | string[]
+    occupation: string
+    location?: string | null
+    timezone: string
+    age: number
+    skillsOffered?: UserCreateskillsOfferedInput | string[]
+    learningGoals?: UserCreatelearningGoalsInput | string[]
+    userIntent?: UserCreateuserIntentInput | string[]
+    userAvailability?: UserCreateuserAvailabilityInput | string[]
+    walletAddress?: string | null
+    hasOnboarded?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    skillProfiles?: SkillProfileUncheckedCreateNestedManyWithoutUserInput
     SessionsTaught?: SessionUncheckedCreateNestedManyWithoutTeacherInput
   }
 
@@ -7299,12 +5111,23 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    interests?: UserUpdateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserUpdatepreferredLanguagesInput | string[]
+    occupation?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    timezone?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    skillsOffered?: UserUpdateskillsOfferedInput | string[]
+    learningGoals?: UserUpdatelearningGoalsInput | string[]
+    userIntent?: UserUpdateuserIntentInput | string[]
+    userAvailability?: UserUpdateuserAvailabilityInput | string[]
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    hasOnboarded?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    skillProfiles?: SkillProfileUpdateManyWithoutUserNestedInput
     SessionsLearned?: SessionUpdateManyWithoutLearnerNestedInput
   }
 
@@ -7314,12 +5137,23 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    interests?: UserUpdateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserUpdatepreferredLanguagesInput | string[]
+    occupation?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    timezone?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    skillsOffered?: UserUpdateskillsOfferedInput | string[]
+    learningGoals?: UserUpdatelearningGoalsInput | string[]
+    userIntent?: UserUpdateuserIntentInput | string[]
+    userAvailability?: UserUpdateuserAvailabilityInput | string[]
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    hasOnboarded?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    skillProfiles?: SkillProfileUncheckedUpdateManyWithoutUserNestedInput
     SessionsLearned?: SessionUncheckedUpdateManyWithoutLearnerNestedInput
   }
 
@@ -7340,12 +5174,23 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    interests?: UserUpdateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserUpdatepreferredLanguagesInput | string[]
+    occupation?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    timezone?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    skillsOffered?: UserUpdateskillsOfferedInput | string[]
+    learningGoals?: UserUpdatelearningGoalsInput | string[]
+    userIntent?: UserUpdateuserIntentInput | string[]
+    userAvailability?: UserUpdateuserAvailabilityInput | string[]
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    hasOnboarded?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    skillProfiles?: SkillProfileUpdateManyWithoutUserNestedInput
     SessionsTaught?: SessionUpdateManyWithoutTeacherNestedInput
   }
 
@@ -7355,77 +5200,57 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    interests?: UserUpdateinterestsInput | string[]
+    socialLinks?: NullableJsonNullValueInput | InputJsonValue
+    preferredLanguages?: UserUpdatepreferredLanguagesInput | string[]
+    occupation?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    timezone?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
+    skillsOffered?: UserUpdateskillsOfferedInput | string[]
+    learningGoals?: UserUpdatelearningGoalsInput | string[]
+    userIntent?: UserUpdateuserIntentInput | string[]
+    userAvailability?: UserUpdateuserAvailabilityInput | string[]
+    walletAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    hasOnboarded?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    skillProfiles?: SkillProfileUncheckedUpdateManyWithoutUserNestedInput
     SessionsTaught?: SessionUncheckedUpdateManyWithoutTeacherNestedInput
-  }
-
-  export type SkillProfileCreateManyUserInput = {
-    id?: string
-    skill: string
-    xp?: number
-    category: string
-    skillType: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type SessionCreateManyTeacherInput = {
     id?: string
-    skill: string
+    title: string
+    description?: string | null
+    tags?: SessionCreatetagsInput | string[]
+    scheduledAt: Date | string
+    duration: number
     learnerId: string
-    confirmedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type SessionCreateManyLearnerInput = {
     id?: string
-    skill: string
+    title: string
+    description?: string | null
+    tags?: SessionCreatetagsInput | string[]
+    scheduledAt: Date | string
+    duration: number
     teacherId: string
-    confirmedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type SkillProfileUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
-    xp?: IntFieldUpdateOperationsInput | number
-    category?: StringFieldUpdateOperationsInput | string
-    skillType?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SkillProfileUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
-    xp?: IntFieldUpdateOperationsInput | number
-    category?: StringFieldUpdateOperationsInput | string
-    skillType?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SkillProfileUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
-    xp?: IntFieldUpdateOperationsInput | number
-    category?: StringFieldUpdateOperationsInput | string
-    skillType?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type SessionUpdateWithoutTeacherInput = {
     id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
-    confirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: SessionUpdatetagsInput | string[]
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     learner?: UserUpdateOneRequiredWithoutSessionsLearnedNestedInput
@@ -7433,26 +5258,35 @@ export namespace Prisma {
 
   export type SessionUncheckedUpdateWithoutTeacherInput = {
     id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: SessionUpdatetagsInput | string[]
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: IntFieldUpdateOperationsInput | number
     learnerId?: StringFieldUpdateOperationsInput | string
-    confirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUncheckedUpdateManyWithoutTeacherInput = {
     id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: SessionUpdatetagsInput | string[]
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: IntFieldUpdateOperationsInput | number
     learnerId?: StringFieldUpdateOperationsInput | string
-    confirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUpdateWithoutLearnerInput = {
     id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
-    confirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: SessionUpdatetagsInput | string[]
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teacher?: UserUpdateOneRequiredWithoutSessionsTaughtNestedInput
@@ -7460,18 +5294,24 @@ export namespace Prisma {
 
   export type SessionUncheckedUpdateWithoutLearnerInput = {
     id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: SessionUpdatetagsInput | string[]
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: IntFieldUpdateOperationsInput | number
     teacherId?: StringFieldUpdateOperationsInput | string
-    confirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUncheckedUpdateManyWithoutLearnerInput = {
     id?: StringFieldUpdateOperationsInput | string
-    skill?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    tags?: SessionUpdatetagsInput | string[]
+    scheduledAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    duration?: IntFieldUpdateOperationsInput | number
     teacherId?: StringFieldUpdateOperationsInput | string
-    confirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

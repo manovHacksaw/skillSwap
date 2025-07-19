@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.11.1
- * Query Engine version: f40f79ec31188888a2e33acda0ecc8fd10a853a9
+ * Prisma Client JS version: 6.12.0
+ * Query Engine version: 8047c96bbd92db98a2abc7c9323ce77c02c89dbc
  */
 Prisma.prismaVersion = {
-  client: "6.11.1",
-  engine: "f40f79ec31188888a2e33acda0ecc8fd10a853a9"
+  client: "6.12.0",
+  engine: "8047c96bbd92db98a2abc7c9323ce77c02c89dbc"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -126,38 +126,36 @@ exports.Prisma.UserScalarFieldEnum = {
   email: 'email',
   name: 'name',
   username: 'username',
-  password: 'password',
   bio: 'bio',
   avatarUrl: 'avatarUrl',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.SkillProfileScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  skill: 'skill',
-  xp: 'xp',
-  category: 'category',
-  skillType: 'skillType',
+  interests: 'interests',
+  socialLinks: 'socialLinks',
+  preferredLanguages: 'preferredLanguages',
+  occupation: 'occupation',
+  location: 'location',
+  timezone: 'timezone',
+  age: 'age',
+  skillsOffered: 'skillsOffered',
+  learningGoals: 'learningGoals',
+  userIntent: 'userIntent',
+  userAvailability: 'userAvailability',
+  walletAddress: 'walletAddress',
+  hasOnboarded: 'hasOnboarded',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SessionScalarFieldEnum = {
   id: 'id',
-  skill: 'skill',
+  title: 'title',
+  description: 'description',
+  tags: 'tags',
+  scheduledAt: 'scheduledAt',
+  duration: 'duration',
   teacherId: 'teacherId',
   learnerId: 'learnerId',
-  confirmedAt: 'confirmedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
-};
-
-exports.Prisma.BadgeScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  criteria: 'criteria'
 };
 
 exports.Prisma.SortOrder = {
@@ -165,9 +163,20 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 
 exports.Prisma.NullsOrder = {
@@ -178,9 +187,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  SkillProfile: 'SkillProfile',
-  Session: 'Session',
-  Badge: 'Badge'
+  Session: 'Session'
 };
 
 /**

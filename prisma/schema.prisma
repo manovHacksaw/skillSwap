@@ -1,157 +1,68 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id              String   @id @default(cuid())
-  clerkId         String   @unique
-  email           String   @unique
-  displayName     String
-  username        String?  @unique
-  bio             String?
-  avatarUrl       String?
-  hasOnboarded    Boolean @default(false)
-  
-  // Stats fields
-  reputation      Int      @default(0)
-  rating          Float    @default(0.0)
-  totalXP         Int      @default(0)
-  
-  // New onboarding fields
-  occupation      String?
-  ageGroup        String?
-  interests       String[] // Array of interests
-  hobbies         String[] // Non-tech interests
-  
-  // Social links
-  linkedinUrl     String?
-  githubUrl       String?
-  twitterUrl      String?
-  
-  // Availability and preferences
-  availableTimings String[] // e.g. ["evenings", "weekends"]
-  motivations     String[] // Why they're here
-  
-  // Web3 fields
-  walletAddress   String?  @unique
-  walletSignature String?
-  signatureHash   String?
-  onboardingStatus String @default("incomplete") // incomplete, wallet_pending, complete
-  
-  skillProfiles   SkillProfile[]
-  SessionsTaught  Session[] @relation("Taught Sessions")
-  SessionsLearned Session[] @relation("Learned Sessions")
-  userBadges      UserBadge[]
-  activities      Activity[]
-  reviewsGiven    Review[] @relation("ReviewsGiven")
-  reviewsReceived Review[] @relation("ReviewsReceived")
+  id       String @id @default(cuid())
+  clerkId  String @unique
+  email    String @unique
+  name     String
+  username String @unique
 
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-}
+  //   skillProfiles SkillProfile[]
+  bio       String?
+  avatarUrl String?
 
-model SkillProfile {
-  id           String   @id @default(cuid())
-  userId       String
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  skillName    String
-  category     String    // e.g. "Programming", "Design", "Marketing"
-  skillType    SkillType // TEACH or LEARN
-  proficiency  String?  // "Beginner", "Intermediate", "Expert"
-  xp           Int       @default(0)
-  sessionsCount Int      @default(0)
+  interests String[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  socialLinks        Json? // Store social links as a JSON object
+  preferredLanguages String[]
 
-  @@unique([userId, skillName, skillType])
+  occupation String
+  location   String?
+  timezone   String
+
+  age Int
+
+  skillsOffered String[] // Skills the user can teach
+  learningGoals String[] // Skills the user wants to learn
+
+  userIntent String[] // Intent of the user (e.g., "teach", "learn", "both")
+
+  userAvailability String[] // User's availability for sessions
+
+  SessionsTaught  Session[] @relation("SessionsTaught")
+  SessionsLearned Session[] @relation("SessionsLearned")
+
+  walletAddress String? @unique
+
+  hasOnboarded Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Session {
-  id          String        @id @default(cuid())
-  skill       String
-  teacher     User          @relation("Taught Sessions", fields: [teacherId], references: [id])
-  teacherId   String
-  learner     User          @relation("Learned Sessions", fields: [learnerId], references: [id])
-  learnerId   String
-  status      SessionStatus @default(PENDING)
-  scheduledAt DateTime?
-  confirmedAt DateTime?
-  duration    Int           @default(60) // minutes
-  notes       String?
-
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model Badge {
   id          String   @id @default(cuid())
-  name        String
-  description String
-  criteria    String
-  rarity      String   @default("BRONZE") // BRONZE, SILVER, GOLD
-  userBadges  UserBadge[]
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model UserBadge {
-  id      String @id @default(cuid())
-  userId  String
-  badgeId String
-  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  badge   Badge  @relation(fields: [badgeId], references: [id], onDelete: Cascade)
-  earnedAt DateTime @default(now())
-  
-  @@unique([userId, badgeId])
-}
-
-model Activity {
-  id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  type        String   // "session_completed", "badge_earned", "skill_added", etc.
   title       String
   description String?
-  icon        String   @default("activity") // Icon type for frontend
-  color       String   @default("bg-gray-500") // Color class for frontend
-  metadata    Json?    // Additional data
-  
-  createdAt   DateTime @default(now())
-}
+  tags        String[]
+  scheduledAt DateTime
+  duration    Int // in minutes
 
-model Review {
-  id         String   @id @default(cuid())
-  rating     Int      // 1-5 rating
-  comment    String?
-  reviewerId String
-  revieweeId String
-  sessionId  String?  // Optional: link to specific session
-  reviewer   User     @relation("ReviewsGiven", fields: [reviewerId], references: [id])
-  reviewee   User     @relation("ReviewsReceived", fields: [revieweeId], references: [id])
-  
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-}
+  teacher   User   @relation("SessionsTaught", fields: [teacherId], references: [id])
+  teacherId String
 
-enum SessionStatus {
-  PENDING
-  CONFIRMED
-  COMPLETED
-  CANCELLED
-}
+  learner   User   @relation("SessionsLearned", fields: [learnerId], references: [id])
+  learnerId String
 
-enum SkillType {
-  TEACH
-  LEARN
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

@@ -1,17 +1,68 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation"; // Import useRouter for redirection
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Menu, X, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
-import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
+// Use @clerk/nextjs for useAuth and UserButton when working with Next.js
+import { SignedIn, SignedOut, useAuth, UserButton } from "@clerk/nextjs"; 
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
+  const { isSignedIn, isLoaded } = useAuth(); // No need for getToken if not sending explicitly
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter(); // Initialize useRouter
+
+  useEffect(() => {
+    // Only proceed if Clerk is loaded and the user is signed in
+    // This effect runs on initial load and when isSignedIn/isLoaded state changes
+    if (isLoaded && isSignedIn) {
+      console.log("User is signed in. Triggering /api/user POST...");
+
+      const createUserOrCheckExistence = async () => {
+        try {
+          const response = await fetch("/api/user", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              // Clerk handles authentication for internal API routes via cookies.
+              // No need to manually send userId or token in headers from here.
+            },
+            // No body is needed as the server gets user info from Clerk's `auth()` and `currentUser()`
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Error from /api/user POST:", errorData.message || `HTTP error! status: ${response.status}`);
+            // You might want to display a toast or handle this error more gracefully
+            // instead of just redirecting, if the creation/check itself failed.
+            // For now, we'll proceed with redirect to dashboard even on error,
+            // or you could choose to block redirection based on error.
+          } else {
+            console.log("API call to /api/user POST successful.");
+          }
+          
+          // Regardless of success/failure of the API call, redirect to dashboard.
+          // Adjust this logic if you want to prevent redirection on certain API errors.
+          router.push("/dashboard");
+
+        } catch (error: any) {
+          console.error("Network or unexpected error during API call:", error);
+          // Still redirect even if network error, or handle specifically
+          router.push("/dashboard");
+        }
+      };
+
+      createUserOrCheckExistence();
+    } else if (isLoaded && !isSignedIn) {
+      // Optional: If you want to log when user signs out or is not signed in
+      console.log("Clerk loaded, user is not signed in.");
+    }
+  }, [isLoaded, isSignedIn, router]); // Added router to dependencies
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -41,7 +92,7 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 className="text-black font-bold text-base tracking-tight transition-colors duration-200 px-1 py-0.5 hover:text-gray-600"
-                style={{ textDecoration: 'none', boxShadow: 'none' }}
+                style={{ textDecoration: "none", boxShadow: "none" }}
               >
                 {item.label}
               </Link>
@@ -111,9 +162,9 @@ export default function Navbar() {
               ))}
 
               <div className="flex items-center space-x-4 pt-4 border-t border-gray-200">
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
+                <Button
+                  variant="ghost"
+                  size="icon"
                   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                 >
                   {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
