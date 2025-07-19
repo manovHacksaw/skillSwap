@@ -41,19 +41,19 @@ export default function SessionCard({ session }: SessionCardProps) {
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
-      <Card className="card-clean">
+      <Card className="bg-white border-2 border-black shadow-[6px_6px_0_0_#000]">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-bold text-black">{session.title}</h3>
-            <Badge className={getStatusColor(session.status)}>{session.status}</Badge>
+            <Badge className={`${getStatusColor(session.status)} border-2 border-black bg-white`}>{session.status}</Badge>
           </div>
         </CardHeader>
 
         <CardContent className="space-y-4">
           <div className="flex items-center space-x-3">
-            <Avatar className="w-10 h-10">
+            <Avatar className="w-10 h-10 border-2 border-black">
               <AvatarImage src={session.instructor.avatar || "/placeholder.svg"} />
-              <AvatarFallback>{session.instructor.name[0]}</AvatarFallback>
+              <AvatarFallback className="bg-yellow-400 text-black">{session.instructor.name[0]}</AvatarFallback>
             </Avatar>
             <div>
               <p className="text-black font-medium">{session.instructor.name}</p>
@@ -88,12 +88,12 @@ export default function SessionCard({ session }: SessionCardProps) {
                 <Button
                   size="sm"
                   variant="outline"
-                  className="border-red-300 text-red-600 hover:bg-red-50 bg-transparent"
+                  className="border-2 border-red-300 text-red-600 hover:bg-red-50 bg-white shadow-[2px_2px_0_0_#000]"
                 >
                   <X className="w-4 h-4 mr-1" />
                   Cancel
                 </Button>
-                <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white">
+                <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white border-2 border-black shadow-[4px_4px_0_0_#000]">
                   <Check className="w-4 h-4 mr-1" />
                   Confirm
                 </Button>

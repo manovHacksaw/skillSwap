@@ -121,13 +121,6 @@ export default function HowItWorksSection() {
             </React.Fragment>
           ))}
         </div>
-        {/* CTA Button */}
-        <button
-          className="mt-10 px-8 py-3 bg-[#FBBF24] border-2 border-black rounded-lg font-bold text-black text-lg shadow-md hover:-translate-y-1 hover:shadow-lg transition-all"
-          style={{ fontFamily: "Inter, sans-serif" }}
-        >
-          Get Started
-        </button>
       </div>
       {/* Animations */}
       <style jsx>{`

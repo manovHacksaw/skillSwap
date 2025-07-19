@@ -90,17 +90,23 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
   ]
 
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div 
+      className="min-h-screen py-8 px-4"
+      style={{
+        backgroundColor: '#F9F6F3',
+        backgroundImage: `repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 16px), repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 16px)`
+      }}
+    >
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Profile Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <Card className="card-clean">
+          <Card className="bg-white border-2 border-black shadow-[6px_6px_0_0_#000]">
             <CardContent className="p-8">
               <div className="flex flex-col lg:flex-row lg:items-start space-y-6 lg:space-y-0 lg:space-x-8">
                 <div className="flex flex-col items-center lg:items-start">
-                  <Avatar className="w-32 h-32 mb-4">
+                  <Avatar className="w-32 h-32 mb-4 border-2 border-black">
                     <AvatarImage src={profileData.avatar || "/placeholder.svg"} />
-                    <AvatarFallback className="text-2xl">{profileData.name[0]}</AvatarFallback>
+                    <AvatarFallback className="text-2xl bg-yellow-400 text-black">{profileData.name[0]}</AvatarFallback>
                   </Avatar>
 
                   <div className="flex items-center space-x-2 mb-2">
@@ -129,11 +135,11 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-3 mt-4 lg:mt-0">
-                      <Button className="btn-primary">
+                      <Button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold border-2 border-black shadow-[4px_4px_0_0_#000]">
                         <MessageCircle className="w-4 h-4 mr-2" />
                         Request Session
                       </Button>
-                      <Button className="btn-secondary">
+                      <Button className="bg-white hover:bg-gray-50 text-black font-bold border-2 border-black shadow-[4px_4px_0_0_#000]">
                         <Settings className="w-4 h-4 mr-2" />
                         Settings
                       </Button>
@@ -144,22 +150,22 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
 
                   {/* Stats */}
                   <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div className="text-center p-4 rounded-lg">
+                    <div className="text-center p-4 rounded-lg border-2 border-black bg-yellow-50">
                       <div className="text-2xl font-black text-black mb-1">{profileData.skillScore}</div>
                       <div className="text-sm text-gray-600 font-medium">SkillScore</div>
                     </div>
-                    <div className="text-center p-4 rounded-lg">
+                    <div className="text-center p-4 rounded-lg border-2 border-black bg-blue-50">
                       <div className="flex items-center justify-center space-x-1 mb-1">
                         <span className="text-2xl font-black text-black">{profileData.rating}</span>
                         <Star className="w-5 h-5 text-yellow-400 fill-current" />
                       </div>
                       <div className="text-sm text-gray-600 font-medium">Rating</div>
                     </div>
-                    <div className="text-center p-4 rounded-lg">
+                    <div className="text-center p-4 rounded-lg border-2 border-black bg-green-50">
                       <div className="text-2xl font-black text-black mb-1">{profileData.totalSessions}</div>
                       <div className="text-sm text-gray-600 font-medium">Sessions</div>
                     </div>
-                    <div className="text-center p-4 rounded-lg">
+                    <div className="text-center p-4 rounded-lg border-2 border-black bg-purple-50">
                       <div className="text-2xl font-black text-black mb-1">{profileData.studentsHelped}</div>
                       <div className="text-sm text-gray-600 font-medium">Students</div>
                     </div>
@@ -176,7 +182,7 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <Card className="card-clean">
+          <Card className="bg-white border-2 border-black shadow-[6px_6px_0_0_#000]">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -194,7 +200,7 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
                   variant="outline"
                   size="sm"
                   onClick={() => setIsPrivacyEnabled(!isPrivacyEnabled)}
-                  className={`${isPrivacyEnabled ? "border-red-300 text-red-600" : "border-green-300 text-green-600"} font-medium`}
+                  className={`${isPrivacyEnabled ? "border-red-300 text-red-600 bg-red-50" : "border-green-300 text-green-600 bg-green-50"} font-medium border-2 shadow-[2px_2px_0_0_#000]`}
                 >
                   {isPrivacyEnabled ? "Private" : "Public"}
                 </Button>
@@ -203,60 +209,60 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
           </Card>
         </motion.div>
 
-        {/* Profile Content Tabs */}
+        {/* Main Content Tabs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <Tabs defaultValue="skills-offered" className="space-y-6">
-            <TabsList className="bg-white border border-gray-200">
+          <Tabs defaultValue="skills" className="space-y-6">
+            <TabsList className="bg-white border-2 border-black shadow-[4px_4px_0_0_#000]">
               <TabsTrigger
-                value="skills-offered"
-                className="data-[state=active]:bg-yellow-400 data-[state=active]:text-black"
+                value="skills" 
+                className="data-[state=active]:bg-yellow-400 data-[state=active]:text-black data-[state=active]:font-bold"
               >
                 Skills Offered
               </TabsTrigger>
               <TabsTrigger
-                value="skills-learned"
-                className="data-[state=active]:bg-yellow-400 data-[state=active]:text-black"
+                value="learning" 
+                className="data-[state=active]:bg-yellow-400 data-[state=active]:text-black data-[state=active]:font-bold"
               >
-                Skills Learned
+                Skills Learning
               </TabsTrigger>
               <TabsTrigger
                 value="achievements"
-                className="data-[state=active]:bg-yellow-400 data-[state=active]:text-black"
+                className="data-[state=active]:bg-yellow-400 data-[state=active]:text-black data-[state=active]:font-bold"
               >
                 Achievements
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="skills-offered" className="space-y-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <TabsContent value="skills" className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {skillsOffered.map((skill) => (
                   <SkillCard key={skill.id} skill={skill} />
                 ))}
               </div>
             </TabsContent>
 
-            <TabsContent value="skills-learned" className="space-y-6">
-              <Card className="card-clean">
+            <TabsContent value="learning" className="space-y-6">
+              <Card className="bg-white border-2 border-black shadow-[6px_6px_0_0_#000]">
                 <CardHeader>
-                  <CardTitle className="text-black font-black">Learning Progress</CardTitle>
+                  <CardTitle className="text-black font-black">Skills in Progress</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   {skillsLearned.map((skill) => (
                     <div key={skill.name} className="space-y-2">
-                      <div className="flex justify-between items-center">
+                      <div className="flex items-center justify-between">
                         <div>
-                          <h3 className="text-black font-bold">{skill.name}</h3>
-                          <p className="text-gray-600 text-sm font-medium">{skill.category}</p>
+                          <h4 className="font-bold text-black">{skill.name}</h4>
+                          <p className="text-sm text-gray-600">{skill.category}</p>
                         </div>
-                        <Badge variant="outline" className="border-gray-300 text-gray-700 font-medium">
+                        <Badge variant="outline" className="border-2 border-black bg-white">
                           {skill.level}%
                         </Badge>
                       </div>
-                      <Progress value={skill.level} className="h-2" />
+                      <Progress value={skill.level} className="h-2 border-2 border-black" />
                     </div>
                   ))}
                 </CardContent>
@@ -266,15 +272,15 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
             <TabsContent value="achievements" className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {achievements.map((achievement) => (
-                  <Card key={achievement.name} className="card-clean">
+                  <Card key={achievement.name} className="bg-white border-2 border-black shadow-[6px_6px_0_0_#000]">
                     <CardContent className="p-6">
-                      <div className="flex items-start space-x-4">
-                        <div className={`p-3 bg-gray-50 rounded-lg ${achievement.color}`}>
-                          <achievement.icon className="w-6 h-6" />
+                      <div className="flex items-center space-x-4">
+                        <div className={`p-3 rounded-lg border-2 border-black bg-yellow-50`}>
+                          <achievement.icon className={`w-6 h-6 ${achievement.color}`} />
                         </div>
                         <div>
-                          <h3 className="text-black font-bold mb-1">{achievement.name}</h3>
-                          <p className="text-gray-600 text-sm font-medium">{achievement.description}</p>
+                          <h4 className="font-bold text-black">{achievement.name}</h4>
+                          <p className="text-sm text-gray-600">{achievement.description}</p>
                         </div>
                       </div>
                     </CardContent>

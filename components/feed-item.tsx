@@ -42,18 +42,18 @@ export default function FeedItem({ item }: FeedItemProps) {
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
-      <Card className="card-clean">
+      <Card className="bg-white border-2 border-black shadow-[6px_6px_0_0_#000]">
         <CardContent className="p-6">
           <div className="flex space-x-4">
-            <Avatar className="w-12 h-12">
+            <Avatar className="w-12 h-12 border-2 border-black">
               <AvatarImage src={item.user.avatar || "/placeholder.svg"} />
-              <AvatarFallback>{item.user.name[0]}</AvatarFallback>
+              <AvatarFallback className="bg-yellow-400 text-black">{item.user.name[0]}</AvatarFallback>
             </Avatar>
 
             <div className="flex-1 space-y-3">
               <div className="flex items-center space-x-2">
                 <span className="font-semibold text-black">{item.user.name}</span>
-                <div className="flex items-center space-x-1 text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full">
+                <div className="flex items-center space-x-1 text-xs bg-yellow-50 border-2 border-black text-gray-700 px-2 py-1 rounded-full">
                   <Award className="w-3 h-3" />
                   <span>{item.user.skillScore}</span>
                 </div>
@@ -66,7 +66,7 @@ export default function FeedItem({ item }: FeedItemProps) {
                 <div>
                   <p className="text-gray-700 font-medium">{item.content}</p>
                   {item.skill && (
-                    <span className="inline-block mt-1 px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
+                    <span className="inline-block mt-1 px-2 py-1 bg-blue-50 border-2 border-black text-blue-700 text-xs rounded-full">
                       {item.skill}
                     </span>
                   )}
@@ -77,7 +77,7 @@ export default function FeedItem({ item }: FeedItemProps) {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className={`flex items-center space-x-1 ${item.isLiked ? "text-pink-600" : "text-gray-600"} hover:text-pink-600`}
+                  className={`flex items-center space-x-1 ${item.isLiked ? "text-pink-600" : "text-gray-600"} hover:text-pink-600 bg-transparent`}
                 >
                   <Heart className={`w-4 h-4 ${item.isLiked ? "fill-current" : ""}`} />
                   <span>{item.likes}</span>
@@ -86,7 +86,7 @@ export default function FeedItem({ item }: FeedItemProps) {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="flex items-center space-x-1 text-gray-600 hover:text-blue-600"
+                  className="flex items-center space-x-1 text-gray-600 hover:text-blue-600 bg-transparent"
                 >
                   <MessageCircle className="w-4 h-4" />
                   <span>{item.comments}</span>
@@ -95,7 +95,7 @@ export default function FeedItem({ item }: FeedItemProps) {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="flex items-center space-x-1 text-gray-600 hover:text-green-600"
+                  className="flex items-center space-x-1 text-gray-600 hover:text-green-600 bg-transparent"
                 >
                   <Share className="w-4 h-4" />
                   <span>Share</span>
