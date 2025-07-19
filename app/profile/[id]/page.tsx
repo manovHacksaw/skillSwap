@@ -217,20 +217,20 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
         >
           <Tabs defaultValue="skills" className="space-y-6">
             <TabsList className="bg-white border-2 border-black shadow-[4px_4px_0_0_#000]">
-              <TabsTrigger 
+              <TabsTrigger
                 value="skills" 
                 className="data-[state=active]:bg-yellow-400 data-[state=active]:text-black data-[state=active]:font-bold"
               >
                 Skills Offered
               </TabsTrigger>
-              <TabsTrigger 
+              <TabsTrigger
                 value="learning" 
                 className="data-[state=active]:bg-yellow-400 data-[state=active]:text-black data-[state=active]:font-bold"
               >
                 Skills Learning
               </TabsTrigger>
-              <TabsTrigger 
-                value="achievements" 
+              <TabsTrigger
+                value="achievements"
                 className="data-[state=active]:bg-yellow-400 data-[state=active]:text-black data-[state=active]:font-bold"
               >
                 Achievements
