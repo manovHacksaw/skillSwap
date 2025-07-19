@@ -106,13 +106,13 @@ export default function BenefitsSection() {
           {/* Tablet: 2 columns */}
           <div className="hidden sm:grid lg:hidden sm:grid-cols-2 sm:grid-rows-3 gap-[10px] w-full">
             {benefits.map((card, idx) => (
-              <div key={card.title}>{renderCard(card)}</div>
+              <div key={idx}>{renderCard(card)}</div>
             ))}
           </div>
           {/* Mobile: 1 column */}
           <div className="grid sm:hidden grid-cols-1 gap-[10px] w-full">
             {benefits.map((card, idx) => (
-              <div key={card.title}>{renderCard(card)}</div>
+              <div key={idx}>{renderCard(card)}</div>
             ))}
           </div>
         </div>

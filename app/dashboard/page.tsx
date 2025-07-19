@@ -47,11 +47,11 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 
+// --- Interfaces (kept for structure) ---
 interface DashboardData {
   user: {
     id: string;
@@ -117,6 +117,8 @@ interface DashboardData {
     description?: string;
     createdAt: string;
     metadata?: any;
+    icon: string;
+    color: string;
   }>;
   reviews: Array<{
     id: string;
@@ -168,7 +170,9 @@ const COMMUNITY_SUGGESTIONS = [
 
 export default function DashboardPage() {
   const router = useRouter();
-  const { isSignedIn, user, isLoaded } = useUser();
+  const { isSignedIn, isLoaded, user } = useUser();
+
+  // Initialize states - start with null to show loading
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(
     null,
   );
@@ -179,97 +183,100 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState("all");
 
-  // Fetch dashboard data
-  const fetchDashboardData = async () => {
-    try {
-      const response = await fetch("/api/dashboard");
+  useEffect(() => {
+    const checkUserAndFetchDashboard = async () => {
+      console.log(
+        "State Variables - isLoaded:",
+        isLoaded,
+        "isSignedIn:",
+        isSignedIn,
+      );
 
-      if (response.status === 403) {
-        const data = await response.json();
-        if (data.redirectTo) {
-          toast.info("Please complete your onboarding first");
-          router.push(data.redirectTo);
-          return;
-        }
-      }
-
-      if (response.status === 404) {
-        toast.error("User profile not found. Please complete onboarding.");
-        router.push("/onboard");
+      if (!isLoaded) {
+        // Clerk is still loading, wait for it.
         return;
       }
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to fetch dashboard data");
+      if (!isSignedIn) {
+        // User is not signed in, redirect to auth page.
+        router.push("/auth");
+        return;
       }
 
-      const data = await response.json();
-      setDashboardData(data);
-    } catch (error) {
-      console.error("Error fetching dashboard data:", error);
-      toast.error(
-        "Failed to load dashboard data. Please try refreshing the page.",
-      );
-    }
-  };
-
-  // Fetch upcoming sessions
-  const fetchUpcomingSessions = async () => {
-    try {
-      const response = await fetch("/api/sessions");
-      if (!response.ok) {
-        throw new Error("Failed to fetch sessions data");
-      }
-
-      const data = await response.json();
-      setUpcomingSessions(data.upcoming || []);
-    } catch (error) {
-      console.error("Error fetching sessions:", error);
-    }
-  };
-
-  // Fetch activities
-  const fetchActivities = async (filterType: string = "all") => {
-    try {
-      const response = await fetch(
-        `/api/activity?filter=${filterType}&limit=10`,
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch activity data");
-      }
-
-      const data = await response.json();
-      setFilteredActivities(data.activities || []);
-    } catch (error) {
-      console.error("Error fetching activities:", error);
-    }
-  };
-
-  useEffect(() => {
-    if (!isLoaded) return;
-
-    if (!isSignedIn) {
-      router.push("/auth");
-      return;
-    }
-
-    const loadData = async () => {
       setIsLoading(true);
-      await Promise.all([
-        fetchDashboardData(),
-        fetchUpcomingSessions(),
-        fetchActivities(filter),
-      ]);
-      setIsLoading(false);
+
+      try {
+        // Check user status first
+        const userResponse = await fetch("/api/user", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!userResponse.ok) {
+          const errorData = await userResponse.json();
+          console.error(
+            "API Error during user check:",
+            errorData.error || userResponse.statusText,
+          );
+          setIsLoading(false);
+          return;
+        }
+
+        const userData = await userResponse.json();
+        console.log(
+          "User status from /api/user GET:",
+          userData.user?.hasOnboarded,
+        );
+
+        // Check if user exists AND has not onboarded
+        if (userData.user && userData.user.hasOnboarded === false) {
+          console.log("User exists but not onboarded.");
+          router.push("/onboard");
+          return;
+        }
+
+        // If user is onboarded, fetch dashboard data
+        if (userData.user && userData.user.hasOnboarded) {
+          const dashboardResponse = await fetch("/api/dashboard", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (dashboardResponse.ok) {
+            const data = await dashboardResponse.json();
+            console.log("Dashboard data received:", data);
+            setDashboardData(data);
+            setUpcomingSessions([]); // No upcoming sessions in current implementation
+          } else {
+            console.error("Failed to fetch dashboard data");
+          }
+        }
+      } catch (error: any) {
+        console.error("Network or unexpected error:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
-    loadData();
-  }, [isSignedIn, isLoaded, router]);
+    checkUserAndFetchDashboard();
+  }, [isLoaded, isSignedIn, router]);
 
+  // Filter activities when the filter state changes
   useEffect(() => {
     if (dashboardData) {
-      fetchActivities(filter);
+      if (filter === "all") {
+        setFilteredActivities(dashboardData.activities);
+      } else {
+        setFilteredActivities(
+          dashboardData.activities.filter((activity) =>
+            activity.type.includes(filter),
+          ),
+        );
+      }
     }
   }, [filter, dashboardData]);
 
@@ -288,6 +295,8 @@ export default function DashboardPage() {
         return <PlusCircle className="w-4 h-4" />;
       case "target":
         return <Target className="w-4 h-4" />;
+      case "user-plus":
+        return <UserPlus className="w-4 h-4" />;
       default:
         return <Activity className="w-4 h-4" />;
     }
@@ -366,7 +375,7 @@ export default function DashboardPage() {
             <div className="flex items-center gap-4">
               <Avatar className="w-16 h-16 border-2 border-black">
                 <AvatarImage
-                  src={dashboardData.user.avatarUrl || user?.imageUrl}
+                  src={dashboardData.user.avatarUrl || "/placeholder.svg"}
                   alt={dashboardData.user.displayName}
                 />
                 <AvatarFallback className="bg-yellow-400 text-black font-bold text-xl">
