@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Star, Clock, Users, MapPin } from "lucide-react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 interface SkillCardProps {
   skill: {
@@ -28,12 +29,19 @@ interface SkillCardProps {
 }
 
 export default function SkillCard({ skill }: SkillCardProps) {
+  const router = useRouter()
+
+  const handleBookSession = () => {
+    console.log('Book Session clicked for skill:', skill.id)
+    router.push(`/book-session/${skill.id}`)
+  }
+
   return (
     <motion.div whileHover={{ y: -5, scale: 1.02 }} transition={{ duration: 0.2 }}>
-      <Card className="card-clean overflow-hidden group">
+      <Card className="bg-white border-2 border-black shadow-[6px_6px_0_0_#000] overflow-hidden group">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between mb-3">
-            <Badge variant="secondary" className="bg-gray-100 text-gray-700 font-semibold">
+            <Badge variant="outline" className="border-2 border-black bg-white text-gray-700 font-semibold">
               {skill.category}
             </Badge>
             <div className="flex items-center space-x-1 text-yellow-500">
@@ -49,9 +57,9 @@ export default function SkillCard({ skill }: SkillCardProps) {
 
         <CardContent className="space-y-4">
           <div className="flex items-center space-x-3">
-            <Avatar className="w-8 h-8">
+            <Avatar className="w-8 h-8 border-2 border-black">
               <AvatarImage src={skill.instructor.avatar || "/placeholder.svg"} />
-              <AvatarFallback>{skill.instructor.name[0]}</AvatarFallback>
+              <AvatarFallback className="bg-yellow-400 text-black">{skill.instructor.name[0]}</AvatarFallback>
             </Avatar>
             <span className="text-sm text-gray-700 font-medium">{skill.instructor.name}</span>
           </div>
@@ -73,7 +81,7 @@ export default function SkillCard({ skill }: SkillCardProps) {
 
           <div className="flex flex-wrap gap-1">
             {skill.tags.map((tag) => (
-              <Badge key={tag} variant="outline" className="text-xs border-gray-300 text-gray-600">
+              <Badge key={tag} variant="outline" className="text-xs border-2 border-black bg-white text-gray-600">
                 {tag}
               </Badge>
             ))}
@@ -84,11 +92,13 @@ export default function SkillCard({ skill }: SkillCardProps) {
               ${skill.price}
               <span className="text-sm text-gray-600 font-normal">/session</span>
             </div>
-            <Link href={`/skills/${skill.id}`}>
-              <Button size="sm" className="btn-primary">
-                Book Session
-              </Button>
-            </Link>
+            <Button 
+              size="sm" 
+              className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold border-2 border-black shadow-[4px_4px_0_0_#000]"
+              onClick={handleBookSession}
+            >
+              Book Session
+            </Button>
           </div>
         </CardContent>
       </Card>

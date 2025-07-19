@@ -348,13 +348,19 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div 
+      className="min-h-screen py-8 px-4"
+      style={{
+        backgroundColor: '#F9F6F3',
+        backgroundImage: `repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 16px), repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 16px)`
+      }}
+    >
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header with User Profile Snapshot */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-transparent rounded-xl border-2 border-black shadow-lg p-6"
+          className="bg-white rounded-xl border-2 border-black shadow-[6px_6px_0_0_#000] p-6"
         >
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="flex items-center gap-4">
@@ -372,7 +378,7 @@ export default function DashboardPage() {
                   <h1 className="text-2xl font-black text-black">
                     {dashboardData.user.displayName}
                   </h1>
-                  <Badge className="bg-yellow-400 text-black font-bold">
+                  <Badge className="bg-yellow-400 text-black font-bold border-2 border-black">
                     <Shield className="w-3 h-3 mr-1" />
                     {dashboardData.user.reputation}
                   </Badge>
@@ -418,7 +424,7 @@ export default function DashboardPage() {
               </div>
               <Button
                 size="sm"
-                className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold"
+                className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold border-2 border-black shadow-[4px_4px_0_0_#000]"
               >
                 <Edit3 className="w-4 h-4 mr-1" />
                 Edit Profile
@@ -437,10 +443,10 @@ export default function DashboardPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
             >
-              <Card className="border-2 border-black shadow-lg">
+              <Card className="bg-white border-2 border-black shadow-[6px_6px_0_0_#000]">
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-black font-bold flex items-center gap-2">
+                    <CardTitle className="text-black font-black flex items-center gap-2">
                       <Zap className="w-5 h-5 text-yellow-500" />
                       Your Superpowers
                     </CardTitle>
@@ -448,7 +454,7 @@ export default function DashboardPage() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="border-black"
+                        className="border-2 border-black bg-white text-black font-bold shadow-[2px_2px_0_0_#000]"
                       >
                         <Plus className="w-4 h-4 mr-1" />
                         Add Skill
@@ -462,7 +468,7 @@ export default function DashboardPage() {
                       {dashboardData.skills.teaching.map((skill) => (
                         <div
                           key={skill.id}
-                          className="p-4 border border-gray-200 rounded-lg bg-green-50"
+                          className="p-4 border-2 border-black rounded-lg bg-green-50 shadow-[2px_2px_0_0_#000]"
                         >
                           <div className="flex items-center justify-between mb-2">
                             <h3 className="font-bold text-black">
@@ -470,7 +476,7 @@ export default function DashboardPage() {
                             </h3>
                             <Badge
                               variant="outline"
-                              className="border-green-600 text-green-600"
+                              className="border-2 border-green-600 text-green-600 bg-white"
                             >
                               {skill.proficiency}
                             </Badge>
@@ -480,7 +486,7 @@ export default function DashboardPage() {
                           </p>
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                              <Progress value={skill.xp} className="w-16 h-2" />
+                              <Progress value={skill.xp} className="w-16 h-2 border-2 border-black" />
                               <span className="text-xs text-gray-600">
                                 {skill.xp} XP
                               </span>
@@ -497,7 +503,7 @@ export default function DashboardPage() {
                       <Zap className="w-12 h-12 mx-auto mb-2 text-gray-400" />
                       <p className="mb-4">No teaching skills added yet</p>
                       <Link href="/create-skill">
-                        <Button className="bg-yellow-400 hover:bg-yellow-500 text-black">
+                        <Button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold border-2 border-black shadow-[4px_4px_0_0_#000]">
                           Add Your First Skill
                         </Button>
                       </Link>
@@ -513,10 +519,10 @@ export default function DashboardPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <Card className="border-2 border-black shadow-lg">
+              <Card className="bg-white border-2 border-black shadow-[6px_6px_0_0_#000]">
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-black font-bold flex items-center gap-2">
+                    <CardTitle className="text-black font-black flex items-center gap-2">
                       <Target className="w-5 h-5 text-blue-500" />
                       Your Learning Quest
                     </CardTitle>

@@ -144,7 +144,13 @@ export default function SkillsPage() {
   })
 
   return (
-    <div className="min-h-screen py-8 px-4">
+    <div 
+      className="min-h-screen py-8 px-4"
+      style={{
+        backgroundColor: '#F9F6F3',
+        backgroundImage: `repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 16px), repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 16px)`
+      }}
+    >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -164,7 +170,7 @@ export default function SkillsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="card-clean p-6 mb-8"
+          className="bg-white border-2 border-black shadow-[6px_6px_0_0_#000] p-6 mb-8"
         >
           <div className="flex flex-col lg:flex-row gap-4">
             {/* Search Bar */}
@@ -174,13 +180,13 @@ export default function SkillsPage() {
                 placeholder="Search skills, technologies, or topics..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 border-gray-300 text-black placeholder:text-gray-500 bg-transparent"
+                className="pl-10 border-2 border-black text-black placeholder:text-gray-500 bg-white"
               />
             </div>
 
             {/* Category Filter */}
             <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-              <SelectTrigger className="w-full lg:w-48 border-gray-300 text-black bg-transparent">
+              <SelectTrigger className="w-full lg:w-48 border-2 border-black text-black bg-white">
                 <SelectValue placeholder="Category" />
               </SelectTrigger>
               <SelectContent>
@@ -198,7 +204,7 @@ export default function SkillsPage() {
 
             {/* Location Filter */}
             <Select value={selectedLocation} onValueChange={setSelectedLocation}>
-              <SelectTrigger className="w-full lg:w-48 border-gray-300 text-black bg-transparent">
+              <SelectTrigger className="w-full lg:w-48 border-2 border-black text-black bg-white">
                 <SelectValue placeholder="Location" />
               </SelectTrigger>
               <SelectContent>
@@ -208,7 +214,7 @@ export default function SkillsPage() {
               </SelectContent>
             </Select>
 
-            <Button className="btn-secondary">
+            <Button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold border-2 border-black shadow-[4px_4px_0_0_#000]">
               <Filter className="w-4 h-4 mr-2" />
               More Filters
             </Button>
@@ -260,7 +266,7 @@ export default function SkillsPage() {
             transition={{ duration: 0.6 }}
             className="text-center py-16"
           >
-            <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-black">
               <Search className="w-12 h-12 text-gray-400" />
             </div>
             <h3 className="text-2xl font-black text-black mb-2">No skills found</h3>
@@ -273,7 +279,7 @@ export default function SkillsPage() {
                 setSelectedCategory("all")
                 setSelectedLocation("all")
               }}
-              className="btn-primary"
+              className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold border-2 border-black shadow-[4px_4px_0_0_#000]"
             >
               Clear Filters
             </Button>
@@ -293,7 +299,7 @@ export default function SkillsPage() {
               <Badge
                 key={category}
                 variant="outline"
-                className="cursor-pointer border-gray-300 text-gray-700 hover:border-yellow-400 hover:text-black hover:bg-yellow-50 transition-colors px-4 py-2 font-medium"
+                className="cursor-pointer border-2 border-black text-gray-700 hover:border-yellow-400 hover:text-black hover:bg-yellow-50 transition-colors px-4 py-2 font-medium bg-white"
                 onClick={() => setSelectedCategory(category)}
               >
                 {category}

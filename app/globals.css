@@ -61,15 +61,11 @@
 
 /* Custom styles matching the new design */
 .btn-primary {
-  @apply bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-3 rounded-lg transition-all duration-200 border-2 border-black;
+  @apply bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-3 rounded-lg transition-all duration-200 border-2 border-black shadow-[4px_4px_0_0_#000];
 }
 
 .btn-secondary {
-  @apply bg-white hover:bg-gray-50 text-gray-700 font-semibold px-6 py-3 rounded-lg transition-all duration-200 border border-gray-300;
-}
-
-.card-clean {
-  @apply bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200;
+  @apply bg-white hover:bg-gray-50 text-black font-bold px-6 py-3 rounded-lg transition-all duration-200 border-2 border-black shadow-[4px_4px_0_0_#000];
 }
 
 .text-heading {
