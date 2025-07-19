@@ -19,6 +19,8 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "User not found" }, { status: 404 })
     }
 
+    console.log("User fetched successfully:", user)
+
     return NextResponse.json({ user })
   } catch (error) {
     console.error("Database error:", error)
@@ -58,10 +60,10 @@ export async function POST(request: NextRequest) {
       data: {
         clerkId: userId,
         // Populate fields from the Clerk user object
-        name: clerkUser?.fullName || null, // Use fullName, provide fallback
-        email: clerkUser?.emailAddresses?.[0]?.emailAddress || null, // Safely access email
+        name: clerkUser?.fullName || "not available", // Use fullName, provide fallback
+        email: clerkUser?.emailAddresses?.[0]?.emailAddress || "not available", // Safely access email
         username: generatedUsername, // Use the generated unique username
-        avatarUrl: clerkUser?.imageUrl || null, // Use imageUrl
+        avatarUrl: clerkUser?.imageUrl || "not available", // Use imageUrl
         hasOnboarded: false, // Set to false initially for onboarding flow
       },
     });

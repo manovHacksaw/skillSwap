@@ -7,7 +7,7 @@ import { toast } from "sonner"
 import type { StepProps } from "@/types/onboarding"
 import { useState } from "react"
 import { useFormValidation } from "@/hooks/use-form-validation"
-import { FormField, ValidatedInput, ValidatedTextarea } from "@/components/ui/form-field"
+import { FormField, Input, ValidatedTextarea } from "@/components/ui/form-field"
 
 const majorInterests = [
   "Technology",
@@ -122,7 +122,7 @@ export default function BasicInfoStep({ formData, setFormData, onNext }: StepPro
         <CardContent className="p-6 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FormField label="What's your name?" required error={getFieldError("displayName")}>
-              <ValidatedInput
+              <Input
                 placeholder="How you want others to see you"
                 value={formData.displayName}
                 onChange={(e) => setFormData((prev) => ({ ...prev, displayName: e.target.value }))}
@@ -132,7 +132,7 @@ export default function BasicInfoStep({ formData, setFormData, onNext }: StepPro
             </FormField>
 
             <FormField label="Pick a username/handle" error={getFieldError("username")}>
-              <ValidatedInput
+              <Input
                 placeholder="@yourhandle"
                 value={formData.username}
                 onChange={(e) => setFormData((prev) => ({ ...prev, username: e.target.value }))}
@@ -187,7 +187,7 @@ export default function BasicInfoStep({ formData, setFormData, onNext }: StepPro
 
             {/* Manual Interest Input */}
             <div className="flex gap-2 mt-4">
-              <ValidatedInput
+              <Input
                 placeholder="Add your own interest"
                 value={manualInterest}
                 onChange={(e) => setManualInterest(e.target.value)}
@@ -210,7 +210,7 @@ export default function BasicInfoStep({ formData, setFormData, onNext }: StepPro
               {socialPlatforms.map((platform) => (
                 <div key={platform.key} className="space-y-1">
                   <label className="text-sm text-gray-600">{platform.label}</label>
-                  <ValidatedInput
+                  <Input
                     placeholder={platform.placeholder}
                     value={formData.socialLinks[platform.key as keyof typeof formData.socialLinks] || ""}
                     onChange={(e) => updateSocialLink(platform.key, e.target.value)}
@@ -226,7 +226,7 @@ export default function BasicInfoStep({ formData, setFormData, onNext }: StepPro
                       <label className="text-sm text-gray-600">
                         {key.charAt(0).toUpperCase() + key.slice(1)} (Custom)
                       </label>
-                      <ValidatedInput value={value} onChange={(e) => updateSocialLink(key, e.target.value)} />
+                      <Input value={value} onChange={(e) => updateSocialLink(key, e.target.value)} />
                     </div>
                   )
                 }
@@ -236,13 +236,13 @@ export default function BasicInfoStep({ formData, setFormData, onNext }: StepPro
 
             {/* Manual Social Link Input */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-4">
-              <ValidatedInput
+              <Input
                 placeholder="Custom Social Name (e.g., Behance)"
                 value={manualSocialName}
                 onChange={(e) => setManualSocialName(e.target.value)}
               />
               <div className="flex gap-2">
-                <ValidatedInput
+                <Input
                   placeholder="Link (e.g., behance.net/yourprofile)"
                   value={manualSocialLink}
                   onChange={(e) => setManualSocialLink(e.target.value)}

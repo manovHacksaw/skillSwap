@@ -48,12 +48,12 @@ export default function Navbar() {
           
           // Regardless of success/failure of the API call, redirect to dashboard.
           // Adjust this logic if you want to prevent redirection on certain API errors.
-          router.push("/dashboard");
+          // router.push("/dashboard");
 
         } catch (error: any) {
           console.error("Network or unexpected error during API call:", error);
           // Still redirect even if network error, or handle specifically
-          router.push("/dashboard");
+          // router.push("/dashboard");
         }
       };
 

@@ -8,7 +8,8 @@ import { Briefcase, Clock, Globe } from "lucide-react"
 import type { StepProps } from "@/types/onboarding"
 import { useState } from "react"
 import { useFormValidation } from "@/hooks/use-form-validation"
-import { FormField, ValidatedInput } from "@/components/ui/form-field"
+import { FormField, Input } from "@/components/ui/form-field"
+import {ValidTextarea} from "@/components/ui/form-field"
 
 const occupationOptions = [
   "Working Professional",
@@ -126,7 +127,7 @@ export default function AboutYouStep({ formData, setFormData, onNext, onPrev }: 
 
             <div className="space-y-4">
               <FormField label="Where are you located?" error={getFieldError("location")}>
-                <ValidatedInput
+                <Input
                   placeholder="City, Country"
                   value={formData.location}
                   onChange={(e) => setFormData((prev) => ({ ...prev, location: e.target.value }))}
@@ -156,13 +157,21 @@ export default function AboutYouStep({ formData, setFormData, onNext, onPrev }: 
               </FormField>
 
               <FormField label="Age" required error={getFieldError("age")}>
-                <ValidatedInput
+                <Input
                   type="number"
                   placeholder="Your age"
                   min="13"
                   max="120"
                   value={formData.age || ""}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, age: Number.parseInt(e.target.value) || 0 }))}
+                  onChange={(e) => {
+                    const value = e.target.value
+                    // FIX: Set age to null if input is empty, otherwise parse it.
+                    // This prevents the infinite loop.
+                    setFormData((prev) => ({
+                      ...prev,
+                      age: value === "" ? null : Number.parseInt(value, 10),
+                    }))
+                  }}
                   error={getFieldError("age")}
                 />
               </FormField>
@@ -188,7 +197,6 @@ export default function AboutYouStep({ formData, setFormData, onNext, onPrev }: 
                 </Button>
               ))}
 
-              {/* Display manually added languages */}
               {formData.preferredLanguages
                 .filter((lang) => !languageOptions.includes(lang))
                 .map((lang) => (
@@ -205,9 +213,8 @@ export default function AboutYouStep({ formData, setFormData, onNext, onPrev }: 
                 ))}
             </div>
 
-            {/* Manual Language Input */}
             <div className="flex gap-2 mt-4">
-              <ValidatedInput
+              <Input
                 placeholder="Add another language"
                 value={manualLanguage}
                 onChange={(e) => setManualLanguage(e.target.value)}
